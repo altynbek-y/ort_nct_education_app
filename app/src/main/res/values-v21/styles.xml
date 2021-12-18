@@ -1,0 +1,5 @@
+<resources>
+    <style name="AppMaterialTheme" parent="@android:style/Theme.Material">
+        <!-- Customise for only Lollipop and Above Versions features-->
+    </style>
+</resources>

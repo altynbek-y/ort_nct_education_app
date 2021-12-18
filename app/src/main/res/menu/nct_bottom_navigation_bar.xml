@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+   <item android:id="@+id/info"
+       android:icon="@drawable/ic_info_outline_black_24dp"
+       android:title="@string/information_on_nct"></item>
+
+    <item android:id="@+id/diag_test"
+        android:icon="@drawable/ic_format_list_numbered_black_24dp"
+        android:title="@string/practice_test_txt"></item>
+
+    <item android:id="@+id/statistics"
+        android:icon="@drawable/ic_data_usage_black_24dp"
+        android:title="@string/statistics_title"></item>
+</menu>

@@ -1,0 +1,83 @@
+package neobis.project.iman_augustine.ort_nct.ui.ort.test;
+
+import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import neobis.project.iman_augustine.ort_nct.R;
+import neobis.project.iman_augustine.ort_nct.model.testmodel.Answer;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class TestController implements Serializable {
+    private final double maxOrtFinalScore = 245.0; // For ORT (might be changed)
+    private final double maxOrtAdditionalScore = 150; // For ORT (might be changed)
+
+    private int correctAnswer = 0; // Total of user's correct answers
+    private int countTotalAnswer; // Total of answered answers (both correct and incorrect)
+    private int total;
+    private ProgressBar progressBar; // Progress bar widget
+    private TextView progressText; // Displays answered to total ratio
+
+    private ArrayList<Integer> userAnswerList;
+    private ArrayList<Integer> correctAnswerList;
+
+    public TestController(int total, ProgressBar progressBar, TextView progressText) {
+        this.userAnswerList =  new ArrayList<>(Collections.nCopies(total, -1)); // User answer list
+        this.correctAnswerList = new ArrayList<>(Collections.nCopies(total, -2)); // Correct answers
+        this.total = total;
+        this.progressBar = progressBar;
+        this.progressBar.setMax(total);
+        this.progressText = progressText;
+        progressText.setText(this.countTotalAnswer + "/" + this.total); // Setting ratio of answered questions to total of questions
+    }
+
+    public void countAnswer(int position, int userAnswer, List<Answer> options, RadioGroup answerGroup) {
+        if(correctAnswerList.get(position) == -2 )
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (options.get(i).isCorrect())
+                {
+                    ((RadioButton)answerGroup.getChildAt(i)).setButtonDrawable(R.drawable.ic_correct_icon);
+                    correctAnswerList.set(position, i);
+                    break;
+                }
+            }
+        }
+
+        // explanationCard.setVisibility(View.VISIBLE);
+        if(userAnswerList.get(position) == -1) this.countTotalAnswer++; // Total user has answered
+
+        userAnswerList.set(position, userAnswer); // Setting user info
+        progressBar.setProgress(this.countTotalAnswer);// Setting progress
+        progressText.setText(this.countTotalAnswer + "/" + this.total); // Setting ratio of answered questions to total of questions
+    }
+
+    public int getCorrectCount() {
+        return this.correctAnswer;
+    }
+
+    public int getTotal()
+    {
+        return this.total;
+    }
+
+    public String toStringOrtScore()
+    {
+        return this.correctAnswer+"/"+this.total;
+    }
+
+    public void countTotalCorrect()
+    {
+        for(int i=0; i<total; i++)
+        {
+            if(userAnswerList.get(i) == correctAnswerList.get(i))
+                this.correctAnswer++;
+        }
+    }
+}
