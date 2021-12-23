@@ -24,7 +24,6 @@ import  neobis.project.iman_augustine.ort_nct.singleclicklistener.OnSingleClickL
 public class ChooseAge extends AppCompatActivity implements Contract.AgeView {
     private Button nextButton;
     private RadioGroup ageRadioGroup;
-    private RadioButton radioButton;
     OnSingleClickListener onSingleClickListener = new OnSingleClickListener() {
         @Override
         public void onSingleClick(View view) {
@@ -34,7 +33,7 @@ public class ChooseAge extends AppCompatActivity implements Contract.AgeView {
     RadioGroup.OnCheckedChangeListener onCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
-            radioButton = findViewById(checkedId);
+            RadioButton radioButton = findViewById(checkedId);
             String ageStr = radioButton.getText().toString();
             long age = 20;
             if (checkedId != R.id.other_age) {
