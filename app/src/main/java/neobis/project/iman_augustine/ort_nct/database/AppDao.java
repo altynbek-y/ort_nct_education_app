@@ -42,6 +42,9 @@ public interface AppDao {
 
     @androidx.room.Query("delete from TestStats where testtype='ort'")
     void deleteAllTestStatstOrt();
+
+
+
     //-----------------------------------ORT-EDUCATION------------------------------------
    /* @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertOrtEducation(List<EducationModel> educations);*/
