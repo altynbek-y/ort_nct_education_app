@@ -19,7 +19,6 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract AppDao appDao();
 
-
     private static AppDatabase instance;
 
     public static AppDatabase getInMemoryDatabase(Context context) {
