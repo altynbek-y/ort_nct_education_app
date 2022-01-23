@@ -60,7 +60,7 @@ public class NctStatisticsFragment extends Fragment implements StatListAdapter.O
         setHasOptionsMenu(false);
     }
     // On view already created
-    @Override
+   /* @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // Variables initiated
@@ -126,5 +126,15 @@ public class NctStatisticsFragment extends Fragment implements StatListAdapter.O
         viewModel.getNewStatList();
     }
     @Override
-    public void onItemClick(int i) {}
+    public void onItemClick(int i) {}*/
+
+    @Override
+    public void onRemoveClick(int i) {
+
+    }
+
+    @Override
+    public void onItemClick(int i) {
+
+    }
 }

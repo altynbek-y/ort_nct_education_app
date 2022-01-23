@@ -100,7 +100,7 @@ public class NctRepository {
     }
 
     //----------------------------------------------------------------------------------------------
-    public void insertNctResult(TestStat testResult) {
+ /*   public void insertNctResult(TestStat testResult) {
         database.insertTestResultNct(testResult);
     }
     public void getNctStatListFromDatabase(MutableLiveData<List<TestStat>> statList) {
@@ -111,7 +111,7 @@ public class NctRepository {
 
     public void removeNctTestStat(TestStat testStat) {
         database.deleteTestStatNct(testStat);
-    }
+    }*/
 }
 
 

@@ -25,7 +25,7 @@ public class StatsViewModel extends AndroidViewModel {
          if(statList==null) {
              statList = new MutableLiveData<>();
          }
-         repository.getOrtStatListFromDatabase(statList);
+        // repository.getOrtStatListFromDatabase(statList);
          return statList;
     }
 
@@ -34,7 +34,7 @@ public class StatsViewModel extends AndroidViewModel {
     }
 
     public void removeOrtTestStat(TestStat testResult) {
-        repository.removeOrtTestStat(testResult);
+        // repository.removeOrtTestStat(testResult);
     }
 
     @Override

@@ -16,12 +16,12 @@ public class OrtTestActivityViewModel extends AndroidViewModel {
     }
 
     public void insertOrtTestResult(String subjectName, long correct, long incorrect ) {
-        repository.insertOrtResult(
+       /* repository.insertOrtResult(
                 new TestStat(subjectName,
                 0,
                 0,
                 "ort",
                 correct,
-                incorrect));
+                incorrect));*/
     }
 }

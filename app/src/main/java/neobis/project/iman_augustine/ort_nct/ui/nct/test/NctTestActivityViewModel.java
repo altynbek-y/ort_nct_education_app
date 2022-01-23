@@ -16,6 +16,6 @@ public class NctTestActivityViewModel extends AndroidViewModel {
     }
 
     public void insertNctTestResult(String subjectName, int grade, int variant , long correct, long incorrect ) {
-        repository.insertNctResult(new TestStat(subjectName, grade, variant, "nct", correct, incorrect));
+      //  repository.insertNctResult(new TestStat(subjectName, grade, variant, "nct", correct, incorrect));
     }
 }

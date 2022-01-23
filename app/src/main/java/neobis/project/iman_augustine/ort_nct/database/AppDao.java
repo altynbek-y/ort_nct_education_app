@@ -13,35 +13,39 @@ import java.util.List;
 @Dao
 public interface AppDao {
     //-----------------------------------TEST-RESULT-NCT----------------------------------
-    @Delete
-    void deleteTestStatNct(TestStat testResult); // Deletes an object from database
+/*    @Delete
+    void deleteTestStatNct(TestStat testResult); // Deletes an object from database*/
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertTestStatsNct(List<TestStat> testResultNct);
+/*    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertTestStatsNct(List<TestStat> testResultNct);*/
 
-    @Insert
-    void insertTestResultNct(TestStat testResult);
+/*    @Insert
+    void insertTestResultNct(TestStat testResult);*/
 
-    @androidx.room.Query("select * from TestStats where testtype='nct'")
-    List<TestStat> getAllTestStatsNct();
+/*    @androidx.room.Query("select * from TestStats where testtype='nct'")
+    List<TestStat> getAllTestStatsNct();*/
 
-    @androidx.room.Query("delete from TestStats where testtype=='nct'")
-    void deleteAllTestResultsNct();
+/*    @androidx.room.Query("delete from TestStats where testtype=='nct'")
+    void deleteAllTestResultsNct();*/
     //-----------------------------------TEST-RESULT-ORT----------------------------------
+/*
     @Delete
     void deleteTestStatOrt(TestStat testStatOrt);
+*/
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+/*    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertTestStatsOrt(List<TestStat> testStatsOrt);
 
     @Insert
-    void insertTestResultOrt(TestStat testResultOrt);
+    void insertTestResultOrt(TestStat testResultOrt);*/
 
+/*
     @androidx.room.Query("select * from TestStats where testtype='ort'")
     List<TestStat> getAllTestStatsOrt();
 
     @androidx.room.Query("delete from TestStats where testtype='ort'")
     void deleteAllTestStatstOrt();
+*/
 
 
 

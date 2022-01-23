@@ -4,7 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 @Entity
 public class UserScore {
@@ -15,5 +16,5 @@ public class UserScore {
     public float score;
 
     @ColumnInfo(name = "test_date")
-    public Date dateTest;
+    public String dateTest;
 }

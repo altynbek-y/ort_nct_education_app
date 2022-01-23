@@ -26,10 +26,10 @@ public class StatsViewModel extends AndroidViewModel {
     public StatsViewModel(Application application) {
         super(application);
         repository = NctRepository.getInstance(application);
-        getNewStatList();
+       // getNewStatList();
     }
 
-    public MutableLiveData<List<TestStat>> getNewStatList() {
+/*    public MutableLiveData<List<TestStat>> getNewStatList() {
          if(statList==null) {
              statList = new MutableLiveData<>();
          }
@@ -43,7 +43,7 @@ public class StatsViewModel extends AndroidViewModel {
 
     public void removeNctTestStat(TestStat testResult) {
         repository.removeNctTestStat(testResult);
-    }
+    }*/
 
     @Override
     public String toString() {

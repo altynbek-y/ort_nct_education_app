@@ -133,7 +133,7 @@ public class OrtRepository {
     }
 
     //------------------------------ORT-STATISTICS--------------------------------------------------
-    public void insertOrtResult(TestStat testResult) {
+    /*public void insertOrtResult(TestStat testResult) {
         database.insertTestResultNct(testResult);
     }
     public void getOrtStatListFromDatabase(MutableLiveData<List<TestStat>> statList) {
@@ -144,7 +144,7 @@ public class OrtRepository {
 
     public void removeOrtTestStat(TestStat testStat) {
         database.deleteTestStatOrt(testStat);
-    }
+    }*/
 }
 
 

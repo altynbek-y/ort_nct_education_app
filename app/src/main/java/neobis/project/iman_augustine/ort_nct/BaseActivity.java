@@ -6,6 +6,7 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import neobis.project.iman_augustine.ort_nct.ui.ChooseTestType;
 import neobis.project.iman_augustine.ort_nct.ui.nct.main.NctMainActivity;
 import neobis.project.iman_augustine.ort_nct.ui.ort.main.OrtMainActivity;
 
@@ -19,7 +20,8 @@ public class BaseActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startNctTestActivity();
+                // startNctTestActivity();
+                chooseTestType();
             }
         }, 400);
         // launchMainActivity();
@@ -33,6 +35,11 @@ public class BaseActivity extends AppCompatActivity {
 
     public void startNctTestActivity() {
         startActivity(new Intent(this, NctMainActivity.class));
+        finish();
+    }
+
+    public void chooseTestType() {
+        startActivity(new Intent(this, ChooseTestType.class));
         finish();
     }
 
