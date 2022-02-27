@@ -1,14 +1,6 @@
 package  neobis.project.iman_augustine.ort_nct.database;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
-import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
-
-import neobis.project.iman_augustine.ort_nct.model.statmodel.TestStat;
-import retrofit2.http.Query;
-
-import java.util.List;
 
 @Dao
 public interface AppDao {

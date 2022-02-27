@@ -7,10 +7,10 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import neobis.project.iman_augustine.ort_nct.model.statmodel.TestStat;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.TestAnswerTypeConverter;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.TestTypeConverter;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.SubjectTest;
+import neobis.project.iman_augustine.ort_nct.model.statistics_model.TestStat;
+import neobis.project.iman_augustine.ort_nct.model.test_model.TestAnswerTypeConverter;
+import neobis.project.iman_augustine.ort_nct.model.test_model.TestTypeConverter;
+import neobis.project.iman_augustine.ort_nct.model.test_model.SubjectTest;
 
 @Database(entities = { SubjectTest.class, TestStat.class}, version = 3, exportSchema = false)
 @TypeConverters({ TestTypeConverter.class, TestAnswerTypeConverter.class})

@@ -66,11 +66,10 @@ public class SettingsActivity extends AppCompatActivity implements Contract.Sett
         String currentLocale = sharedPreferences.getString("locale", "ru");
         if (currentLocale.equals("ru")) {
             languageRadioButton = findViewById(R.id.switch_to_russian);
-            languageRadioButton.setChecked(true);
         } else {
             languageRadioButton = findViewById(R.id.switch_to_kyrgyz);
-            languageRadioButton.setChecked(true);
         }
+        languageRadioButton.setChecked(true);
         language_option.setOnCheckedChangeListener(onLanguagedCheckedListener);
     }
     /*

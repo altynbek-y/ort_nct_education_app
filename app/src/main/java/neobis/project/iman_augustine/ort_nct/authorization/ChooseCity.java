@@ -14,9 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import neobis.project.iman_augustine.ort_nct.common.CommonMethod;
 import neobis.project.iman_augustine.ort_nct.R;
 import  neobis.project.iman_augustine.ort_nct.dialogs.LoadingDialog;
-import  neobis.project.iman_augustine.ort_nct.ui.ort.main.OrtMainActivity;
 import  neobis.project.iman_augustine.ort_nct.sharedpreference.SharedPreferencesSingleton;
 import  neobis.project.iman_augustine.ort_nct.singleclicklistener.OnSingleClickListener;
+import neobis.project.iman_augustine.ort_nct.ui.main.MainActivity;
 
 /**
  * Choose city layout
@@ -84,7 +84,7 @@ public class ChooseCity extends AppCompatActivity implements Contract.RegionView
         hideProgressBar();
         sps.setUserCode(CommonMethod.getDeviceId(this));
         sps.destroyUserData();
-        Intent intent = new Intent(this, OrtMainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

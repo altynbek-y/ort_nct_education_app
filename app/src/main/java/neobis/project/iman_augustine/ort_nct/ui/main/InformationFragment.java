@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import neobis.project.iman_augustine.ort_nct.R;
-import neobis.project.iman_augustine.ort_nct.model.aboutnctmodel.AboutNctModel;
+import neobis.project.iman_augustine.ort_nct.model.about_model.AboutModel;
 
 public class InformationFragment extends Fragment {
     private WebView webView;
@@ -25,7 +25,7 @@ public class InformationFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_nct_information, container, false);
+        return inflater.inflate(R.layout.fragment_information, container, false);
     }
 
     @Override
@@ -55,9 +55,9 @@ public class InformationFragment extends Fragment {
                     viewModel.getNewAboutNct();
                 }
             });
-            viewModel.getAboutNct().observe(this, new Observer<AboutNctModel>() {
+            viewModel.getAboutNct().observe(this, new Observer<AboutModel>() {
                 @Override
-                public void onChanged(@Nullable AboutNctModel data) {
+                public void onChanged(@Nullable AboutModel data) {
                     swipeRefreshLayout.setRefreshing(false);
                     if( data!=null && !data.getPayload().isEmpty() ) {
                         webView.setVisibility(View.VISIBLE);

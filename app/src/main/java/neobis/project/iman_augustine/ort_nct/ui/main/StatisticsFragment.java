@@ -15,7 +15,7 @@ import java.util.List;
 
 import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.adapters.StatListAdapter;
-import neobis.project.iman_augustine.ort_nct.model.statmodel.TestStat;
+import neobis.project.iman_augustine.ort_nct.model.statistics_model.TestStat;
 
 /**
  *
@@ -40,7 +40,7 @@ public class StatisticsFragment extends Fragment implements StatListAdapter.OnIt
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_nct_statistics, container, false);
+        return inflater.inflate(R.layout.fragment_statistics, container, false);
     }
 
     // On creation

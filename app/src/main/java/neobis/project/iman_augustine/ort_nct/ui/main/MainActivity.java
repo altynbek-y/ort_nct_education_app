@@ -18,6 +18,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Objects;
+
 import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.adapters.CustomViewPager;
 import neobis.project.iman_augustine.ort_nct.dialogs.LoadingDialog;
@@ -107,7 +109,7 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.nct_drawer_layout);
+            setContentView(R.layout.drawer_layout);
             try {
                 // shared = SharedPreferencesSingleton.getLocalSharedPreferences(this); // Shared preferences
                 sharedPreferences = PreferenceManager.getMySharedPreferences(this); // Gets shared preferences
@@ -159,7 +161,7 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
             bottomNav.setOnNavigationItemSelectedListener(navListener);
             // Initial state
             openFragment(nctInformationFragment); // Opens inital fragment
-            getSupportActionBar().setTitle(titlesResId[0]); // Sets toolbar title
+            Objects.requireNonNull(getSupportActionBar()).setTitle(titlesResId[0]); // Sets toolbar title
         }
 
         // On options item selected

@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
-import neobis.project.iman_augustine.ort_nct.model.statmodel.TestStat;
-import neobis.project.iman_augustine.ort_nct.repository.NctRepository;
+import neobis.project.iman_augustine.ort_nct.model.statistics_model.TestStat;
+import neobis.project.iman_augustine.ort_nct.repository.Repository;
 
 /**
  *
@@ -19,12 +19,12 @@ import neobis.project.iman_augustine.ort_nct.repository.NctRepository;
  * */
 
 public class StatsViewModel extends AndroidViewModel {
-    private NctRepository repository;
+    private Repository repository;
     private MutableLiveData<List<TestStat>> statList;
 
     public StatsViewModel(Application application) {
         super(application);
-        repository = NctRepository.getInstance(application);
+        repository = Repository.getInstance(application);
        // getNewStatList();
     }
 

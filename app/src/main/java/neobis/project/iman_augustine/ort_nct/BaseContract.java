@@ -5,9 +5,7 @@ public interface BaseContract {
     interface BaseSetUp {
         void saveUserId();
 
-        void startOrtTestActivity();
-
-        void startNctTestActivity();
+        void startTestActivity();
 
         void startAuthorization();
 

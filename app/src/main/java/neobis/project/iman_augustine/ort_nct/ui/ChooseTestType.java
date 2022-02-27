@@ -16,8 +16,6 @@ import androidx.appcompat.widget.Toolbar;
 import neobis.project.iman_augustine.ort_nct.R;
 
 import neobis.project.iman_augustine.ort_nct.singleclicklistener.OnSingleClickListener;
-import neobis.project.iman_augustine.ort_nct.ui.nct.main.NctMainActivity;
-import neobis.project.iman_augustine.ort_nct.ui.ort.main.OrtMainActivity;
 import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
 
 /**
@@ -83,12 +81,12 @@ public class ChooseTestType extends AppCompatActivity implements Contract.Choose
 
     @Override
     public void toOrt() {
-        startActivity(new Intent(this, OrtMainActivity.class));
+        //startActivity(new Intent(this, OrtMainActivity.class));
     }
 
     @Override
     public void toNct() {
-        startActivity(new Intent(this, NctMainActivity.class));
+        //startActivity(new Intent(this, NctMainActivity.class));
     }
 
     /**

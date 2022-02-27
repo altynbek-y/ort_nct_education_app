@@ -17,9 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import neobis.project.iman_augustine.ort_nct.R;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.Answer;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.Question;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.TranslationsImageModel;
+import neobis.project.iman_augustine.ort_nct.model.test_model.Answer;
+import neobis.project.iman_augustine.ort_nct.model.test_model.Question;
+import neobis.project.iman_augustine.ort_nct.model.test_model.TranslationsImageModel;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.SubjectViewHol
     @Override
     public SubjectViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.ort_test_item, parent, false);
+                .inflate(R.layout.test_item, parent, false);
 
         return new SubjectViewHolder(itemView, this.onItemListener);
     }
@@ -122,7 +122,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.SubjectViewHol
         private SubjectViewHolder(View view, final OnItemListener onItemListener) {
             super(view);
             radioAnswerGroup = view.findViewById(R.id.answerRadioGroup);
-            questionImage = view.findViewById(R.id.questionImage);
+            //questionImage = view.findViewById(R.id.questionImage);
             explanation = view.findViewById(R.id.explanation_textview);
             explanationCard = view.findViewById(R.id.explanation_cardview);
 

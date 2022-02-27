@@ -11,29 +11,29 @@ import java.util.Collections;
 import java.util.List;
 
 import neobis.project.iman_augustine.ort_nct.R;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.Answer;
+import neobis.project.iman_augustine.ort_nct.model.test_model.Answer;
 
 public class TestController implements Serializable {
-    private final double maxOrtFinalScore = 245.0; // For ORT (might be changed)
-    private final double maxOrtAdditionalScore = 150; // For ORT (might be changed)
+    private final double maxOrtFinalScore = 245.0;      // For ORT (might be changed)
+    private final double maxOrtAdditionalScore = 150;   // For ORT (might be changed)
 
-    private int correctAnswer = 0; // Total of user's correct answers
-    private int countTotalAnswer; // Total of answered answers (both correct and incorrect)
-    private int total;
-    private ProgressBar progressBar; // Progress bar widget
-    private TextView progressText; // Displays answered to total ratio
+    private int correctAnswer = 0;                      // Total of user's correct answers
+    private int countTotalAnswer;                       // Total of answered answers (both correct and incorrect)
+    private final int total;
+    private final ProgressBar progressBar;              // Progress bar widget
+    private final TextView progressText;                // Displays answered to total ratio
 
-    private ArrayList<Integer> userAnswerList;
-    private ArrayList<Integer> correctAnswerList;
+    private final ArrayList<Integer> userAnswerList;
+    private final ArrayList<Integer> correctAnswerList;
 
     public TestController(int total, ProgressBar progressBar, TextView progressText) {
-        this.userAnswerList =  new ArrayList<>(Collections.nCopies(total, -1)); // User answer list
-        this.correctAnswerList = new ArrayList<>(Collections.nCopies(total, -2)); // Correct answers
+        this.userAnswerList =  new ArrayList<>(Collections.nCopies(total, -1));             // User answer list
+        this.correctAnswerList = new ArrayList<>(Collections.nCopies(total, -2));           // Correct answers
         this.total = total;
         this.progressBar = progressBar;
         this.progressBar.setMax(total);
         this.progressText = progressText;
-        progressText.setText(this.countTotalAnswer + "/" + this.total); // Setting ratio of answered questions to total of questions
+        progressText.setText(this.countTotalAnswer + "/" + this.total);                         // Setting ratio of answered questions to total of questions
     }
 
     public void countAnswer(int position, int userAnswer, List<Answer> options, RadioGroup answerGroup) {
@@ -67,7 +67,7 @@ public class TestController implements Serializable {
         return this.total;
     }
 
-    public String toStringOrtScore()
+    public String toStringScore()
     {
         return this.correctAnswer+"/"+this.total;
     }
@@ -76,7 +76,7 @@ public class TestController implements Serializable {
     {
         for(int i=0; i<total; i++)
         {
-            if(userAnswerList.get(i) == correctAnswerList.get(i))
+            if(userAnswerList.get(i).equals(correctAnswerList.get(i)))
                 this.correctAnswer++;
         }
     }

@@ -3,12 +3,10 @@ package neobis.project.iman_augustine.ort_nct.network;
 
 import java.util.List;
 
-import neobis.project.iman_augustine.ort_nct.model.educationmodel.EducationModel;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.SubjectTest;
+import neobis.project.iman_augustine.ort_nct.model.education_model.EducationModel;
+import neobis.project.iman_augustine.ort_nct.model.test_model.SubjectTest;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 

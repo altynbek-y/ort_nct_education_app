@@ -10,29 +10,27 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import neobis.project.iman_augustine.ort_nct.R;
-
-import neobis.project.iman_augustine.ort_nct.model.education_model.EducationModel;
+import neobis.project.iman_augustine.ort_nct.model.test_model.SubjectTest;
 
 import java.util.List;
 
-public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.SubjectViewHolder> {
-
-    private List<EducationModel> educationList;
+public class TestListAdapter extends RecyclerView.Adapter<TestListAdapter.SubjectViewHolder> {
+    private List<SubjectTest> subjectTests;
     private OnItemListener onItemListener;
     private Context context;
 
-    public EducationAdapter(List<EducationModel> learningMaterials, OnItemListener onItemListener, Context context) {
-        this.educationList = learningMaterials;
+    public TestListAdapter(List<SubjectTest> subjectTests, TestListAdapter.OnItemListener onItemListener, Context context) {
+        this.subjectTests = subjectTests;
         this.onItemListener = onItemListener;
         this.context = context;
     }
 
-    public void setValues(List<EducationModel> educationList) {
-         this.educationList.clear();
-         if(educationList!=null) {
-             this.educationList.addAll(educationList);
-         }
-         this.notifyDataSetChanged();
+    public void setValues(List<SubjectTest> educationList) {
+        this.subjectTests.clear();
+        if(educationList!=null) {
+            this.subjectTests.addAll(educationList);
+        }
+        this.notifyDataSetChanged();
     }
 
     @NonNull
@@ -46,12 +44,12 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Subj
 
     @Override
     public void onBindViewHolder(SubjectViewHolder holder, int i) {
-        holder.subject_title.setText(""+educationList.get(i).getName());
+        holder.subject_name.setText(subjectTests.get(i).getSubjectName());
     }
 
     @Override
     public int getItemCount() {
-        return educationList != null ? educationList.size() : 0;
+        return subjectTests != null ? subjectTests.size() : 0;
     }
 
     public interface OnItemListener {
@@ -60,18 +58,18 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Subj
 
     public class SubjectViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView subject_title;
+        public TextView subject_name;
+
         OnItemListener onItemListener;
 
-        private SubjectViewHolder(View view, OnItemListener onItemListener) {
+        public SubjectViewHolder(View view, OnItemListener onItemListener) {
             super(view);
-           /* subject_title = view.findViewById(R.id.subject_item_title);
+           /* subject_name = view.findViewById(R.id.subject_item_title);
             final OnItemListener onItemListenerFinal = onItemListener;
             this.onItemListener = onItemListener;
             view.setOnClickListener(new OnSingleClickListener() {
                 @Override
                 public void onSingleClick(View view) {
-                    view.setEnabled(false);
                     onItemListenerFinal.onItemClick(getAdapterPosition());
                 }
             });*/

@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import neobis.project.iman_augustine.ort_nct.R;
-import neobis.project.iman_augustine.ort_nct.ui.ort.test.TestActivity;
+import neobis.project.iman_augustine.ort_nct.ui.main.test.TestActivity;
 
 
 public class DisplayResultActivity extends AppCompatActivity implements View.OnClickListener {

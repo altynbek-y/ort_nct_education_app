@@ -8,19 +8,19 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import neobis.project.iman_augustine.ort_nct.common.NetworkUtil;
-import neobis.project.iman_augustine.ort_nct.model.aboutnctmodel.AboutNctModel;
-import neobis.project.iman_augustine.ort_nct.repository.NctRepository;
+import neobis.project.iman_augustine.ort_nct.model.about_model.AboutModel;
+import neobis.project.iman_augustine.ort_nct.repository.Repository;
 import neobis.project.iman_augustine.ort_nct.sharedpreference.PreferenceManager;
 
 public class InfoViewModel extends AndroidViewModel {
     private int connectionType;
-    private NctRepository repository;
-    private MutableLiveData<AboutNctModel> aboutNct;
+    private Repository repository;
+    private MutableLiveData<AboutModel> aboutNct;
     private SharedPreferences sharedPreferences;
 
     public InfoViewModel(Application application) {
         super(application);
-        repository = NctRepository.getInstance(application);
+        repository = Repository.getInstance(application);
         connectionType = NetworkUtil.getConnectivityStatusString(application);
         sharedPreferences = PreferenceManager.getMySharedPreferences(application);
         getNewAboutNct();
@@ -37,7 +37,7 @@ public class InfoViewModel extends AndroidViewModel {
          }
     }
 
-    public LiveData<AboutNctModel> getAboutNct() {
+    public LiveData<AboutModel> getAboutNct() {
         return aboutNct;
     }
 

@@ -22,21 +22,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import neobis.project.iman_augustine.ort_nct.R;
-import neobis.project.iman_augustine.ort_nct.adapters.NctTestListAdapter;
+import neobis.project.iman_augustine.ort_nct.adapters.TestListAdapter;
 import neobis.project.iman_augustine.ort_nct.adapters.VerticalSpaceItemDecoration;
-import neobis.project.iman_augustine.ort_nct.model.ncttestmodel.NctTestSubjectInfo;
 import neobis.project.iman_augustine.ort_nct.sharedpreference.PreferenceManager;
-import neobis.project.iman_augustine.ort_nct.ui.main.test.NctTestActivity;
+import neobis.project.iman_augustine.ort_nct.ui.main.test.TestActivity;
 
-public class TestFragment extends Fragment implements NctTestListAdapter.OnItemListener, Contract {//, SwipeRefreshLayout.OnRefreshListener {
+public class TestFragment extends Fragment implements TestListAdapter.OnItemListener, Contract {//, SwipeRefreshLayout.OnRefreshListener {
     //------------------------------VIEW=INITIALIZATION---------------------------------------------
     private RecyclerView recyclerView;
     private TextView textView;
     private ProgressBar progressBar;
-    private NctTestListAdapter nctTestListAdapter;
+    private TestListAdapter testListAdapter;
     private TestViewModel viewModel;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private List<NctTestSubjectInfo> dataTestList; // Testing
     private SharedPreferences sharedPreferences;
     private String locale;
 
@@ -45,7 +43,7 @@ public class TestFragment extends Fragment implements NctTestListAdapter.OnItemL
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_nct_test, container, false);
+        return inflater.inflate(R.layout.fragment_test, container, false);
     }
 
     @Override
@@ -78,8 +76,8 @@ public class TestFragment extends Fragment implements NctTestListAdapter.OnItemL
             viewModel = ViewModelProvider.AndroidViewModelFactory
                     .getInstance(requireActivity().getApplication()).create(TestViewModel.class);
 
-            nctTestListAdapter = new NctTestListAdapter(new ArrayList<NctTestSubjectInfo>(), this, getContext());
-            viewModel.getNctTestInfoList().observe(this, new Observer<List<NctTestSubjectInfo>>() {
+           /* nctTestListAdapter = new TestListAdapter(new ArrayList<NctTestSubjectInfo>(), this, getContext());
+            viewModel.getNctTestInfoList().observe(this, new Observer<List<TestSubjectInfo>>() {
                 @Override
                 public void onChanged(@Nullable List<NctTestSubjectInfo> testDataList) {
                     dataTestList = testDataList;
@@ -95,7 +93,7 @@ public class TestFragment extends Fragment implements NctTestListAdapter.OnItemL
                 }
             });
             recyclerView.setAdapter(nctTestListAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));*/
         } catch(NullPointerException error) {
             error.printStackTrace();
         }
@@ -104,7 +102,7 @@ public class TestFragment extends Fragment implements NctTestListAdapter.OnItemL
     @Override
     public void onItemClick(int i) {
         progressBar.setVisibility(View.VISIBLE);
-        viewModel.getNctSubjectTestFor(locale, dataTestList.get(i).getId(), this);
+        //viewModel.getNctSubjectTestFor(locale, dataTestList.get(i).getId(), this);
     }
 
     @Override
@@ -116,9 +114,9 @@ public class TestFragment extends Fragment implements NctTestListAdapter.OnItemL
     @Override
     public void startTest(boolean isNotEmpty) {
         if(isNotEmpty) {
-            Intent intent = new Intent(getActivity(), NctTestActivity.class);
-            intent.putExtra(NctTestActivity.TEST, viewModel.getNctSubjectTestList().getValue());
-            startActivity(intent);
+//            Intent intent = new Intent(getActivity(), TestActivity.class);
+//            intent.putExtra(TestActivity.TEST, viewModel.getNctSubjectTestList().getValue());
+//            startActivity(intent);
         } else {
             progressBar.setVisibility(View.GONE);
             Toast.makeText(getContext(), R.string.practice_ort_test_list_empty_text, Toast.LENGTH_SHORT).show();

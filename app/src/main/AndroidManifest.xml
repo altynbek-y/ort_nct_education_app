@@ -31,6 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!-- Choose Language Activity -->
         <activity
             android:name=".authorization.ChooseLanguage"
@@ -40,12 +41,14 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
         <!-- Choose Age Activity -->
         <activity
             android:name=".authorization.ChooseAge"
             android:label="@string/age_choice_label"
             android:screenOrientation="fullSensor">
         </activity>
+
         <!-- Choose Class Activity -->
         <activity
             android:name=".authorization.ChooseClass"
@@ -55,6 +58,7 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
         <!-- Choose City Activity -->
         <activity
             android:name=".authorization.ChooseCity"
@@ -74,33 +78,16 @@
             </intent-filter>
         </activity>
 
-        <!-- Ort Main Activity -->
-        <activity
-            android:name=".ui.ort.main.OrtMainActivity"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-        <!-- Nct Test Activity -->
-        <activity
-            android:name=".ui.nct.main.NctMainActivity"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
         <!-- Select Variant Nct Activity -->
         <activity
-            android:name=".ui.nct.nct_fragments.nct_test.SelectVariantActivity"
+            android:name=".ui.main.SelectVariantActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
         <!-- Settings Activity -->
         <activity
             android:name=".ui.settings.SettingsActivity"
@@ -111,6 +98,7 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
         <!-- About us Activity -->
         <activity
             android:name=".ui.aboutus.AboutUsActivity"
@@ -121,6 +109,7 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
         <!-- Refresh Internet Activity -->
         <activity
             android:name=".ui.error.RefreshInternetActivity"
@@ -130,7 +119,8 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <!-- Refresh Internet Activity -->
+
+        <!-- Failure Activity -->
         <activity
             android:name=".ui.error.FailureActivity"
             android:screenOrientation="fullSensor"
@@ -139,6 +129,7 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
         <!-- Display Test Result Activity -->
         <activity
             android:name=".ui.result.DisplayResultActivity"
@@ -148,39 +139,17 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <!-- Education Activity -->
+
+        <!-- Test Activity -->
         <activity
-            android:name=".ui.ort.ort_fragments.education.EducationActivity"
+            android:name=".ui.main.test.TestActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <!-- Ort Test Activity -->
-        <activity
-            android:name=".ui.ort.test.TestActivity"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-        <!-- Nct Test Activity -->
-        <activity
-            android:name=".ui.main.test.NctTestActivity"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/AppTheme.NoActionBar"> <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-        </intent-filter></activity>
-        <!-- Ort Final Additional Test Activity -->
-        <activity
-            android:name=".ui.SubjectTestListActivity"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-        </intent-filter></activity>
+
         <!-- Choose Test Activity -->
         <activity
             android:name=".ui.ChooseTestType"

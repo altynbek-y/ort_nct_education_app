@@ -5,18 +5,13 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverters;
 
-import neobis.project.iman_augustine.ort_nct.model.Language;
-import neobis.project.iman_augustine.ort_nct.model.Question;
-import neobis.project.iman_augustine.ort_nct.model.QuestionAnswerChoice;
-import neobis.project.iman_augustine.ort_nct.model.Subject;
-import neobis.project.iman_augustine.ort_nct.model.User;
-import neobis.project.iman_augustine.ort_nct.model.UserScore;
-import neobis.project.iman_augustine.ort_nct.model.statmodel.TestStat;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.SubjectTest;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.TestAnswerTypeConverter;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.TestTypeConverter;
+import neobis.project.iman_augustine.ort_nct.model.database_model.Language;
+import neobis.project.iman_augustine.ort_nct.model.database_model.Question;
+import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionAnswerChoice;
+import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
+import neobis.project.iman_augustine.ort_nct.model.database_model.User;
+import neobis.project.iman_augustine.ort_nct.model.database_model.UserScore;
 
 @Database(
         entities = {
