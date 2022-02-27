@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:background="@color/background_color"
         android:layout_gravity="start"
-        app:menu="@menu/drawermenu">
+        app:menu="@menu/drawer_menu">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
