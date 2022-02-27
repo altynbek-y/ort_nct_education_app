@@ -1,4 +1,4 @@
-package neobis.project.iman_augustine.ort_nct.ui.nct.nct_fragments.nct_about;
+package neobis.project.iman_augustine.ort_nct.ui.main;
 
 import android.app.Application;
 import android.content.SharedPreferences;

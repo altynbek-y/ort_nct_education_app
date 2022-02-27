@@ -1,7 +1,5 @@
-package  neobis.project.iman_augustine.ort_nct.ui.nct.nct_fragments.nct_test;
-/**
- * NCT subject test list fragment
- * */
+package neobis.project.iman_augustine.ort_nct.ui.main;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,35 +14,33 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import neobis.project.iman_augustine.ort_nct.R;
-import neobis.project.iman_augustine.ort_nct.adapters.NctTestListAdapter;
-import neobis.project.iman_augustine.ort_nct.model.ncttestmodel.NctTestSubjectInfo;
-import neobis.project.iman_augustine.ort_nct.adapters.VerticalSpaceItemDecoration;
-import neobis.project.iman_augustine.ort_nct.sharedpreference.PreferenceManager;
-import neobis.project.iman_augustine.ort_nct.ui.nct.nct_fragments.nct_stats.StatsViewModel;
-import neobis.project.iman_augustine.ort_nct.ui.nct.test.NctTestActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class NctTestFragment extends Fragment implements NctTestListAdapter.OnItemListener, Contract {//, SwipeRefreshLayout.OnRefreshListener {
+import neobis.project.iman_augustine.ort_nct.R;
+import neobis.project.iman_augustine.ort_nct.adapters.NctTestListAdapter;
+import neobis.project.iman_augustine.ort_nct.adapters.VerticalSpaceItemDecoration;
+import neobis.project.iman_augustine.ort_nct.model.ncttestmodel.NctTestSubjectInfo;
+import neobis.project.iman_augustine.ort_nct.sharedpreference.PreferenceManager;
+import neobis.project.iman_augustine.ort_nct.ui.main.test.NctTestActivity;
+
+public class TestFragment extends Fragment implements NctTestListAdapter.OnItemListener, Contract {//, SwipeRefreshLayout.OnRefreshListener {
     //------------------------------VIEW=INITIALIZATION---------------------------------------------
     private RecyclerView recyclerView;
     private TextView textView;
     private ProgressBar progressBar;
     private NctTestListAdapter nctTestListAdapter;
-    private NctTestViewModel viewModel;
+    private TestViewModel viewModel;
     private SwipeRefreshLayout swipeRefreshLayout;
     private List<NctTestSubjectInfo> dataTestList; // Testing
     private SharedPreferences sharedPreferences;
     private String locale;
 
-    public NctTestFragment() {}
+    public TestFragment() {}
 
     @Nullable
     @Override
@@ -80,7 +76,7 @@ public class NctTestFragment extends Fragment implements NctTestListAdapter.OnIt
 
             //viewModel = ViewModelProviders.of(this).get(NctTestViewModel.class);
             viewModel = ViewModelProvider.AndroidViewModelFactory
-                    .getInstance(requireActivity().getApplication()).create(NctTestViewModel.class);
+                    .getInstance(requireActivity().getApplication()).create(TestViewModel.class);
 
             nctTestListAdapter = new NctTestListAdapter(new ArrayList<NctTestSubjectInfo>(), this, getContext());
             viewModel.getNctTestInfoList().observe(this, new Observer<List<NctTestSubjectInfo>>() {

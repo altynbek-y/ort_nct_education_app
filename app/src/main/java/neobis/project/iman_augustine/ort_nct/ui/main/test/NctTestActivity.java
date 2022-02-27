@@ -1,9 +1,8 @@
-package neobis.project.iman_augustine.ort_nct.ui.ort.test;
+package neobis.project.iman_augustine.ort_nct.ui.main.test;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -21,27 +20,23 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import neobis.project.iman_augustine.ort_nct.R;
-import neobis.project.iman_augustine.ort_nct.adapters.TestAdapter;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.Answer;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.SubjectTest;
-import neobis.project.iman_augustine.ort_nct.sharedpreference.SharedPreferencesSingleton;
-import neobis.project.iman_augustine.ort_nct.singleclicklistener.OnSingleClickListener;
-import neobis.project.iman_augustine.ort_nct.ui.Contract;
-import neobis.project.iman_augustine.ort_nct.ui.nct.test.NctTestController;
-import neobis.project.iman_augustine.ort_nct.ui.result.DisplayResultActivity;
-
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class TestActivity extends AppCompatActivity implements TestAdapter.OnItemListener,
-        Contract.TestResultContract {
-    //----------------------------NAME-CONSTANTS----------------------------------------------------
+import neobis.project.iman_augustine.ort_nct.R;
+import neobis.project.iman_augustine.ort_nct.adapters.NctTestAdapter;
+import neobis.project.iman_augustine.ort_nct.model.ncttestmodel.SubjectTestNct;
+import neobis.project.iman_augustine.ort_nct.singleclicklistener.OnSingleClickListener;
+import neobis.project.iman_augustine.ort_nct.ui.Contract;
+import neobis.project.iman_augustine.ort_nct.ui.result.DisplayResultActivity;
+import neobis.project.iman_augustine.ort_nct.ui.ort.test.TestActivity;
+
+public class NctTestActivity extends AppCompatActivity implements NctTestAdapter.OnItemListener, Contract.TestResultContract {
+    //----------------------------NAME-CONSTANTS--------------------------------
     public final static String TEST = "test";
-    public final static String TEST_TYPE = "test_type";
-    public final static String CORRECT_ANSWER_COUNT = "correct_answer_count";
-    public final static String TOTAL_QUESTIONS_COUNT = "total_answer_count";
-    public final static String RESULT = "result";
-    //----------------------------WIDGETS-----------------------------------------------------------
+    public final static String TITLE = "title";
+    //----------------------------WIDGETS-------------------------------------
     private Toolbar toolbar; // Toolbar view
     private RecyclerView recyclerView; // List view
     private ProgressBar progressBar; // Progress bar
@@ -49,14 +44,14 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
     private TextView timerTextView;
     private TextView titleTextView;
     private Button finishBtn; // Press to complete the test
-    private TestAdapter testAdapter; // Adapter for the recyclerview
-    private SubjectTest subjectTest; // List of questions (Question object)
-    private TestController testController;
-    private SharedPreferencesSingleton shared;
-    private OrtTestActivityViewModel viewModel;
-    //---------------------VARIABLES------------------------------------------
+    private NctTestAdapter testAdapter; // Adapter for the recyclerview
+    private SubjectTestNct subjectTestNct; // List of questions (Question object)
+    private NctTestController testController;
+    private NctTestActivityViewModel viewModel;
+    //------------------------------------VARIABLES-------------------------------------------------
     private long duration = 3600000;
-    //-------------------------------------------COUNT-DOWN-TIMER----------------------------------------------
+    private List<Boolean> isAnsweredList;
+    //-------------------------------------------COUNT-DOWN-TIMER-----------------------------------
     CountDownTimer countDownTimer = new CountDownTimer(duration, 1000) {
         @Override
         public void onTick(long millis) {
@@ -69,9 +64,10 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
         @Override
         public void onFinish() { // Proceed or finish on time out
             testController.countTotalCorrect();
-
+            completeTest();
         }
     };
+    // Cancels timer when activity destroyed
     public void cancelTimer() {
         if(countDownTimer!=null) {
             countDownTimer.cancel();
@@ -97,48 +93,50 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_layout);
-        //--------------------------------------INITIALIZATION--------------------------------------
-        shared = SharedPreferencesSingleton.getLocalSharedPreferences(this);
+        setContentView(R.layout.nct_test_layout);
+
+        //shared = SharedPreferencesSingleton.getLocalSharedPreferences(this);
         try {
-            subjectTest = (SubjectTest) getIntent().getSerializableExtra(TEST);
-            viewModel = ViewModelProviders.of(this).get(OrtTestActivityViewModel.class);
+            subjectTestNct = (SubjectTestNct) getIntent().getSerializableExtra(TEST);
+            viewModel = ViewModelProviders.of(this).get(NctTestActivityViewModel.class);
 
             initViews(); // Initializing widgets
             initRecyclerView(); // Initializing recycler view
-            testController = new TestController(subjectTest.getQuestions().size(), progressBar, ratio); // Initialzing test controller object
-            countDownTimer.start();   // Start count down timer
+            isAnsweredList = new ArrayList<>(Collections.nCopies(subjectTestNct.getQuestions().size(), false));
+            testController = new NctTestController(subjectTestNct.getQuestions().size(), progressBar, ratio); // Initialzing test controller object
+            // countDownTimer.start();   // Start count down timer
         } catch (NullPointerException error) {
             Toast.makeText(this, "error: "+error.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        //------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------
     }
     //--------------------------------------------------------ON-ANSWER-CLICK-LISTENER--------------
     @Override
     public void onAnswerClick(int position, int userAnswer, RadioGroup answerGroup) {
-       testController.countAnswer(position,
-               userAnswer, subjectTest.getQuestions().get(position).getAnswers(),
-               answerGroup);
+        if(isAnsweredList.get(position))
+            return;
+        isAnsweredList.set(position, true);
+        testController.countAnswer(position, userAnswer, subjectTestNct.getQuestions().get(position).getOptions(), answerGroup);
     }
-    //---------------------------------------VIEW-INITIALIZATION------------------------------------
+    //---------------------------------------VIEW-INITIALIZATION-----------------------------------------
     private void initViews() {
         toolbar = findViewById(R.id.toolbar); // Finding tool bar
         setSupportActionBar(toolbar); // Setting tool bar
         titleTextView = findViewById(R.id.titleText); // Title
-        titleTextView.setText((subjectTest!=null ? subjectTest.getSubjectName() : "" ));
+        titleTextView.setText(subjectTestNct.getSubject().getName());
         timerTextView = findViewById(R.id.timerTextView);
-        //------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------
         progressBar = findViewById(R.id.progressBar); // Setting progress bar widget
         ratio = findViewById(R.id.score_ratio_textview); // Setting text view widget
         finishBtn = findViewById(R.id.finish_button); // Setting a button
         finishBtn.setOnClickListener(onFinishClickListener); // Setting on click listener
         toolbar.setNavigationOnClickListener(onToolbarClickListener); // Setting on tool bar click listener
     }
-    //--------------------------INITIALIZATION-OF-RECYCLERVIEW--------------------------------------
+    //--------------------------INITIALIZATION-OF-RECYCLERVIEW-------------------------------------------
     // Fetches data to inflate test list with questions, answers, etc
     private void initRecyclerView() {
         recyclerView = findViewById(R.id.quiz_list); // Finding recycler view widget
-        testAdapter = new TestAdapter(subjectTest.getQuestions(), this, TestActivity.this); // RecyclewView Adapter
+        testAdapter = new NctTestAdapter(subjectTestNct.getQuestions(), this, this); // RecyclewView Adapter
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -153,33 +151,32 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
     public void onItemClick(int i) { }
     //-----------------------------COMPLETING-TEST--------------------------------------------------
     public void completeTest() {
-        Intent intent = new Intent(TestActivity.this, DisplayResultActivity.class);
-        intent.putExtra(TestActivity.RESULT, testController.toStringOrtScore());
+        Intent intent = new Intent(NctTestActivity.this, DisplayResultActivity.class);
+        intent.putExtra(TestActivity.RESULT, testController.toStringNctScore());
         intent.putExtra(TestActivity.CORRECT_ANSWER_COUNT, testController.getCorrectCount());
         intent.putExtra(TestActivity.TOTAL_QUESTIONS_COUNT, testController.getTotal());
-        viewModel.insertOrtTestResult(
-                subjectTest.getSubjectName(),
-                testController.getCorrectCount(),
-                testController.getTotal()-testController.getCorrectCount());
+        viewModel.insertNctTestResult(subjectTestNct.getSubject().getName(),
+                                      subjectTestNct.getGrade(),
+                                      subjectTestNct.getVariant(),
+                                      testController.getCorrectCount(),
+                             testController.getTotal()-testController.getCorrectCount());
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
     }
-    //---------------------------------------ALERT=DIALOG-------------------------------------------
+    //---------------------------------------ALERT=DIALOG------------------------------------------------
     public void showAlertDialog() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle(getResources().getString(R.string.exit_from_test_title));
         alert.setMessage(getResources().getString(R.string.exit_from_test_message));
-        alert.setPositiveButton(getResources().getString(R.string.yes_exit),
-                new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(getResources().getString(R.string.yes_exit), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
                 finish();
             }
         });
-        alert.setNegativeButton(getResources().getString(R.string.no_exit),
-                new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(getResources().getString(R.string.no_exit), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
@@ -199,9 +196,6 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
         cancelTimer();
     }
 }
-
-
-
 
 
 

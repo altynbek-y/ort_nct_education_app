@@ -7,8 +7,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 import neobis.project.iman_augustine.ort_nct.ui.ChooseTestType;
-import neobis.project.iman_augustine.ort_nct.ui.nct.main.NctMainActivity;
-import neobis.project.iman_augustine.ort_nct.ui.ort.main.OrtMainActivity;
+import neobis.project.iman_augustine.ort_nct.ui.main.MainActivity;
 
 
 public class BaseActivity extends AppCompatActivity {
@@ -20,21 +19,13 @@ public class BaseActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // startNctTestActivity();
-                chooseTestType();
+                startMainActivity();
             }
         }, 400);
-        // launchMainActivity();
-        // startNctTestActivity();
     }
 
-    public void startOrtTestActivity() {
-        startActivity(new Intent(this, OrtMainActivity.class));
-        finish();
-    }
-
-    public void startNctTestActivity() {
-        startActivity(new Intent(this, NctMainActivity.class));
+    public void startMainActivity() {
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
@@ -43,47 +34,4 @@ public class BaseActivity extends AppCompatActivity {
         finish();
     }
 
-//    public void startAuthorization() {
-//        SharedPreferencesSingleton.getLocalSharedPreferences(this).setRbIDsNone();
-//        startActivity(new Intent(this, ChooseLanguage.class));
-//        finish();
-//    }
-//
-//    public void startRefreshInternetActivity() {
-//        startActivity(new Intent(this, RefreshInternetActivity.class));
-//        overridePendingTransition(0, 0);
-//        finish();
-//    }
-//
-//    public void startFailureActivity() {
-//        startActivity(new Intent(this, FailureActivity.class));
-//        overridePendingTransition(0, 0);
-//        finish();
-//    }
-//
-//    public void launchMainActivity() {
-//        if (SharedPreferencesSingleton.getLocalSharedPreferences(this).isOrtTestLaunchNextTime()) {
-//            startOrtTestActivity();
-//        } else {
-//            startNctTestActivity();
-//        }
-//    }
-//
-//    public void showError() {
-//        Toast.makeText(this, "Попробуйте ещё раз!", Toast.LENGTH_SHORT).show();
-//    }
-//
-//    public void recreateBaseActivity() {
-//        finish();
-//        startActivity(getIntent());
-//        overridePendingTransition(0, 0);
-//    }
-//
-//    public void saveUserId() {
-//        SharedPreferencesSingleton.getLocalSharedPreferences(this).setUserCode(CommonMethod.getDeviceId(this));
-//    }
-//
-//    public void logMessage(String msg) {
-//        Toast.makeText(this, "msg: " + msg, Toast.LENGTH_SHORT).show();
-//    }
 }

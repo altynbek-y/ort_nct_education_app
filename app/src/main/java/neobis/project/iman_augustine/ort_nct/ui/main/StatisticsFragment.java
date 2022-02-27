@@ -1,4 +1,4 @@
-package neobis.project.iman_augustine.ort_nct.ui.nct.nct_fragments.nct_stats;
+package neobis.project.iman_augustine.ort_nct.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,24 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import neobis.project.iman_augustine.ort_nct.R;
-
-
-import java.util.ArrayList;
 import java.util.List;
 
+import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.adapters.StatListAdapter;
 import neobis.project.iman_augustine.ort_nct.model.statmodel.TestStat;
 
@@ -35,7 +25,7 @@ import neobis.project.iman_augustine.ort_nct.model.statmodel.TestStat;
  *
  * */
 
-public class NctStatisticsFragment extends Fragment implements StatListAdapter.OnItemListener {
+public class StatisticsFragment extends Fragment implements StatListAdapter.OnItemListener {
     // Variables
     private StatListAdapter testStatListAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -44,7 +34,7 @@ public class NctStatisticsFragment extends Fragment implements StatListAdapter.O
     private StatsViewModel viewModel;
     private List<TestStat> statList;
 
-    public NctStatisticsFragment() {}
+    public StatisticsFragment() {}
 
     // On view creation
     @Nullable

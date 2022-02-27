@@ -1,4 +1,4 @@
-package neobis.project.iman_augustine.ort_nct.ui.nct.nct_fragments.nct_test;
+package neobis.project.iman_augustine.ort_nct.ui.main;
 
 import android.content.Intent;
 import android.os.Build;
@@ -7,16 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import neobis.project.iman_augustine.ort_nct.R;
-
 import neobis.project.iman_augustine.ort_nct.singleclicklistener.OnSingleClickListener;
-import neobis.project.iman_augustine.ort_nct.ui.ort.test.TestActivity;
 
 public class SelectVariantActivity extends AppCompatActivity {
 

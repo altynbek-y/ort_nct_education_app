@@ -1,4 +1,4 @@
-package neobis.project.iman_augustine.ort_nct.ui.nct.nct_fragments.nct_about;
+package neobis.project.iman_augustine.ort_nct.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,14 +11,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.model.aboutnctmodel.AboutNctModel;
-import neobis.project.iman_augustine.ort_nct.ui.nct.nct_fragments.nct_test.NctTestViewModel;
 
-public class NctInformationFragment extends Fragment {
+public class InformationFragment extends Fragment {
     private WebView webView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private TextView textView;

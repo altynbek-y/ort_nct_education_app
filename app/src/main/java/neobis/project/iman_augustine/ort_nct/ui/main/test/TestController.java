@@ -1,17 +1,17 @@
-package neobis.project.iman_augustine.ort_nct.ui.ort.test;
+package neobis.project.iman_augustine.ort_nct.ui.main.test;
 
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import neobis.project.iman_augustine.ort_nct.R;
-import neobis.project.iman_augustine.ort_nct.model.testmodel.Answer;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import neobis.project.iman_augustine.ort_nct.R;
+import neobis.project.iman_augustine.ort_nct.model.testmodel.Answer;
 
 public class TestController implements Serializable {
     private final double maxOrtFinalScore = 245.0; // For ORT (might be changed)

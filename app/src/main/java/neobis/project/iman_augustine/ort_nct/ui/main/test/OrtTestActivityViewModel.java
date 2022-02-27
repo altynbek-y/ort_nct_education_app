@@ -1,10 +1,9 @@
-package neobis.project.iman_augustine.ort_nct.ui.ort.test;
+package neobis.project.iman_augustine.ort_nct.ui.main.test;
 
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 
-import neobis.project.iman_augustine.ort_nct.model.statmodel.TestStat;
 import neobis.project.iman_augustine.ort_nct.repository.OrtRepository;
 
 public class OrtTestActivityViewModel extends AndroidViewModel {

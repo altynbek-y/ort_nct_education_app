@@ -1,4 +1,4 @@
-package neobis.project.iman_augustine.ort_nct.ui.nct.nct_fragments.nct_test;
+package neobis.project.iman_augustine.ort_nct.ui.main;
 
 public interface Contract {
     void startTest(boolean b);

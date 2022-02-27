@@ -1,31 +1,38 @@
-package neobis.project.iman_augustine.ort_nct.ui.ort.ort_fragments.ort_stats;
+package neobis.project.iman_augustine.ort_nct.ui.main;
 
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
 import neobis.project.iman_augustine.ort_nct.model.statmodel.TestStat;
-import neobis.project.iman_augustine.ort_nct.repository.OrtRepository;
+import neobis.project.iman_augustine.ort_nct.repository.NctRepository;
+
+/**
+ *
+ * @author Iman Augustine
+ *
+ * ViewModel subclass of AndroidViewModel.
+ *
+ * */
 
 public class StatsViewModel extends AndroidViewModel {
-    private OrtRepository repository;
+    private NctRepository repository;
     private MutableLiveData<List<TestStat>> statList;
 
     public StatsViewModel(Application application) {
         super(application);
-        repository = OrtRepository.getInstance(application);
-        getNewStatList();
+        repository = NctRepository.getInstance(application);
+       // getNewStatList();
     }
 
-    public MutableLiveData<List<TestStat>> getNewStatList() {
+/*    public MutableLiveData<List<TestStat>> getNewStatList() {
          if(statList==null) {
              statList = new MutableLiveData<>();
          }
-        // repository.getOrtStatListFromDatabase(statList);
+         repository.getNctStatListFromDatabase(statList);
          return statList;
     }
 
@@ -33,14 +40,14 @@ public class StatsViewModel extends AndroidViewModel {
         return statList;
     }
 
-    public void removeOrtTestStat(TestStat testResult) {
-        // repository.removeOrtTestStat(testResult);
-    }
+    public void removeNctTestStat(TestStat testResult) {
+        repository.removeNctTestStat(testResult);
+    }*/
 
     @Override
     public String toString() {
         return "StatsViewModel {"+
-                "ortRepository="+repository+
+                "repository="+repository+
                 ",statList="+statList+"}";
     }
 }

@@ -1,9 +1,8 @@
-package  neobis.project.iman_augustine.ort_nct.ui.nct.nct_fragments.nct_test;
+package neobis.project.iman_augustine.ort_nct.ui.main;
 
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.util.Log;
-
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -17,7 +16,7 @@ import neobis.project.iman_augustine.ort_nct.model.ncttestmodel.SubjectTestNct;
 import neobis.project.iman_augustine.ort_nct.repository.NctRepository;
 import neobis.project.iman_augustine.ort_nct.sharedpreference.PreferenceManager;
 
-public class NctTestViewModel extends AndroidViewModel {
+public class TestViewModel extends AndroidViewModel {
     private int connectionType;
     private NctRepository repository;
     private MutableLiveData<List<NctTestSubjectInfo>> dataTestInfoList;
@@ -25,7 +24,7 @@ public class NctTestViewModel extends AndroidViewModel {
     private SharedPreferences sharedPreferences;
     private String locale;
 
-    public NctTestViewModel(Application application) {
+    public TestViewModel(Application application) {
         super(application);
         repository = NctRepository.getInstance(application);
         connectionType = NetworkUtil.getConnectivityStatusString(application);

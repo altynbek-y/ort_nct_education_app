@@ -64,6 +64,16 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
         <!-- Ort Main Activity -->
         <activity
             android:name=".ui.ort.main.OrtMainActivity"
@@ -158,7 +168,7 @@
         </activity>
         <!-- Nct Test Activity -->
         <activity
-            android:name=".ui.nct.test.NctTestActivity"
+            android:name=".ui.main.test.NctTestActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/AppTheme.NoActionBar"> <intent-filter>
             <action android:name="android.intent.action.VIEW" />

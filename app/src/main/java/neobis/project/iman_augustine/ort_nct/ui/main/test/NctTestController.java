@@ -1,4 +1,4 @@
-package neobis.project.iman_augustine.ort_nct.ui.nct.test;
+package neobis.project.iman_augustine.ort_nct.ui.main.test;
 
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
