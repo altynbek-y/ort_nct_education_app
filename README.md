@@ -1,4 +1,4 @@
-**Simple and easy to use test preparation application for school students in Kyrgyzstan*
+## Simple and easy to use test preparation application for school students in Kyrgyzstan
 
 When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
 
