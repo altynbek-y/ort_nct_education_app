@@ -1,28 +1,31 @@
 package neobis.project.iman_augustine.ort_nct.ui.result;
 
 
-import android.os.Build;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.particles.ParticleSystem;
+
+
+import com.github.jinatonic.confetti.CommonConfetti;
+
+import java.util.List;
+import java.util.Random;
 
 import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.ui.main.test.TestActivity;
 
 
 public class DisplayResultActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button okay;
-    private ImageView smileImage;
-    private TextView resultText, comment;
-    private int correct;
-    private int total;
+
     private long score;
 
     @Override
@@ -38,23 +41,40 @@ public class DisplayResultActivity extends AppCompatActivity implements View.OnC
     }
 
     private void initViews() {
-        comment = findViewById(R.id.comment_textview);
-        resultText = findViewById(R.id.result_textview);
-        smileImage = findViewById(R.id.lamp_smile);
-        okay = findViewById(R.id.click_okay);
+        TextView commentText = findViewById(R.id.comment_textview);
+        TextView resultText = findViewById(R.id.result_textview);
+        ImageView smileImage = findViewById(R.id.lamp_smile);
+        Button okay = findViewById(R.id.click_okay);
         okay.setOnClickListener(this);
-        correct = getIntent().getIntExtra(TestActivity.CORRECT_ANSWER_COUNT, 0); // !!!! PROBLEMATIC
-        total = getIntent().getIntExtra(TestActivity.TOTAL_QUESTIONS_COUNT, 0); // !!!! PROBLEMATIC
+        int correct = getIntent().getIntExtra(TestActivity.CORRECT_ANSWER_COUNT, 0); // !!!! PROBLEMATIC
+        int total = getIntent().getIntExtra(TestActivity.TOTAL_QUESTIONS_COUNT, 0); // !!!! PROBLEMATIC
         resultText.setText(getIntent().getStringExtra(TestActivity.RESULT));
 
-        if (correct==0 || correct<0.8*total) {
+        if (correct ==0 || correct <0.8* total) {
             smileImage.setImageResource(R.drawable.ic_bad_result);
-            comment.setText(getResources().getString(R.string.try_again_text));
+            commentText.setText(getResources().getString(R.string.try_again_text));
         }
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        onClick(null);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        onClick(null);
+    }
+
+    @Override
     public void onClick(View view) {
-        finish();
+        CommonConfetti.rainingConfetti(findViewById(R.id.displayResultLayout), new int[] { Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE })
+                .oneShot();
+               // .stream(2000);
+        // finish();
     }
 }
