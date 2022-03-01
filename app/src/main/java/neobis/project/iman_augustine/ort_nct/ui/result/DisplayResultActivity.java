@@ -3,6 +3,7 @@ package neobis.project.iman_augustine.ort_nct.ui.result;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,31 +51,19 @@ public class DisplayResultActivity extends AppCompatActivity implements View.OnC
         int total = getIntent().getIntExtra(TestActivity.TOTAL_QUESTIONS_COUNT, 0); // !!!! PROBLEMATIC
         resultText.setText(getIntent().getStringExtra(TestActivity.RESULT));
 
-        if (correct ==0 || correct <0.8* total) {
+        if (!(correct ==0 || correct <0.8* total)) {
             smileImage.setImageResource(R.drawable.ic_bad_result);
             commentText.setText(getResources().getString(R.string.try_again_text));
-        }
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-
-        onClick(null);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        onClick(null);
+        } else new Handler()
+                .postDelayed(() -> CommonConfetti.rainingConfetti
+                        (
+                            findViewById(R.id.displayResultLayout),
+                            new int[] { Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE }
+                        ).oneShot(), 100);
     }
 
     @Override
     public void onClick(View view) {
-        CommonConfetti.rainingConfetti(findViewById(R.id.displayResultLayout), new int[] { Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE })
-                .oneShot();
-               // .stream(2000);
-        // finish();
+        finish();
     }
 }
