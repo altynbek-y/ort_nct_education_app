@@ -2,6 +2,7 @@ package neobis.project.iman_augustine.ort_nct.ui.result;
 
 
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
@@ -54,12 +55,20 @@ public class DisplayResultActivity extends AppCompatActivity implements View.OnC
         if (!(correct ==0 || correct <0.8* total)) {
             smileImage.setImageResource(R.drawable.ic_bad_result);
             commentText.setText(getResources().getString(R.string.try_again_text));
-        } else new Handler()
-                .postDelayed(() -> CommonConfetti.rainingConfetti
-                        (
-                            findViewById(R.id.displayResultLayout),
-                            new int[] { Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE }
-                        ).oneShot(), 100);
+
+            MediaPlayer ring= MediaPlayer.create(getApplicationContext(), R.raw.failure);
+            ring.start();
+        } else {
+            MediaPlayer ring= MediaPlayer.create(getApplicationContext(), R.raw.success);
+            ring.start();
+
+            new Handler()
+                    .postDelayed(() -> CommonConfetti.rainingConfetti
+                            (
+                                    findViewById(R.id.displayResultLayout),
+                                    new int[] { Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE }
+                            ).oneShot(), 100);
+        }
     }
 
     @Override
