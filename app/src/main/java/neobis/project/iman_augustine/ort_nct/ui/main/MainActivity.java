@@ -33,20 +33,18 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
     /**
      * @author Nami Augustine
      *
-     * NctTestActivity layout
-     * Created by admin on 03/02/20
      *
      */
 
     public class MainActivity extends AppCompatActivity implements Contract.MainContract {
         // Global variables
         public static final String NCT_TEST_ACTIVITY = "nct_test_activity";
-        private final int[] titlesResId = {R.string.information_on_nct, R.string.practice_test_txt, R.string.statistics_nct_title};
+        private final int[] titlesResId = {R.string.information, R.string.practice_test, R.string.statistics_title};
         private CustomViewPager viewPager;
         private MenuItem prevMenuItem;
-        private final InformationFragment nctInformationFragment = new InformationFragment();
-        private final TestFragment nctPracticeTestFragment = new TestFragment();
-        private final StatisticsFragment nctStatisticsFragment = new StatisticsFragment();
+        private final InformationFragment informationFragment = new InformationFragment();
+        private final TestFragment testFragment = new TestFragment();
+        private final StatisticsFragment statisticsFragment = new StatisticsFragment();
         private DrawerLayout mDrawerLayout;
         private ActionBarDrawerToggle toggle;
         private LoadingDialog loadingDialog;
@@ -86,17 +84,17 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
                         switch (item.getItemId()) {
                             // About test information
                             case R.id.info:
-                                openFragment(nctInformationFragment); // Opens fragment
+                                openFragment(informationFragment); // Opens fragment
                                 getSupportActionBar().setTitle(titlesResId[0]); // Sets title
                                 break;
                             // Test fragment
                             case R.id.diag_test:
-                                openFragment(nctPracticeTestFragment); // Opens fragment
+                                openFragment(testFragment); // Opens fragment
                                 getSupportActionBar().setTitle(titlesResId[1]); // Sets title
                                 break;
                             // Test statistics fragment
                             case R.id.statistics:
-                                openFragment(nctStatisticsFragment); // Opens fragment
+                                openFragment(statisticsFragment); // Opens fragment
                                 getSupportActionBar().setTitle(titlesResId[2]); // Sets title
                                 break;
 
@@ -160,7 +158,7 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
             bottomNav.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
             bottomNav.setOnNavigationItemSelectedListener(navListener);
             // Initial state
-            openFragment(nctInformationFragment); // Opens inital fragment
+            openFragment(informationFragment); // Opens inital fragment
             Objects.requireNonNull(getSupportActionBar()).setTitle(titlesResId[0]); // Sets toolbar title
         }
 

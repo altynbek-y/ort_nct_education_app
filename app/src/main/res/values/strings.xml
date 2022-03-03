@@ -19,11 +19,9 @@
     <string name="choose_language_txt">Выберите язык</string>
     <string name="learning_material_txt">Учебные материалы</string>
     <string name="learning_material_menu_label">Материалы</string>
-    <string name="information_on_nct">Информация</string>
-    <string name="practice_test_txt">Предметный тест</string>
+    <string name="information">Информация</string>
+    <string name="practice_test">Предметный тест</string>
     <string name="statistics_title">Статистика</string>
-    <string name="statistics_ort_title">Статистика ОРТ</string>
-    <string name="statistics_nct_title">Статистика НЦТ</string>
     <string name="try_once_more_toast">Возникла неполадка, попробуйте еще раз!</string>
     <string name="no_connection_toast">Отсутствует сеть!</string>
     <string name="other_age_text">Другое</string>

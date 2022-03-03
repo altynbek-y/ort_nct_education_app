@@ -26,9 +26,8 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void startMainActivity() {
-        startActivity(new Intent(this, DisplayResultActivity.class));
-
-        //startActivity(new Intent(this, MainActivity.class));
+        //startActivity(new Intent(this, DisplayResultActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 

@@ -19,11 +19,9 @@
     <string name="choose_language_txt">ТИЛДИ ТАНДАҢЫЗ</string>
     <string name="learning_material_txt">Окутуу материалдары</string>
     <string name="learning_material_menu_label">Материалдар</string>
-    <string name="information_on_nct">УТБ тууралуу</string>
-    <string name="practice_test_txt">Сабак боюнча тест</string>
+    <string name="information">УТБ тууралуу</string>
+    <string name="practice_test">Сабак боюнча тест</string>
     <string name="statistics_title">Статистика</string>
-    <string name="statistics_ort_title">Статистика ЖРТ</string>
-    <string name="statistics_nct_title">Статистика УТБ</string>
     <string name="try_once_more_toast">Возникла неполадка, попробуйте еще раз!</string>
     <string name="no_connection_toast">Интернет байланышы жок!</string>
     <string name="other_age_text">Башка</string>
