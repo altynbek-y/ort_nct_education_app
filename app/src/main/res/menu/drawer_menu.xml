@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <group android:checkableBehavior="single">
-     <item
+    <item
         android:id="@+id/choose_ort_test"
-         android:title="@string/ort_text"
+        android:title="@string/ort_text"
         android:icon="@drawable/ic_book_black_24dp"
-         android:checkable="false"></item>
+        android:checkable="false" />
     <item
         android:id="@+id/choose_nct_test"
         android:title="@string/nct_text"
         android:icon="@drawable/ic_book_black_24dp"
-        android:checkable="false"></item>
+        android:checkable="false" />
     <item
         android:id="@+id/about_us"
         android:title="@string/about_us"
         android:icon="@drawable/ic_info_outline_black_24dp"
-        android:checkable="false"></item>
+        android:checkable="false" />
     <item
         android:id="@+id/settings"
         android:title="@string/language_settings"
         android:icon="@drawable/ic_language_black_24dp"
-        android:checkable="false"></item>
+        android:checkable="false" />
   </group>
 </menu>
