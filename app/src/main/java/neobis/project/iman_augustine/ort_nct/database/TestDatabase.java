@@ -22,21 +22,22 @@ import neobis.project.iman_augustine.ort_nct.model.database_model.UserScore;
                         User.class,
                         UserScore.class
                 },
-        version = 3,
+        version = 4,
         exportSchema = false
 )
 public abstract class TestDatabase extends RoomDatabase {
-    private static final String APP_NAME = "test_database";
 
-    public abstract AppDao TestDatabase();
+    private static final String DB_NAME = "Test_database";
+
+    public abstract AppDao appDao();
 
     private static TestDatabase instance;
 
     public static TestDatabase getInMemoryDatabase(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(), TestDatabase.class, APP_NAME)
+            instance = Room.databaseBuilder(context.getApplicationContext(), TestDatabase.class, DB_NAME)
+                    .createFromAsset("database/test_db.db")
                     .fallbackToDestructiveMigration()
-                    .allowMainThreadQueries()
                     .build();
         }
         return instance;

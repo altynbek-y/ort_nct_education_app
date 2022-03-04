@@ -53,7 +53,7 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
         SharedPreferences.Editor editor;
 
         // On navigation item selected listener in the drawer layout
-        private NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
+        private final NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
                 new OnSingleClickNavigationViewListener() {
                     @Override
                     public boolean onSingleClick(MenuItem item) {
@@ -77,7 +77,7 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
                     }
                 };
         // On navigation item selected listener in bottom navigation bar
-        private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+        private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem item) {

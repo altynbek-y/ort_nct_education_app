@@ -1,10 +1,18 @@
 package  neobis.project.iman_augustine.ort_nct.database;
 
 import androidx.room.Dao;
+import androidx.room.Query;
+
+import java.util.List;
+
+import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 
 @Dao
 public interface AppDao {
-    //-----------------------------------TEST-RESULT-NCT----------------------------------
+
+ //   @Query("SELECT * FROM subjects")
+//    List<Subject> getListOfSubjects();
+
 /*    @Delete
     void deleteTestStatNct(TestStat testResult); // Deletes an object from database*/
 

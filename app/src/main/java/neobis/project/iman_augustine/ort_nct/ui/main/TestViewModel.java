@@ -28,7 +28,7 @@ public class TestViewModel extends AndroidViewModel {
         connectionType = NetworkUtil.getConnectivityStatusString(application);
         sharedPreferences = PreferenceManager.getMySharedPreferences(application.getApplicationContext());
         locale = sharedPreferences.getString("locale", "ru");
-        Log.e("NctTestViewModel", "NctTestViewModel, locale: "+locale);
+        Log.e("TestViewModel", "TestViewModel, locale: "+locale);
         getNewNctSubjectTestList(locale);
     }
 

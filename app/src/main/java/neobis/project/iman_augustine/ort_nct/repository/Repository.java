@@ -7,6 +7,8 @@ import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 
 import neobis.project.iman_augustine.ort_nct.database.AppDao;
+import neobis.project.iman_augustine.ort_nct.database.AppDatabase;
+import neobis.project.iman_augustine.ort_nct.database.TestDatabase;
 import neobis.project.iman_augustine.ort_nct.model.about_model.AboutModel;
 import neobis.project.iman_augustine.ort_nct.network.NctDao;
 
@@ -14,10 +16,9 @@ import neobis.project.iman_augustine.ort_nct.network.NctDao;
  * Singleton Pattern
  */
 public class Repository {
-    private final String TAG = "NctRepository";
+    private final String TAG = "Repository";
 
     private static Repository instance;
-    private NctDao service;
     private AppDao database;
 
     private Context context;
@@ -30,10 +31,15 @@ public class Repository {
     }
 
     private Repository(Application application) {
-//        context = application.getApplicationContext();
-//        service = NctRetrofitClientInstance.getRetrofitInstance().create(NctDao.class);
-//        database = AppDatabase.getInMemoryDatabase(application.getApplicationContext()).appDao();
+        context = application.getApplicationContext();
+        // service = NctRetrofitClientInstance.getRetrofitInstance().create(NctDao.class);
+        database = TestDatabase.getInMemoryDatabase(application.getApplicationContext()).appDao();
     }
+
+
+
+
+
 
     /*---------------------------------------------NCT-----------------------------------------------------------*/
    /* public MutableLiveData<List<NctTestSubjectInfo>> getSubjectTestsInfoList(String lang, final MutableLiveData<List<NctTestSubjectInfo>> dataList) {
