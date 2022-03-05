@@ -20,7 +20,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+import neobis.project.iman_augustine.ort_nct.MyApplication;
 import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.adapters.TestListAdapter;
 import neobis.project.iman_augustine.ort_nct.adapters.VerticalSpaceItemDecoration;
@@ -75,6 +77,8 @@ public class TestFragment extends Fragment implements TestListAdapter.OnItemList
             //viewModel = ViewModelProviders.of(this).get(NctTestViewModel.class);
             viewModel = ViewModelProvider.AndroidViewModelFactory
                     .getInstance(requireActivity().getApplication()).create(TestViewModel.class);
+
+            Toast.makeText(getContext(), ""+viewModel.getNumberOfLangs(), Toast.LENGTH_LONG).show();
 
            /* nctTestListAdapter = new TestListAdapter(new ArrayList<NctTestSubjectInfo>(), this, getContext());
             viewModel.getNctTestInfoList().observe(this, new Observer<List<TestSubjectInfo>>() {

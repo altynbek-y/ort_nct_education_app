@@ -33,6 +33,11 @@ public class TestViewModel extends AndroidViewModel {
         getNewNctSubjectTestList(locale);
     }
 
+    public int getNumberOfLangs()
+    {
+        return repository.getNumberOfLangs();
+    }
+
     public void getNewNctSubjectTestList(String locale) {
 //        if(dataTestInfoList==null) {
 //            dataTestInfoList = new MutableLiveData<>();
