@@ -37,10 +37,6 @@ public class Repository {
     }
 
 
-
-
-
-
     /*---------------------------------------------NCT-----------------------------------------------------------*/
    /* public MutableLiveData<List<NctTestSubjectInfo>> getSubjectTestsInfoList(String lang, final MutableLiveData<List<NctTestSubjectInfo>> dataList) {
         service.getSubjectTestsInfo(lang).enqueue(new Callback<List<NctTestSubjectInfo>>() {

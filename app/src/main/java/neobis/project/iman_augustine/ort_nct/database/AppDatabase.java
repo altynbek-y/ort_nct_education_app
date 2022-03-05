@@ -10,9 +10,8 @@ import androidx.room.TypeConverters;
 import neobis.project.iman_augustine.ort_nct.model.statistics_model.TestStat;
 import neobis.project.iman_augustine.ort_nct.model.test_model.TestAnswerTypeConverter;
 import neobis.project.iman_augustine.ort_nct.model.test_model.TestTypeConverter;
-import neobis.project.iman_augustine.ort_nct.model.test_model.SubjectTest;
 
-@Database(entities = { SubjectTest.class, TestStat.class}, version = 3, exportSchema = false)
+@Database(entities = { TestStat.class}, version = 3, exportSchema = false)
 @TypeConverters({ TestTypeConverter.class, TestAnswerTypeConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
     private static final String APP_NAME = "app_database";

@@ -5,13 +5,22 @@ import androidx.room.Query;
 
 import java.util.List;
 
+import neobis.project.iman_augustine.ort_nct.model.database_model.Language;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 
 @Dao
 public interface AppDao {
 
- //   @Query("SELECT * FROM subjects")
-//    List<Subject> getListOfSubjects();
+   @Query("SELECT * FROM languages")
+   List<Language> getListOfSubjects();
+
+
+
+
+
+
+
+
 
 /*    @Delete
     void deleteTestStatNct(TestStat testResult); // Deletes an object from database*/

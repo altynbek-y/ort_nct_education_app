@@ -7,13 +7,14 @@ import androidx.room.PrimaryKey;
 import java.util.Date;
 
 
-@Entity
+@Entity(tableName = "user_scores")
 public class UserScore {
     @PrimaryKey
+    @ColumnInfo(name = "id")
     public int id;
 
     @ColumnInfo(name = "score")
-    public float score;
+    public double score;
 
     @ColumnInfo(name = "test_date")
     public String dateTest;

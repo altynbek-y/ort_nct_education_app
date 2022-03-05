@@ -5,10 +5,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "languages")
 public class Language {
     @PrimaryKey
-    @ColumnInfo(name = "lang_id")
+    @ColumnInfo(name = "id")
     public int lang_id;
 
     @ColumnInfo(name = "language")

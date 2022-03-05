@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import neobis.project.iman_augustine.ort_nct.R;
-import neobis.project.iman_augustine.ort_nct.model.test_model.SubjectTest;
+import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 
 import java.util.List;
 
 public class TestListAdapter extends RecyclerView.Adapter<TestListAdapter.SubjectViewHolder> {
-    private List<SubjectTest> subjectTests;
+    private List<Subject> subjectTests;
     private OnItemListener onItemListener;
     private Context context;
 
-    public TestListAdapter(List<SubjectTest> subjectTests, TestListAdapter.OnItemListener onItemListener, Context context) {
+    public TestListAdapter(List<Subject> subjectTests, TestListAdapter.OnItemListener onItemListener, Context context) {
         this.subjectTests = subjectTests;
         this.onItemListener = onItemListener;
         this.context = context;
     }
 
-    public void setValues(List<SubjectTest> educationList) {
+    public void setValues(List<Subject> educationList) {
         this.subjectTests.clear();
         if(educationList!=null) {
             this.subjectTests.addAll(educationList);
@@ -44,7 +44,7 @@ public class TestListAdapter extends RecyclerView.Adapter<TestListAdapter.Subjec
 
     @Override
     public void onBindViewHolder(SubjectViewHolder holder, int i) {
-        holder.subject_name.setText(subjectTests.get(i).getSubjectName());
+        holder.subject_name.setText(""); // subjectTests.get(i).getSubjectName());
     }
 
     @Override

@@ -11,19 +11,21 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
+
 public class TestTypeConverter {
     @TypeConverter
-    public static List<Question> stringToTestQuestionList(String data) {
+    public static List<Subject> stringToTestQuestionList(String data) {
         if (data == null) {
             return Collections.emptyList();
         }
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<Collection<Question>>(){}.getType();
+        Type collectionType = new TypeToken<Collection<Subject>>(){}.getType();
         return gson.fromJson(data, collectionType);
     }
 
     @TypeConverter
-    public static String TestQuestionListToString(List<Question> testQuestionList) {
+    public static String TestQuestionListToString(List<Subject> testQuestionList) {
         Gson gson = new Gson();
         return gson.toJson(testQuestionList);
     }

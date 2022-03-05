@@ -26,7 +26,7 @@ import java.util.List;
 
 import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.adapters.TestAdapter;
-import neobis.project.iman_augustine.ort_nct.model.test_model.SubjectTest;
+import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 import neobis.project.iman_augustine.ort_nct.singleclicklistener.OnSingleClickListener;
 import neobis.project.iman_augustine.ort_nct.ui.Contract;
 import neobis.project.iman_augustine.ort_nct.ui.result.DisplayResultActivity;
@@ -44,7 +44,7 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
     private ProgressBar progressBar;        // Progress bar
     private TextView ratio;                 // Text view
     private TextView timerTextView;
-    private SubjectTest subjectTest;  // List of questions (Question object)
+    private Subject subjectTest;  // List of questions (Question object)
     private TestController testController;
     private TestActivityViewModel viewModel;
     //------------------------------------VARIABLES-------------------------------------------------
@@ -98,14 +98,14 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
 
         //shared = SharedPreferencesSingleton.getLocalSharedPreferences(this);
         try {
-            subjectTest = (SubjectTest) getIntent().getSerializableExtra(TEST);
-            viewModel = ViewModelProviders.of(this).get(TestActivityViewModel.class);
-
-            initViews();                                                                                    // Initializing widgets
-            initRecyclerView();                                                                             // Initializing recycler view
-            isAnsweredList = new ArrayList<>(Collections.nCopies(subjectTest.getQuestions().size(), false));
-            testController = new TestController(subjectTest.getQuestions().size(), progressBar, ratio);     // Initialzing test controller object
-            countDownTimer.start();                                                                         // Start count down timer
+//            subjectTest = (SubjectTest) getIntent().getSerializableExtra(TEST);
+//            viewModel = ViewModelProviders.of(this).get(TestActivityViewModel.class);
+//
+//            initViews();                                                                                    // Initializing widgets
+//            initRecyclerView();                                                                             // Initializing recycler view
+//            isAnsweredList = new ArrayList<>(Collections.nCopies(subjectTest.getQuestions().size(), false));
+//            testController = new TestController(subjectTest.getQuestions().size(), progressBar, ratio);     // Initialzing test controller object
+//            countDownTimer.start();                                                                         // Start count down timer
         } catch (NullPointerException error) {
             Toast.makeText(this, "error: "+error.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -117,7 +117,7 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
         if(isAnsweredList.get(position))
             return;
         isAnsweredList.set(position, true);
-        testController.countAnswer(position, userAnswer, subjectTest.getQuestions().get(position).getAnswers(), answerGroup);
+       // testController.countAnswer(position, userAnswer, subjectTest.getQuestions().get(position).getAnswers(), answerGroup);
     }
     //---------------------------------------VIEW-INITIALIZATION-----------------------------------------
     private void initViews() {
@@ -126,7 +126,7 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
         Toolbar toolbar = findViewById(R.id.toolbar); // Finding tool bar
         setSupportActionBar(toolbar); // Setting tool bar
         TextView titleTextView = findViewById(R.id.titleText); // Title
-        titleTextView.setText(subjectTest.getSubjectName());
+       // titleTextView.setText(subjectTest.getSubjectName());
         timerTextView = findViewById(R.id.timerTextView);
         //-----------------------------------------------------------------------------------------------
         progressBar = findViewById(R.id.progressBar); // Setting progress bar widget
@@ -142,11 +142,11 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
         // List view
         RecyclerView recyclerView = findViewById(R.id.quiz_list); // Finding recycler view widget
         // Adapter for the recyclerview
-        TestAdapter testAdapter = new TestAdapter(subjectTest.getQuestions(), this, this); // RecyclewView Adapter
+        //TestAdapter testAdapter = new TestAdapter(subjectTest.getQuestions(), this, this); // RecyclewView Adapter
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(testAdapter); // Setting adapter
+       // recyclerView.setAdapter(testAdapter); // Setting adapter
     }
 
     //----------------------------------------------------------------------------------------------
@@ -160,7 +160,7 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
 
     //-----------------------------COMPLETING-TEST--------------------------------------------------
     public void completeTest() {
-        Intent intent = new Intent(TestActivity.this, DisplayResultActivity.class);
+      /*  Intent intent = new Intent(TestActivity.this, DisplayResultActivity.class);
         intent.putExtra(TestActivity.RESULT, testController.toStringScore());
         intent.putExtra(TestActivity.CORRECT_ANSWER_COUNT, testController.getCorrectCount());
         intent.putExtra(TestActivity.TOTAL_QUESTIONS_COUNT, testController.getTotal());
@@ -171,7 +171,7 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
                                 testController.getTotal()-testController.getCorrectCount()
         );
         startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);*/
         finish();
     }
 
