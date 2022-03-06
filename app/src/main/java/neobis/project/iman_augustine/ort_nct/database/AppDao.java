@@ -12,8 +12,8 @@ import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 @Dao
 public interface AppDao {
 
-   @Query("SELECT * FROM languages")
-   List<Language> getListOfSubjects();
+   @Query("SELECT * FROM subjects")
+   List<Subject> getListOfSubjects();
 
 
 

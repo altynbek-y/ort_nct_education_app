@@ -20,11 +20,11 @@ import neobis.project.iman_augustine.ort_nct.model.database_model.UserScore;
 @Database(
         entities = {
                         Language.class,
-                     //   QuestionAnswerChoice.class,
-                     //   Question.class,
-                     //   Subject.class,
-                        User.class //,
-                     //   UserScore.class
+                        QuestionAnswerChoice.class,
+                        Question.class,
+                        Subject.class,
+                        User.class,
+                        UserScore.class
                 },
         version = 1
 )
