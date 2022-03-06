@@ -26,6 +26,7 @@ import neobis.project.iman_augustine.ort_nct.MyApplication;
 import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.adapters.TestListAdapter;
 import neobis.project.iman_augustine.ort_nct.adapters.VerticalSpaceItemDecoration;
+import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 import neobis.project.iman_augustine.ort_nct.sharedpreference.PreferenceManager;
 import neobis.project.iman_augustine.ort_nct.ui.main.test.TestActivity;
 
@@ -68,26 +69,25 @@ public class TestFragment extends Fragment implements TestListAdapter.OnItemList
             swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    viewModel.getNewNctSubjectTestList(locale);
+                    viewModel.getListOfSubjects(locale);
                 }
             });
             recyclerView = view.findViewById(R.id.subject_test_list);
             recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(VerticalSpaceItemDecoration.VERTICAL_ITEM_SPACE));
 
             //viewModel = ViewModelProviders.of(this).get(NctTestViewModel.class);
-            viewModel = ViewModelProvider.AndroidViewModelFactory
-                    .getInstance(requireActivity().getApplication()).create(TestViewModel.class);
+            viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication()).create(TestViewModel.class);
 
-            Toast.makeText(getContext(), ""+viewModel.getNumberOfLangs(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(), ""+viewModel.getListOfSubjects(locale).get.size(), Toast.LENGTH_LONG).show();
 
-           /* nctTestListAdapter = new TestListAdapter(new ArrayList<NctTestSubjectInfo>(), this, getContext());
-            viewModel.getNctTestInfoList().observe(this, new Observer<List<TestSubjectInfo>>() {
+            testListAdapter = new TestListAdapter(new ArrayList<Subject>(), this, getContext());
+            viewModel.getDataListOfSubjects().observe(this, new Observer<List<Subject>>() {
                 @Override
-                public void onChanged(@Nullable List<NctTestSubjectInfo> testDataList) {
-                    dataTestList = testDataList;
-                    nctTestListAdapter.setValues(testDataList);
+                public void onChanged(@Nullable List<Subject> testDataList) {
+                    testListAdapter.setValues(testDataList);
                     swipeRefreshLayout.setRefreshing(false);
-                    if(dataTestList!=null) {
+
+                    if(testDataList !=null) {
                         textView.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.VISIBLE);
                         return;
@@ -96,8 +96,9 @@ public class TestFragment extends Fragment implements TestListAdapter.OnItemList
                     recyclerView.setVisibility(View.GONE);
                 }
             });
-            recyclerView.setAdapter(nctTestListAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));*/
+            recyclerView.setAdapter(testListAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         } catch(NullPointerException error) {
             error.printStackTrace();
         }

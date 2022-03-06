@@ -6,9 +6,12 @@ import android.content.Context;
 
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.List;
+
 import neobis.project.iman_augustine.ort_nct.database.AppDao;
 import neobis.project.iman_augustine.ort_nct.database.TestDatabase;
 import neobis.project.iman_augustine.ort_nct.model.about_model.AboutModel;
+import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 
 /**
  * Singleton Pattern
@@ -34,11 +37,10 @@ public class Repository {
         database = TestDatabase.getInMemoryDatabase(application.getApplicationContext()).appDao();
     }
 
-    public int getNumberOfLangs()
+    public void getListOfSubjects(String locale, MutableLiveData<List<Subject>> subjectMutableLiveData)
     {
-        return database.getListOfSubjects().size();
+        subjectMutableLiveData.setValue(database.getListOfSubjects());
     }
-
 
     /*---------------------------------------------NCT-----------------------------------------------------------*/
    /* public MutableLiveData<List<NctTestSubjectInfo>> getSubjectTestsInfoList(String lang, final MutableLiveData<List<NctTestSubjectInfo>> dataList) {
@@ -59,7 +61,7 @@ public class Repository {
         return dataList;
     }*/
 
-    /*public void getSubjectTestFor(String lang, final MutableLiveData<SubjectTest> dataTest, int id, final Contract nctTestView) {
+  /*  public void getSubjectTestFor(String lang, final MutableLiveData<SubjectTest> dataTest, int id, final Contract nctTestView) {
         service.getSubjectTestFor(lang, id).enqueue(new Callback<SubjectTest>() {
             @Override
             public void onResponse(Call<SubjectTest> call, Response<SubjectTest> response) {

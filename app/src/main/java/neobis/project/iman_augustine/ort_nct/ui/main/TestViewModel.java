@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.List;
 
 import neobis.project.iman_augustine.ort_nct.common.NetworkUtil;
+import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 import neobis.project.iman_augustine.ort_nct.repository.Repository;
 import neobis.project.iman_augustine.ort_nct.sharedpreference.PreferenceManager;
 
@@ -19,7 +20,7 @@ public class TestViewModel extends AndroidViewModel {
     private int connectionType;
     private Repository repository;
 //    private MutableLiveData<List<NctTestSubjectInfo>> dataTestInfoList;
-//    private MutableLiveData<SubjectTestNct> subjectTest;
+    private MutableLiveData<List<Subject>> subjectsListMutableLiveData;
     private SharedPreferences sharedPreferences;
     private String locale;
 
@@ -30,38 +31,38 @@ public class TestViewModel extends AndroidViewModel {
         sharedPreferences = PreferenceManager.getMySharedPreferences(application.getApplicationContext());
         locale = sharedPreferences.getString("locale", "ru");
         Log.e("TestViewModel", "TestViewModel, locale: "+locale);
-        getNewNctSubjectTestList(locale);
+        getListOfSubjects(locale);
     }
 
-    public int getNumberOfLangs()
+    public void getListOfSubjects(String locale)
     {
-        return repository.getNumberOfLangs();
+        if(subjectsListMutableLiveData==null) {
+            subjectsListMutableLiveData = new MutableLiveData<>();
+        }
+        repository.getListOfSubjects(locale, subjectsListMutableLiveData);
     }
 
-    public void getNewNctSubjectTestList(String locale) {
-//        if(dataTestInfoList==null) {
-//            dataTestInfoList = new MutableLiveData<>();
-//        }
-//        if(connectionType==0) {
-//
-//        } else {
-//            repository.getSubjectTestsInfoList(locale, dataTestInfoList);
-//        }
+    public LiveData<List<Subject>> getDataListOfSubjects() {
+        return subjectsListMutableLiveData;
     }
 
-    public void getNctSubjectTestFor(String locale, int id, Contract nctTestView) {
-//        if(subjectTest==null) {
-//            subjectTest = new MutableLiveData<>();
-//        }
-//        if(connectionType==0) {
-//
-//        } else {
-//            repository.getSubjectTestFor(locale, subjectTest, id, nctTestView);
-//        }
-    }
+ /*   public void getNewNctSubjectTestList(String locale) {
+        if(dataTestInfoList==null) {
+            dataTestInfoList = new MutableLiveData<>();
+        }
+        if(connectionType==0) {
 
-//    public LiveData<List<NctTestSubjectInfo>> getNctTestInfoList() {
-//        return dataTestInfoList;
-//    }
-//    public LiveData<SubjectTestNct> getNctSubjectTestList() { return subjectTest; }
+        } else {
+            repository.getSubjectTestsInfoList(locale, dataTestInfoList);
+        }
+    }
+*/
+/*    public void getNctSubjectTestFor(String locale, int id, Contract nctTestView) {
+        if(subjectMutableLiveData==null) {
+            subjectMutableLiveData = new MutableLiveData<>();
+        }
+        repository.getListOfSubjects(locale, subjectMutableLiveData, id, nctTestView);
+    }*/
+
+
 }

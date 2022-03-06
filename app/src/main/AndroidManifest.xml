@@ -50,14 +50,14 @@
         <activity
             android:name=".authorization.ChooseAge"
             android:label="@string/age_choice_label"
-            android:screenOrientation="fullSensor">
+            android:screenOrientation="portrait">
         </activity>
 
         <!-- Choose Class Activity -->
         <activity
             android:name=".authorization.ChooseClass"
             android:label="@string/class_choice_label"
-            android:screenOrientation="fullSensor">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -67,7 +67,7 @@
         <activity
             android:name=".authorization.ChooseCity"
             android:label="@string/city_choice_label"
-            android:screenOrientation="fullSensor">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -75,7 +75,7 @@
 
         <activity
             android:name=".ui.main.MainActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -85,7 +85,7 @@
         <!-- Select Variant Nct Activity -->
         <activity
             android:name=".ui.main.SelectVariantActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -96,7 +96,7 @@
         <activity
             android:name=".ui.settings.SettingsActivity"
             android:label="@string/language_settings"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -107,7 +107,7 @@
         <activity
             android:name=".ui.aboutus.AboutUsActivity"
             android:label="@string/about_us"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -117,7 +117,7 @@
         <!-- Refresh Internet Activity -->
         <activity
             android:name=".ui.error.RefreshInternetActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -127,7 +127,7 @@
         <!-- Failure Activity -->
         <activity
             android:name=".ui.error.FailureActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -137,7 +137,7 @@
         <!-- Display Test Result Activity -->
         <activity
             android:name=".ui.result.DisplayResultActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -147,7 +147,7 @@
         <!-- Test Activity -->
         <activity
             android:name=".ui.main.test.TestActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -157,7 +157,7 @@
         <!-- Choose Test Activity -->
         <activity
             android:name=".ui.ChooseTestType"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
             <intent-filter>

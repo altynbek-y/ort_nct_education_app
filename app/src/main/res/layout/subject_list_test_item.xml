@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="68dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="28dp"
+    android:layout_marginRight="28dp"
+    app:cardCornerRadius="10dp"
+    android:gravity="center">
+
+    <View
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"/>
+
+    <TextView
+        android:id="@+id/subject_item_title"
+        style="@style/SuperAppTheme"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="start|center"
+        android:paddingStart="35dp"
+        android:text="Название предмета"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
+</androidx.cardview.widget.CardView>
