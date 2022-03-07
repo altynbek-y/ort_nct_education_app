@@ -39,7 +39,7 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.Subj
     @Override
     public SubjectViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.test_item, parent, false);
+                .inflate(R.layout.question_item, parent, false);
 
         return new SubjectViewHolder(itemView, this.onItemListener);
     }

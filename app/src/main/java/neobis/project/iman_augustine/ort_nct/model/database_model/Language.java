@@ -11,8 +11,24 @@ import org.jetbrains.annotations.NotNull;
 public class Language {
     @PrimaryKey
     @ColumnInfo(name = "id")
-    public int lang_id;
+    private int lang_id;
 
     @ColumnInfo(name = "language")
-    public String language;
+    private String language;
+
+    public int getLang_id() {
+        return lang_id;
+    }
+
+    public void setLang_id(int lang_id) {
+        this.lang_id = lang_id;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 }

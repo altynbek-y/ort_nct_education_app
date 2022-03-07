@@ -23,18 +23,18 @@ public class InfoViewModel extends AndroidViewModel {
         repository = Repository.getInstance(application);
         connectionType = NetworkUtil.getConnectivityStatusString(application);
         sharedPreferences = PreferenceManager.getMySharedPreferences(application);
-        getNewAboutNct();
+       // getNewAboutNct();
     }
 
     public void getNewAboutNct() {
-         if(aboutNct==null) {
-             aboutNct = new MutableLiveData<>();
-         }
-         if(connectionType==0) {
-
-         } else {
-             repository.getAboutNct(sharedPreferences.getString("locale", "ru"), aboutNct);
-         }
+//         if(aboutNct==null) {
+//             aboutNct = new MutableLiveData<>();
+//         }
+//         if(connectionType==0) {
+//
+//         } else {
+//             repository.getAboutNct(sharedPreferences.getString("locale", "ru"), aboutNct);
+//         }
     }
 
     public LiveData<AboutModel> getAboutNct() {

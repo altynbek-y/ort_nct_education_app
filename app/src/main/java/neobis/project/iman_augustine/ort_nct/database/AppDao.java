@@ -8,18 +8,23 @@ import java.util.List;
 
 import neobis.project.iman_augustine.ort_nct.model.database_model.Language;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Question;
+import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionAnswerChoice;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 
 @Dao
 public interface AppDao {
 
+   // Get all from subjects table
    @Query("SELECT * FROM subjects")
    List<Subject> getListOfSubjects();
 
+   // Get all questions for a particular subject
    @Query("SELECT * FROM questions WHERE subject_id = :subject_id")
    List<Question> getListOfQuestionsListForSubject(int subject_id);
 
-
+   // Get all answer choices for a particular question
+   @Query("SELECT * FROM question_answer_choices WHERE question_id = :question_id")
+   List<QuestionAnswerChoice> getListOfAnswersForQuestion(int question_id);
 
 
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +33,7 @@ public class TestFragment extends Fragment implements SubjectListAdapter.OnItemL
     //------------------------------VIEW=INITIALIZATION---------------------------------------------
     private RecyclerView recyclerView;
     private TextView textView;
-    private ProgressBar progressBar;
+    private FrameLayout progressLayout;
     private SubjectListAdapter testListAdapter;
     private TestViewModel viewModel;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -45,7 +46,7 @@ public class TestFragment extends Fragment implements SubjectListAdapter.OnItemL
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_test, container, false);
+        return inflater.inflate(R.layout.fragment_subjects_list, container, false);
     }
 
     @Override
@@ -63,7 +64,7 @@ public class TestFragment extends Fragment implements SubjectListAdapter.OnItemL
             locale = sharedPreferences.getString("locale", "ru");
             textView = view.findViewById(R.id.emptyTextView);
             swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
-            progressBar = view.findViewById(R.id.progressBar);
+            progressLayout = view.findViewById(R.id.progressLayout);
             swipeRefreshLayout.setRefreshing(true);
             swipeRefreshLayout.setOnRefreshListener(() -> viewModel.getListOfSubjects(locale));
             recyclerView = view.findViewById(R.id.subject_test_list);
@@ -100,7 +101,7 @@ public class TestFragment extends Fragment implements SubjectListAdapter.OnItemL
     @Override
     public void onItemClick(int i)
     {
-        progressBar.setVisibility(View.VISIBLE);
+        progressLayout.setVisibility(View.VISIBLE);
         startTestActivity(globalTestDataList.get(i).getId(), globalTestDataList.get(i).getSubjectName());
     }
 
@@ -108,7 +109,7 @@ public class TestFragment extends Fragment implements SubjectListAdapter.OnItemL
     public void onResume()
     {
         super.onResume();
-        progressBar.setVisibility(View.GONE);
+        progressLayout.setVisibility(View.GONE);
     }
 
     @Override
@@ -128,7 +129,7 @@ public class TestFragment extends Fragment implements SubjectListAdapter.OnItemL
 
     @Override
     public void toastNoConnection() {
-        progressBar.setVisibility(View.GONE);
+        progressLayout.setVisibility(View.GONE);
         Toast.makeText(getContext(), R.string.no_connection_toast, Toast.LENGTH_LONG).show();
     }
 }

@@ -23,22 +23,63 @@ import org.jetbrains.annotations.NotNull;
 public class QuestionAnswerChoice {
     @PrimaryKey
     @ColumnInfo(name = "id")
-    public int id;
+    private int id;
 
     @ColumnInfo(name = "answer_choice")
     @NotNull
-    public String choiceAnswer;
+    private String choiceAnswer;
 
     @ColumnInfo(name = "is_correct")
-    public boolean isCorrect;
+    private boolean isCorrect;
 
     @ColumnInfo(name = "question_id")
-    public int questionId;
+    private int questionId;
 
     @ColumnInfo(name = "language_id")
-    public int langId;
+    private int langId;
 
     public QuestionAnswerChoice() {
         choiceAnswer = null;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @NotNull
+    public String getChoiceAnswer() {
+        return choiceAnswer;
+    }
+
+    public void setChoiceAnswer(@NotNull String choiceAnswer) {
+        this.choiceAnswer = choiceAnswer;
+    }
+
+    public boolean isCorrect() {
+        return isCorrect;
+    }
+
+    public void setCorrect(boolean correct) {
+        isCorrect = correct;
+    }
+
+    public int getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
+    }
+
+    public int getLangId() {
+        return langId;
+    }
+
+    public void setLangId(int langId) {
+        this.langId = langId;
     }
 }

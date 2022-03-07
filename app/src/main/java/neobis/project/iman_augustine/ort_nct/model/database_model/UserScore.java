@@ -25,22 +25,63 @@ import java.util.Date;
 public class UserScore {
     @PrimaryKey
     @ColumnInfo(name = "id")
-    public int id;
+    private int id;
 
     @ColumnInfo(name = "score")
-    public double score;
+    private double score;
 
     @ColumnInfo(name = "test_date")
     @NotNull
-    public String dateTest;
+    private String dateTest;
 
     @ColumnInfo(name = "user_id")
-    public int userId;
+    private int userId;
 
     @ColumnInfo(name = "subject_id")
-    public int subjectId;
+    private int subjectId;
 
     public UserScore() {
         dateTest = null;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    @NotNull
+    public String getDateTest() {
+        return dateTest;
+    }
+
+    public void setDateTest(@NotNull String dateTest) {
+        this.dateTest = dateTest;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
     }
 }

@@ -23,22 +23,63 @@ import org.jetbrains.annotations.NotNull;
 public class Question {
     @PrimaryKey
     @ColumnInfo(name = "id")
-    public int id;
+    private int id;
 
     @ColumnInfo(name = "question")
     @NotNull
-    public String question;
+    private String question;
 
     @ColumnInfo(name = "is_active")
-    public boolean isActive;
+    private boolean isActive;
 
     @ColumnInfo(name = "language_id")
-    public int langId;
+    private int langId;
 
     @ColumnInfo(name = "subject_id")
-    public int subjectId;
+    private int subjectId;
 
     public Question() {
         question = null;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @NotNull
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(@NotNull String question) {
+        this.question = question;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public int getLangId() {
+        return langId;
+    }
+
+    public void setLangId(int langId) {
+        this.langId = langId;
+    }
+
+    public int getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
     }
 }

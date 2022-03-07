@@ -41,10 +41,10 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     public final static String TITLE = "title";
 
     //----------------------------------------------------------------------------------------------
-    private ProgressBar progressBar;        // Progress bar
-    private TextView ratio;                 // Text view
+    private ProgressBar progressBar;                                                                            // Progress bar
+    private TextView ratio;                                                                                     // Text view
     private TextView timerTextView;
-    private Subject subjectTest;  // List of questions (Question object)
+    private Subject subjectTest;                                                                                // List of questions (Question object)
     private TestController testController;
     private TestActivityViewModel viewModel;
 
@@ -63,7 +63,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
             int seconds = (int) (millis / 1000);
             int minutes = seconds / 60;
             seconds = seconds % 60;
-            timerTextView.setText(String.format("%d:%02d", minutes, seconds)); // Setting timer at every tick
+            timerTextView.setText(String.format("%d:%02d", minutes, seconds));                                  // Setting timer at every tick
         }
 
         @Override
@@ -83,7 +83,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
 
     //--------------------------------------CLICK-LISTENERS-----------------------------------------
     View.OnClickListener onToolbarClickListener = view -> {
-        showAlertDialog(); // Alerts a dialog to prevent user from accidentally exiting from test
+        showAlertDialog();                                                                                      // Alerts a dialog to prevent user from accidentally exiting from test
     };
 
     View.OnClickListener onFinishClickListener = new OnSingleClickListener() {
@@ -110,11 +110,11 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
             viewModel = ViewModelProviders.of(this).get(TestActivityViewModel.class);
             viewModel.getListOfQuestionsListForSubject(subjectId);
 
-            initViews();                                                                                    // Initializing widgets
-            initRecyclerView();                                                                             // Initializing recycler view
+            initViews();                                                                                       // Initializing widgets
+            initRecyclerView();                                                                                // Initializing recycler view
 
             //isAnsweredList = new ArrayList<>(Collections.nCopies(subjectTest.getQuestions().size(), false));
-            //testController = new TestController(subjectTest.getQuestions().size(), progressBar, ratio);     // Initialzing test controller object
+            //testController = new TestController(subjectTest.getQuestions().size(), progressBar, ratio);      // Initialzing test controller object
             countDownTimer.start();
             // Start count down timer
         } catch (NullPointerException error)
@@ -138,36 +138,37 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     {
         //----------------------------WIDGETS-------------------------------------
         // Toolbar view
-        Toolbar toolbar = findViewById(R.id.toolbar); // Finding tool bar
-        setSupportActionBar(toolbar); // Setting tool bar
+        Toolbar toolbar = findViewById(R.id.toolbar);                                                           // Finding tool bar
+        setSupportActionBar(toolbar);                                                                           // Setting tool bar
 
-        TextView titleTextView = findViewById(R.id.titleText); // Title
+        TextView titleTextView = findViewById(R.id.titleText);                                                  // Title
         titleTextView.setText(subjectName);
 
         timerTextView = findViewById(R.id.timerTextView);
         //-----------------------------------------------------------------------------------------------
-        progressBar = findViewById(R.id.progressBar); // Setting progress bar widget
-        ratio = findViewById(R.id.score_ratio_textview); // Setting text view widget
+        progressBar = findViewById(R.id.progressBar);                                                           // Setting progress bar widget
+        ratio = findViewById(R.id.score_ratio_textview);                                                        // Setting text view widget
 
         // Press to complete the test
-        Button finishBtn = findViewById(R.id.finish_button); // Setting a button
-        finishBtn.setOnClickListener(onFinishClickListener); // Setting on click listener
-        toolbar.setNavigationOnClickListener(onToolbarClickListener); // Setting on tool bar click listener
+        Button finishBtn = findViewById(R.id.finish_button);                                                    // Setting a button
+        finishBtn.setOnClickListener(onFinishClickListener);                                                    // Setting on click listener
+        toolbar.setNavigationOnClickListener(onToolbarClickListener);                                           // Setting on tool bar click listener
     }
 
     // Fetches data to inflate test list with questions, answers, etc
     private void initRecyclerView()
     {
         // List view
-        RecyclerView recyclerView = findViewById(R.id.quiz_list); // Finding recycler view widget
+        RecyclerView recyclerView = findViewById(R.id.quiz_list);                                               // Finding recycler view widget
 
         // Adapter for the recyclerview
-        QuestionListAdapter testAdapter = new QuestionListAdapter(new ArrayList<>(), this, this); // RecyclewView Adapter
+        QuestionListAdapter questionsAdapter = new QuestionListAdapter(new ArrayList<>(), new ArrayList<>(),    // RecyclewView Adapter
+                this, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        viewModel.getDataListOfQuestions().observe(this, testAdapter::setValues);
+        viewModel.getDataListOfQuestions().observe(this, questionsAdapter::setValues);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(testAdapter); // Setting adapter
+        recyclerView.setAdapter(questionsAdapter);                                                              // Setting adapter
     }
 
     @Override

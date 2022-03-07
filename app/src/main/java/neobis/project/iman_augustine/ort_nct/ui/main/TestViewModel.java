@@ -47,8 +47,7 @@ public class TestViewModel extends AndroidViewModel {
     public LiveData<List<Subject>> getDataListOfSubjects() {
         return subjectsListMutableLiveData;
     }
-
-
+}
 
 
 
@@ -70,5 +69,3 @@ public class TestViewModel extends AndroidViewModel {
         repository.getListOfSubjects(locale, subjectMutableLiveData, id, nctTestView);
     }*/
 
-
-}

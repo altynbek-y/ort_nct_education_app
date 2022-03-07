@@ -31,7 +31,6 @@ public class Subject {
         subjectName = null;
     }
 
-
     public int getId() {
         return id;
     }
