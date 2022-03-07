@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.List;
 
 import neobis.project.iman_augustine.ort_nct.common.NetworkUtil;
+import neobis.project.iman_augustine.ort_nct.model.database_model.Question;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 import neobis.project.iman_augustine.ort_nct.repository.Repository;
 import neobis.project.iman_augustine.ort_nct.sharedpreference.PreferenceManager;
@@ -44,6 +45,11 @@ public class TestViewModel extends AndroidViewModel {
 
     public LiveData<List<Subject>> getDataListOfSubjects() {
         return subjectsListMutableLiveData;
+    }
+
+    public List<Question> getListOfQuestionsListForSubject(int subjectId)
+    {
+        return repository.getListOfQuestionsListForSubject(subjectId);
     }
 
  /*   public void getNewNctSubjectTestList(String locale) {

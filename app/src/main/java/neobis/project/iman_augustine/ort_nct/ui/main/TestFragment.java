@@ -30,7 +30,7 @@ import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 import neobis.project.iman_augustine.ort_nct.sharedpreference.PreferenceManager;
 import neobis.project.iman_augustine.ort_nct.ui.main.test.TestActivity;
 
-public class TestFragment extends Fragment implements TestListAdapter.OnItemListener, Contract {//, SwipeRefreshLayout.OnRefreshListener {
+public class TestFragment extends Fragment implements TestListAdapter.OnItemListener, Contract {    //, SwipeRefreshLayout.OnRefreshListener {
     //------------------------------VIEW=INITIALIZATION---------------------------------------------
     private RecyclerView recyclerView;
     private TextView textView;
@@ -40,6 +40,7 @@ public class TestFragment extends Fragment implements TestListAdapter.OnItemList
     private SwipeRefreshLayout swipeRefreshLayout;
     private SharedPreferences sharedPreferences;
     private String locale;
+    private List<Subject> globalTestDataList;
 
     public TestFragment() {}
 
@@ -66,36 +67,28 @@ public class TestFragment extends Fragment implements TestListAdapter.OnItemList
             swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
             progressBar = view.findViewById(R.id.progressBar);
             swipeRefreshLayout.setRefreshing(true);
-            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    viewModel.getListOfSubjects(locale);
-                }
-            });
+            swipeRefreshLayout.setOnRefreshListener(() -> viewModel.getListOfSubjects(locale));
             recyclerView = view.findViewById(R.id.subject_test_list);
             recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(VerticalSpaceItemDecoration.VERTICAL_ITEM_SPACE));
 
-            //viewModel = ViewModelProviders.of(this).get(NctTestViewModel.class);
             viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication()).create(TestViewModel.class);
 
-            //Toast.makeText(getContext(), ""+viewModel.getListOfSubjects(locale).get.size(), Toast.LENGTH_LONG).show();
 
-            testListAdapter = new TestListAdapter(new ArrayList<Subject>(), this, getContext());
-            viewModel.getDataListOfSubjects().observe(this, new Observer<List<Subject>>() {
-                @Override
-                public void onChanged(@Nullable List<Subject> testDataList) {
-                    testListAdapter.setValues(testDataList);
-                    swipeRefreshLayout.setRefreshing(false);
-
-                    if(testDataList !=null) {
-                        textView.setVisibility(View.GONE);
-                        recyclerView.setVisibility(View.VISIBLE);
-                        return;
-                    }
-                    textView.setVisibility(View.VISIBLE);
-                    recyclerView.setVisibility(View.GONE);
+            testListAdapter = new TestListAdapter(new ArrayList<>(), this, getContext());
+            viewModel.getDataListOfSubjects().observe(this, testDataList -> {
+                testListAdapter.setValues(testDataList);
+                swipeRefreshLayout.setRefreshing(false);
+                globalTestDataList = testDataList;
+                if(testDataList !=null) {
+                    textView.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                    return;
                 }
+
+                textView.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
             });
+
             recyclerView.setAdapter(testListAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -107,7 +100,9 @@ public class TestFragment extends Fragment implements TestListAdapter.OnItemList
     @Override
     public void onItemClick(int i) {
         progressBar.setVisibility(View.VISIBLE);
-        //viewModel.getNctSubjectTestFor(locale, dataTestList.get(i).getId(), this);
+        Toast.makeText(requireContext(),
+                ""+viewModel.getListOfQuestionsListForSubject(globalTestDataList.get(i).getId()).size(),
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import neobis.project.iman_augustine.ort_nct.model.database_model.Language;
+import neobis.project.iman_augustine.ort_nct.model.database_model.Question;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 
 @Dao
@@ -15,7 +16,8 @@ public interface AppDao {
    @Query("SELECT * FROM subjects")
    List<Subject> getListOfSubjects();
 
-
+   @Query("SELECT * FROM questions WHERE subject_id = :subject_id")
+   List<Question> getListOfQuestionsListForSubject(int subject_id);
 
 
 

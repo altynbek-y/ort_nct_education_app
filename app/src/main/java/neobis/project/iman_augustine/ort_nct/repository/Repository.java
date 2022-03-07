@@ -11,6 +11,7 @@ import java.util.List;
 import neobis.project.iman_augustine.ort_nct.database.AppDao;
 import neobis.project.iman_augustine.ort_nct.database.TestDatabase;
 import neobis.project.iman_augustine.ort_nct.model.about_model.AboutModel;
+import neobis.project.iman_augustine.ort_nct.model.database_model.Question;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 
 /**
@@ -41,6 +42,13 @@ public class Repository {
     {
         subjectMutableLiveData.setValue(database.getListOfSubjects());
     }
+
+    public List<Question> getListOfQuestionsListForSubject(int subjectId)
+    {
+        return database.getListOfQuestionsListForSubject(subjectId);
+    }
+
+
 
     /*---------------------------------------------NCT-----------------------------------------------------------*/
    /* public MutableLiveData<List<NctTestSubjectInfo>> getSubjectTestsInfoList(String lang, final MutableLiveData<List<NctTestSubjectInfo>> dataList) {
