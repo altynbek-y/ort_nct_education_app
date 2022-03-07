@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,22 +20,20 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-import neobis.project.iman_augustine.ort_nct.MyApplication;
 import neobis.project.iman_augustine.ort_nct.R;
-import neobis.project.iman_augustine.ort_nct.adapters.TestListAdapter;
+import neobis.project.iman_augustine.ort_nct.adapters.SubjectListAdapter;
 import neobis.project.iman_augustine.ort_nct.adapters.VerticalSpaceItemDecoration;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 import neobis.project.iman_augustine.ort_nct.sharedpreference.PreferenceManager;
 import neobis.project.iman_augustine.ort_nct.ui.main.test.TestActivity;
 
-public class TestFragment extends Fragment implements TestListAdapter.OnItemListener, Contract {    //, SwipeRefreshLayout.OnRefreshListener {
+public class TestFragment extends Fragment implements SubjectListAdapter.OnItemListener, Contract {    //, SwipeRefreshLayout.OnRefreshListener {
     //------------------------------VIEW=INITIALIZATION---------------------------------------------
     private RecyclerView recyclerView;
     private TextView textView;
     private ProgressBar progressBar;
-    private TestListAdapter testListAdapter;
+    private SubjectListAdapter testListAdapter;
     private TestViewModel viewModel;
     private SwipeRefreshLayout swipeRefreshLayout;
     private SharedPreferences sharedPreferences;
@@ -75,11 +72,13 @@ public class TestFragment extends Fragment implements TestListAdapter.OnItemList
             viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication()).create(TestViewModel.class);
 
             // Load data into recyclerview with the help of adapter
-            testListAdapter = new TestListAdapter(new ArrayList<>(), this, getContext());
+            testListAdapter = new SubjectListAdapter(new ArrayList<>(), this, getContext());
+
             viewModel.getDataListOfSubjects().observe(this, testDataList -> {
                 testListAdapter.setValues(testDataList);
                 swipeRefreshLayout.setRefreshing(false);
                 globalTestDataList = testDataList;
+
                 if(testDataList !=null) {
                     textView.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
@@ -99,28 +98,32 @@ public class TestFragment extends Fragment implements TestListAdapter.OnItemList
     }
     //------------------------------------------ON-ITEM-CLICK---------------------------------------
     @Override
-    public void onItemClick(int i) {
+    public void onItemClick(int i)
+    {
         progressBar.setVisibility(View.VISIBLE);
-        Toast.makeText(requireContext(), ""+viewModel.getListOfQuestionsListForSubject(globalTestDataList.get(i).getId()).size(), Toast.LENGTH_SHORT).show();
-        startTest(true);
+        startTestActivity(globalTestDataList.get(i).getId(), globalTestDataList.get(i).getSubjectName());
     }
 
     @Override
-    public void onResume() {
+    public void onResume()
+    {
         super.onResume();
         progressBar.setVisibility(View.GONE);
     }
 
     @Override
-    public void startTest(boolean isNotEmpty) {
-        if(isNotEmpty) {
-            Intent intent = new Intent(getActivity(), TestActivity.class);
-            //intent.putExtra(TestActivity.TEST, viewModel.getNctSubjectTestList().getValue());
-            startActivity(intent);
-        } else {
-            progressBar.setVisibility(View.GONE);
-            Toast.makeText(getContext(), R.string.practice_ort_test_list_empty_text, Toast.LENGTH_SHORT).show();
-        }
+    public void startTestActivity(int subject_id, String subject_name)
+    {
+        Intent intent = new Intent(getActivity(), TestActivity.class);
+        intent.putExtra(TestActivity.SUBJECT_NAME, subject_name);
+        intent.putExtra(TestActivity.SUBJECT_ID, subject_id);
+        startActivity(intent);
+
+        //if(isNotEmpty) {
+        //        } else {
+        //            progressBar.setVisibility(View.GONE);
+        //            Toast.makeText(getContext(), R.string.practice_ort_test_list_empty_text, Toast.LENGTH_SHORT).show();
+        //        }
     }
 
     @Override

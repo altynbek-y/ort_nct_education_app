@@ -22,10 +22,10 @@ public class Subject {
 
     @ColumnInfo(name = "subject_name")
     @NotNull
-    public String subjectName;
+    private String subjectName;
 
     @ColumnInfo(name = "language_id")
-    public int langId;
+    private int langId;
 
     public Subject() {
         subjectName = null;
@@ -38,5 +38,22 @@ public class Subject {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @NotNull
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(@NotNull String subjectName) {
+        this.subjectName = subjectName;
+    }
+
+    public int getLangId() {
+        return langId;
+    }
+
+    public void setLangId(int langId) {
+        this.langId = langId;
     }
 }

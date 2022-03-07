@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,12 +15,12 @@ import neobis.project.iman_augustine.ort_nct.singleclicklistener.OnSingleClickLi
 
 import java.util.List;
 
-public class TestListAdapter extends RecyclerView.Adapter<TestListAdapter.SubjectViewHolder> {
+public class SubjectListAdapter extends RecyclerView.Adapter<SubjectListAdapter.SubjectViewHolder> {
     private List<Subject> subjectList;
     private OnItemListener onItemListener;
     private Context context;
 
-    public TestListAdapter(List<Subject> subjectList, TestListAdapter.OnItemListener onItemListener, Context context) {
+    public SubjectListAdapter(List<Subject> subjectList, SubjectListAdapter.OnItemListener onItemListener, Context context) {
         this.subjectList = subjectList;
         this.onItemListener = onItemListener;
         this.context = context;
@@ -46,7 +45,7 @@ public class TestListAdapter extends RecyclerView.Adapter<TestListAdapter.Subjec
 
     @Override
     public void onBindViewHolder(SubjectViewHolder holder, int i) {
-        holder.subject_name.setText(subjectList.get(i).subjectName);
+        holder.subject_name.setText(subjectList.get(i).getSubjectName());
     }
 
     @Override

@@ -31,8 +31,9 @@ public class TestViewModel extends AndroidViewModel {
         connectionType = NetworkUtil.getConnectivityStatusString(application);
         sharedPreferences = PreferenceManager.getMySharedPreferences(application.getApplicationContext());
         locale = sharedPreferences.getString("locale", "ru");
-        Log.e("TestViewModel", "TestViewModel, locale: "+locale);
         getListOfSubjects(locale);
+
+        //Log.e("TestViewModel", "TestViewModel, locale: "+locale);
     }
 
     public void getListOfSubjects(String locale)
@@ -47,10 +48,9 @@ public class TestViewModel extends AndroidViewModel {
         return subjectsListMutableLiveData;
     }
 
-    public List<Question> getListOfQuestionsListForSubject(int subjectId)
-    {
-        return repository.getListOfQuestionsListForSubject(subjectId);
-    }
+
+
+
 
  /*   public void getNewNctSubjectTestList(String locale) {
         if(dataTestInfoList==null) {

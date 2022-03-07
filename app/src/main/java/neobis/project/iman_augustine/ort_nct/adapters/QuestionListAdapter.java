@@ -14,25 +14,28 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
-
 import neobis.project.iman_augustine.ort_nct.R;
-import neobis.project.iman_augustine.ort_nct.model.test_model.Answer;
-import neobis.project.iman_augustine.ort_nct.model.test_model.Question;
-import neobis.project.iman_augustine.ort_nct.model.test_model.TranslationsImageModel;
+import neobis.project.iman_augustine.ort_nct.model.database_model.Question;
 
 import java.util.List;
 
-public class TestAdapter extends RecyclerView.Adapter<TestAdapter.SubjectViewHolder> {
+public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapter.SubjectViewHolder> {
 
     private List<Question> questions;
     private OnItemListener onItemListener;
     private Context context;
 
-    public TestAdapter(List<Question> questions, OnItemListener onItemListener, Context context) {
+    public QuestionListAdapter(List<Question> questions, OnItemListener onItemListener, Context context) {
         this.questions = questions;
         this.onItemListener = onItemListener;
         this.context = context;
+    }
+    public void setValues(List<Question> newQuestionList) {
+        this.questions.clear();
+        if(newQuestionList!=null) {
+            this.questions.addAll(newQuestionList);
+        }
+        this.notifyDataSetChanged();
     }
 
     @NonNull
@@ -48,25 +51,15 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.SubjectViewHol
     public void onBindViewHolder(final SubjectViewHolder holder, int pos) {
         try {
             String imageUrl;
-            TranslationsImageModel image = questions.get(pos).getTranslation();
+            //TranslationsImageModel image = questions.get(pos).getTranslation();
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             String currentLocale = sharedPreferences.getString("locale", "ru");
 
-            // int height, width;
-            if(currentLocale.equals("ru")) {
-                imageUrl = image.getRussian().getImageUrl();
-               // height = image.getRussian().getHeight();
-               // width = image.getRussian().getWidth();
-            } else {
-                imageUrl = image.getKyrgyz().getImageUrl();
-               // height = image.getKyrgyz().getHeight();
-               // width = image.getKyrgyz().getWidth();
-            }
-            Picasso.get()
-                    .load(imageUrl)
-                    .into(holder.questionImage);
+            //Picasso.get()
+                 //   .load(imageUrl)
+                  //  .into(holder.questionImage);
 
-            final List<Answer> answers = questions.get(pos).getAnswers(); // List of possible answers
+            //final List<Answer> answers = questions.get(pos).getAnswers(); // List of possible answers
             final int position = pos;
 
             holder.radioAnswerGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

@@ -38,14 +38,14 @@ public class Repository {
         database = TestDatabase.getInMemoryDatabase(application.getApplicationContext()).appDao();
     }
 
-    public void getListOfSubjects(String locale, MutableLiveData<List<Subject>> subjectMutableLiveData)
+    public void getListOfSubjects(String locale, MutableLiveData<List<Subject>> subjectsMutableLiveData)
     {
-        subjectMutableLiveData.setValue(database.getListOfSubjects());
+        subjectsMutableLiveData.setValue(database.getListOfSubjects());
     }
 
-    public List<Question> getListOfQuestionsListForSubject(int subjectId)
+    public void getListOfQuestionsListForSubject(int subjectId, MutableLiveData<List<Question>> questionsMutableLiveData)
     {
-        return database.getListOfQuestionsListForSubject(subjectId);
+        questionsMutableLiveData.setValue(database.getListOfQuestionsListForSubject(subjectId));
     }
 
 
