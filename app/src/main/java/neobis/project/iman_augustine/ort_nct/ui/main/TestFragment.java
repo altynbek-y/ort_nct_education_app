@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -57,7 +58,7 @@ public class TestFragment extends Fragment implements TestListAdapter.OnItemList
     }
     //----------------------------------------------------------------------------------------------
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //-----------------------------INITIALIZATION-----------------------------------------------
         try {
@@ -73,7 +74,7 @@ public class TestFragment extends Fragment implements TestListAdapter.OnItemList
 
             viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication()).create(TestViewModel.class);
 
-
+            // Load data into recyclerview with the help of adapter
             testListAdapter = new TestListAdapter(new ArrayList<>(), this, getContext());
             viewModel.getDataListOfSubjects().observe(this, testDataList -> {
                 testListAdapter.setValues(testDataList);
@@ -100,9 +101,8 @@ public class TestFragment extends Fragment implements TestListAdapter.OnItemList
     @Override
     public void onItemClick(int i) {
         progressBar.setVisibility(View.VISIBLE);
-        Toast.makeText(requireContext(),
-                ""+viewModel.getListOfQuestionsListForSubject(globalTestDataList.get(i).getId()).size(),
-                Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), ""+viewModel.getListOfQuestionsListForSubject(globalTestDataList.get(i).getId()).size(), Toast.LENGTH_SHORT).show();
+        startTest(true);
     }
 
     @Override
@@ -114,9 +114,9 @@ public class TestFragment extends Fragment implements TestListAdapter.OnItemList
     @Override
     public void startTest(boolean isNotEmpty) {
         if(isNotEmpty) {
-//            Intent intent = new Intent(getActivity(), TestActivity.class);
-//            intent.putExtra(TestActivity.TEST, viewModel.getNctSubjectTestList().getValue());
-//            startActivity(intent);
+            Intent intent = new Intent(getActivity(), TestActivity.class);
+            //intent.putExtra(TestActivity.TEST, viewModel.getNctSubjectTestList().getValue());
+            startActivity(intent);
         } else {
             progressBar.setVisibility(View.GONE);
             Toast.makeText(getContext(), R.string.practice_ort_test_list_empty_text, Toast.LENGTH_SHORT).show();

@@ -180,19 +180,11 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle(getResources().getString(R.string.exit_from_test_title));
         alert.setMessage(getResources().getString(R.string.exit_from_test_message));
-        alert.setPositiveButton(getResources().getString(R.string.yes_exit), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-                finish();
-            }
+        alert.setPositiveButton(getResources().getString(R.string.yes_exit), (dialogInterface, i) -> {
+            dialogInterface.dismiss();
+            finish();
         });
-        alert.setNegativeButton(getResources().getString(R.string.no_exit), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
+        alert.setNegativeButton(getResources().getString(R.string.no_exit), (dialogInterface, i) -> dialogInterface.dismiss());
         alert.create().show();
     }
 
