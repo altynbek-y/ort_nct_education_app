@@ -10,7 +10,7 @@
     android:gravity="center">
 
     <View
-        android:layout_width="30dp"
+        android:layout_width="20dp"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"/>
 
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="start|center"
-        android:paddingStart="35dp"
+        android:paddingStart="25dp"
         android:text="Название предмета"
         android:textAllCaps="false"
         android:textColor="@android:color/black"

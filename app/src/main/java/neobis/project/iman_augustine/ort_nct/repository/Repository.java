@@ -17,7 +17,8 @@ import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 /**
  * Singleton Pattern
  */
-public class Repository {
+public class Repository
+{
     private final String TAG = "Repository";
 
     private static Repository instance;
@@ -34,7 +35,6 @@ public class Repository {
 
     private Repository(Application application) {
         context = application.getApplicationContext();
-        // service = NctRetrofitClientInstance.getRetrofitInstance().create(NctDao.class);
         database = TestDatabase.getInMemoryDatabase(application.getApplicationContext()).appDao();
     }
 
@@ -50,7 +50,12 @@ public class Repository {
 
 
 
+
+
+
     /*---------------------------------------------NCT-----------------------------------------------------------*/
+    // service = NctRetrofitClientInstance.getRetrofitInstance().create(NctDao.class);
+
    /* public MutableLiveData<List<NctTestSubjectInfo>> getSubjectTestsInfoList(String lang, final MutableLiveData<List<NctTestSubjectInfo>> dataList) {
         service.getSubjectTestsInfo(lang).enqueue(new Callback<List<NctTestSubjectInfo>>() {
             @Override
@@ -88,8 +93,8 @@ public class Repository {
         });
     }*/
 
-    public void getAboutNct(String lang, final MutableLiveData<AboutModel> aboutNct) {
-       /* service.getAboutNct(lang).enqueue(new Callback<AboutModel>() {
+   /* public void getAboutNct(String lang, final MutableLiveData<AboutModel> aboutNct) {
+        service.getAboutNct(lang).enqueue(new Callback<AboutModel>() {
             @Override
             public void onResponse(Call<AboutModel> call, Response<AboutModel> response) {
                 if (response.body() != null) {
@@ -102,8 +107,8 @@ public class Repository {
                 aboutNct.setValue(null);
                 Log.i(TAG, "onResponse: about nct downloaded unsuccessfully, message: " + t.getMessage());
             }
-        });*/
-    }
+        });
+    }*/
 }
 
 

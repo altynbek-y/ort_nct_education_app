@@ -27,14 +27,14 @@ public class InfoViewModel extends AndroidViewModel {
     }
 
     public void getNewAboutNct() {
-         if(aboutNct==null) {
-             aboutNct = new MutableLiveData<>();
-         }
-         if(connectionType==0) {
-
-         } else {
-             repository.getAboutNct(sharedPreferences.getString("locale", "ru"), aboutNct);
-         }
+//         if(aboutNct==null) {
+//             aboutNct = new MutableLiveData<>();
+//         }
+//         if(connectionType==0) {
+//
+//         } else {
+//             repository.getAboutNct(sharedPreferences.getString("locale", "ru"), aboutNct);
+//         }
     }
 
     public LiveData<AboutModel> getAboutNct() {

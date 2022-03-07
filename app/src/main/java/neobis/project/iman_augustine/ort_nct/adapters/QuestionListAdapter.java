@@ -2,10 +2,12 @@ package neobis.project.iman_augustine.ort_nct.adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -21,19 +23,19 @@ import java.util.List;
 
 public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapter.SubjectViewHolder> {
 
-    private List<Question> questions;
+    private List<Question> questionsList;
     private OnItemListener onItemListener;
     private Context context;
 
-    public QuestionListAdapter(List<Question> questions, OnItemListener onItemListener, Context context) {
-        this.questions = questions;
+    public QuestionListAdapter(List<Question> questionsList, OnItemListener onItemListener, Context context) {
+        this.questionsList = questionsList;
         this.onItemListener = onItemListener;
         this.context = context;
     }
     public void setValues(List<Question> newQuestionList) {
-        this.questions.clear();
+        this.questionsList.clear();
         if(newQuestionList!=null) {
-            this.questions.addAll(newQuestionList);
+            this.questionsList.addAll(newQuestionList);
         }
         this.notifyDataSetChanged();
     }
@@ -42,7 +44,7 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
     @Override
     public SubjectViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.test_item, parent, false);
+                .inflate(R.layout.question_item, parent, false);
 
         return new SubjectViewHolder(itemView, this.onItemListener);
     }
@@ -50,11 +52,26 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
     @Override
     public void onBindViewHolder(final SubjectViewHolder holder, int pos) {
         try {
-            String imageUrl;
+            // String imageUrl;
             //TranslationsImageModel image = questions.get(pos).getTranslation();
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             String currentLocale = sharedPreferences.getString("locale", "ru");
 
+            String summary = "<html><body>" + questionsList.get(pos).question +"</body></html>";
+            // holder.questionWebView.setBackgroundColor(Color.LTGRAY);
+            holder.questionWebView.loadData(summary, "text/html; charset=utf-8", "utf-8");
+
+
+            // int height, width;
+            if(currentLocale.equals("ru")) {
+               // imageUrl = image.getRussian().getImageUrl();
+               // height = image.getRussian().getHeight();
+               // width = image.getRussian().getWidth();
+            } else {
+               // imageUrl = image.getKyrgyz().getImageUrl();
+               // height = image.getKyrgyz().getHeight();
+               // width = image.getKyrgyz().getWidth();
+            }
             //Picasso.get()
                  //   .load(imageUrl)
                   //  .into(holder.questionImage);
@@ -87,7 +104,7 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
         }
     }
     public int getItemCount() {
-        return questions != null ? questions.size() : 0;
+        return questionsList != null ? questionsList.size() : 0;
     }
 
     @Override
@@ -108,16 +125,12 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
     public static class SubjectViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         OnItemListener onItemListener;
         private RadioGroup radioAnswerGroup;
-        private ImageView questionImage;
-        private TextView explanation;
-        private CardView explanationCard;
+        private WebView questionWebView;
 
         private SubjectViewHolder(View view, final OnItemListener onItemListener) {
             super(view);
             radioAnswerGroup = view.findViewById(R.id.answerRadioGroup);
-            //questionImage = view.findViewById(R.id.questionImage);
-            explanation = view.findViewById(R.id.explanation_textview);
-            explanationCard = view.findViewById(R.id.explanation_cardview);
+            questionWebView = view.findViewById(R.id.questionWebView);
 
             this.onItemListener = onItemListener;
             view.setOnClickListener(this);
