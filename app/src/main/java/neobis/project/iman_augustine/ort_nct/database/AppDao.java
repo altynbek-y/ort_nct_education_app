@@ -26,7 +26,10 @@ public interface AppDao {
    @Query("SELECT * FROM question_answer_choices WHERE question_id = :question_id")
    List<QuestionAnswerChoice> getListOfAnswersForQuestion(int question_id);
 
-
+   // Get all answer choices for a particular question
+   @Query("SELECT * FROM question_answer_choices " +
+           "WHERE question_id IN (SELECT id FROM questions WHERE subject_id = :subject_id)")
+   List<QuestionAnswerChoice> getListOfAnswersForSubject(int subject_id);
 
 
 
