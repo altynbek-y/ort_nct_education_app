@@ -12,6 +12,7 @@ import neobis.project.iman_augustine.ort_nct.database.AppDao;
 import neobis.project.iman_augustine.ort_nct.database.TestDatabase;
 import neobis.project.iman_augustine.ort_nct.model.about_model.AboutModel;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Question;
+import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionAnswerChoice;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 
 /**
@@ -26,14 +27,16 @@ public class Repository
 
     private Context context;
 
-    public static Repository getInstance(Application application) {
+    public static Repository getInstance(Application application)
+    {
         if (instance == null) {
             instance = new Repository(application);
         }
         return instance;
     }
 
-    private Repository(Application application) {
+    private Repository(Application application)
+    {
         context = application.getApplicationContext();
         database = TestDatabase.getInMemoryDatabase(application.getApplicationContext()).appDao();
     }
@@ -48,7 +51,10 @@ public class Repository
         questionsMutableLiveData.setValue(database.getListOfQuestionsListForSubject(subjectId));
     }
 
-
+    public void getListOfAnswersListForSubject(int subjectId, MutableLiveData<List<QuestionAnswerChoice>> answersMutableLiveData)
+    {
+        answersMutableLiveData.setValue(database.getListOfAnswersForSubject(subjectId));
+    }
 
 
 

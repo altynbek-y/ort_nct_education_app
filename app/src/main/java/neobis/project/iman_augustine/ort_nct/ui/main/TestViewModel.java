@@ -18,9 +18,9 @@ import neobis.project.iman_augustine.ort_nct.repository.Repository;
 import neobis.project.iman_augustine.ort_nct.sharedpreference.PreferenceManager;
 
 public class TestViewModel extends AndroidViewModel {
-    private int connectionType;
+    //  private int connectionType;
     private Repository repository;
-//    private MutableLiveData<List<NctTestSubjectInfo>> dataTestInfoList;
+    //  private MutableLiveData<List<NctTestSubjectInfo>> dataTestInfoList;
     private MutableLiveData<List<Subject>> subjectsListMutableLiveData;
     private SharedPreferences sharedPreferences;
     private String locale;
@@ -28,12 +28,11 @@ public class TestViewModel extends AndroidViewModel {
     public TestViewModel(Application application) {
         super(application);
         repository = Repository.getInstance(application);
-        connectionType = NetworkUtil.getConnectivityStatusString(application);
+        //  connectionType = NetworkUtil.getConnectivityStatusString(application);
         sharedPreferences = PreferenceManager.getMySharedPreferences(application.getApplicationContext());
         locale = sharedPreferences.getString("locale", "ru");
         getListOfSubjects(locale);
-
-        //Log.e("TestViewModel", "TestViewModel, locale: "+locale);
+        //  Log.e("TestViewModel", "TestViewModel, locale: "+locale);
     }
 
     public void getListOfSubjects(String locale)
@@ -48,6 +47,8 @@ public class TestViewModel extends AndroidViewModel {
         return subjectsListMutableLiveData;
     }
 }
+
+
 
 
 

@@ -2,44 +2,43 @@ package neobis.project.iman_augustine.ort_nct.adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.ImageView;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Question;
 import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionAnswerChoice;
+import neobis.project.iman_augustine.ort_nct.repository.Repository;
 
 import java.util.List;
 
-public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapter.SubjectViewHolder> {
-
+public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapter.SubjectViewHolder>
+{
     private List<Question> questionsList;
-    private List<QuestionAnswerChoice> answerChoices;
     private OnItemListener onItemListener;
     private Context context;
+    private Repository repository;
 
-    public QuestionListAdapter(List<Question> questionsList,
-                               List<QuestionAnswerChoice> answerChoices,
-                               OnItemListener onItemListener,
-                               Context context)
+    public QuestionListAdapter(
+            List<Question> questionsList,
+            OnItemListener onItemListener,
+            Context context
+    )
     {
         this.questionsList = questionsList;
-        this.answerChoices = answerChoices;
         this.onItemListener = onItemListener;
         this.context = context;
     }
-    public void setValues(List<Question> newQuestionList) {
+
+    public void setValues(List<Question> newQuestionList)
+    {
         this.questionsList.clear();
         if(newQuestionList!=null) {
             this.questionsList.addAll(newQuestionList);
@@ -67,7 +66,6 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
             String currentLocale = sharedPreferences.getString("locale", "ru");
 
             String summary = "<html><body>" + questionsList.get(pos).getQuestion() +"</body></html>";
-            // holder.questionWebView.setBackgroundColor(Color.LTGRAY);
             holder.questionWebView.loadData(summary, "text/html; charset=utf-8", "utf-8");
 
 
@@ -124,17 +122,20 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
         return position;
     }
 
-    public interface OnItemListener {
+    public interface OnItemListener
+    {
         void onItemClick(int i);
         void onAnswerClick(int position, int userAnswer, RadioGroup answerGroup);
     }
 
-    public static class SubjectViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class SubjectViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    {
         OnItemListener onItemListener;
         private RadioGroup radioAnswerGroup;
         private WebView questionWebView;
 
-        private SubjectViewHolder(View view, final OnItemListener onItemListener) {
+        private SubjectViewHolder(View view, final OnItemListener onItemListener)
+        {
             super(view);
             radioAnswerGroup = view.findViewById(R.id.answerRadioGroup);
             questionWebView = view.findViewById(R.id.questionWebView);
@@ -148,5 +149,4 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
             onItemListener.onItemClick(getAdapterPosition());
         }
     }
-
 }

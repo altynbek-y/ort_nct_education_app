@@ -29,7 +29,8 @@ import neobis.project.iman_augustine.ort_nct.singleclicklistener.OnSingleClickLi
 import neobis.project.iman_augustine.ort_nct.ui.Contract;
 import neobis.project.iman_augustine.ort_nct.ui.result.DisplayResultActivity;
 
-public class TestActivity extends AppCompatActivity implements QuestionListAdapter.OnItemListener, Contract.TestResultContract {
+public class TestActivity extends AppCompatActivity implements QuestionListAdapter.OnItemListener,
+        Contract.TestResultContract {
 
     //----------------------------NAME-CONSTANTS----------------------------------------------------
     public final static String SUBJECT_NAME = "subject_name";
@@ -86,10 +87,11 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         showAlertDialog();                                                                                      // Alerts a dialog to prevent user from accidentally exiting from test
     };
 
-    View.OnClickListener onFinishClickListener = new OnSingleClickListener() {
+    View.OnClickListener onFinishClickListener = new OnSingleClickListener()
+    {
         @Override
         public void onSingleClick(View view) {
-           // testController.countTotalCorrect();
+            //   testController.countTotalCorrect();
             completeTest();
         }
     };
@@ -110,7 +112,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
             viewModel = ViewModelProviders.of(this).get(TestActivityViewModel.class);
             viewModel.getListOfQuestionsListForSubject(subjectId);
 
-            initViews();                                                                                            // Initializing widgets
+            initViews();                                                                                       // Initializing widgets
             initRecyclerView();                                                                                // Initializing recycler view
 
             //isAnsweredList = new ArrayList<>(Collections.nCopies(subjectTest.getQuestions().size(), false));
@@ -136,8 +138,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     //---------------------------------------VIEW-INITIALIZATION-----------------------------------------
     private void initViews()
     {
-        //----------------------------WIDGETS-------------------------------------
-        // Toolbar view
+                                                                                                                // Toolbar view
         Toolbar toolbar = findViewById(R.id.toolbar);                                                           // Finding tool bar
         setSupportActionBar(toolbar);                                                                           // Setting tool bar
 
@@ -145,7 +146,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         titleTextView.setText(subjectName);
 
         timerTextView = findViewById(R.id.timerTextView);
-        //-----------------------------------------------------------------------------------------------
+
         progressBar = findViewById(R.id.progressBar);                                                           // Setting progress bar widget
         ratio = findViewById(R.id.score_ratio_textview);                                                        // Setting text view widget
 
@@ -155,14 +156,12 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         toolbar.setNavigationOnClickListener(onToolbarClickListener);                                           // Setting on tool bar click listener
     }
 
-    // Fetches data to inflate test list with questions, answers, etc
-    private void initRecyclerView()
+    private void initRecyclerView()                                                                             // Fetches data to inflate test list with questions, answers, etc
     {
         // List view
         RecyclerView recyclerView = findViewById(R.id.quiz_list);                                               // Finding recycler view widget
-
         // Adapter for the recyclerview
-        QuestionListAdapter questionsAdapter = new QuestionListAdapter(new ArrayList<>(), new ArrayList<>(),    // RecyclewView Adapter
+        QuestionListAdapter questionsAdapter = new QuestionListAdapter(new ArrayList<>(),                       // RecyclewView Adapter
                 this, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         viewModel.getDataListOfQuestions().observe(this, questionsAdapter::setValues);
