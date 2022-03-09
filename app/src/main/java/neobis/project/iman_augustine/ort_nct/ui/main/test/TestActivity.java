@@ -110,7 +110,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
             viewModel = ViewModelProviders.of(this).get(TestActivityViewModel.class);
             viewModel.getListOfQuestionsListForSubject(subjectId);
 
-            initViews();                                                                                       // Initializing widgets
+            initViews();                                                                                            // Initializing widgets
             initRecyclerView();                                                                                // Initializing recycler view
 
             //isAnsweredList = new ArrayList<>(Collections.nCopies(subjectTest.getQuestions().size(), false));
