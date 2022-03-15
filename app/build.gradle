@@ -91,4 +91,23 @@ dependencies {
     implementation 'com.github.jinatonic.confetti:confetti:1.1.2'
     androidTestImplementation "androidx.room:room-testing:2.3.0"
 
+    // Circle image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.mikhaellopez:circularimageview:4.2.0'
+
+    // AppIntro
+    implementation 'com.github.AppIntro:AppIntro:6.0.0'
+
+    // Dagger
+    implementation 'com.google.dagger:dagger:2.11'
+
+    // Butterknife
+    implementation "com.jakewharton:butterknife:10.1.0"
+    annotationProcessor "com.jakewharton:butterknife-compiler:10.1.0"
+
+    // Circular progress bar
+    implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
+
+    // To load GIF format image
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
 }

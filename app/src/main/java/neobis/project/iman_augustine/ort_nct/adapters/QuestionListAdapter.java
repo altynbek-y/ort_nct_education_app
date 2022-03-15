@@ -1,5 +1,6 @@
 package neobis.project.iman_augustine.ort_nct.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -56,6 +57,7 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
         return new SubjectViewHolder(itemView, this.onItemListener);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onBindViewHolder(final SubjectViewHolder holder, int pos)
     {

@@ -102,7 +102,8 @@ public class TestFragment extends Fragment implements SubjectListAdapter.OnItemL
     public void onItemClick(int i)
     {
         progressLayout.setVisibility(View.VISIBLE);
-        startTestActivity(globalTestDataList.get(i).getId(), globalTestDataList.get(i).getSubjectName());
+        Subject subject = globalTestDataList.get(i);
+        startTestActivity(subject.getId(), subject.getSubjectName());
     }
 
     @Override

@@ -161,8 +161,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         // List view
         RecyclerView recyclerView = findViewById(R.id.quiz_list);                                               // Finding recycler view widget
         // Adapter for the recyclerview
-        QuestionListAdapter questionsAdapter = new QuestionListAdapter(new ArrayList<>(),                       // RecyclewView Adapter
-                this, this);
+        QuestionListAdapter questionsAdapter = new QuestionListAdapter(new ArrayList<>(),this, this);                       // RecyclewView Adapter
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         viewModel.getDataListOfQuestions().observe(this, questionsAdapter::setValues);
         recyclerView.setLayoutManager(layoutManager);

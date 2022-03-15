@@ -33,6 +33,18 @@ public interface AppDao {
 
 
 
+   @Query("SELECT q.question, answer_choice FROM questions as q " +
+           "INNER JOIN question_answer_choices as a ON a.question_id = q.id "+
+           "WHERE q.subject_id = :subject_id")
+
+   List<QuestionAnswerChoice> getListOfQuestionsWithAnswers(int subject_id);
+
+
+
+
+
+
+
 /*    @Delete
     void deleteTestStatNct(TestStat testResult); // Deletes an object from database*/
 
