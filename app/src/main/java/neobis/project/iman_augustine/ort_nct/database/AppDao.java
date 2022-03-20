@@ -47,7 +47,8 @@ public interface AppDao {
            "on c.question_id = q.id AND a.id <> c.id AND b.id <> c.id\n " +
            "INNER JOIN question_answer_choices as d\n " +
            "ON d.question_id = q.id AND a.id <> d.id AND b.id <> d.id AND c.id <> d.id\n " +
-           "WHERE q.subject_id = :subject_id")
+           "WHERE q.subject_id = :subject_id " +
+           "ORDER BY a.answer_choice, b.answer_choice, c.answer_choice, d.answer_choice")
 
    List<QuestionWithAnswers> getListOfQuestionsWithAnswers(int subject_id);
 

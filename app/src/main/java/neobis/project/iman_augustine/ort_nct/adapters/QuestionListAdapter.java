@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -84,10 +85,10 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
             String summary = "<html><body>" + question.question +"</body></html>";
             holder.questionWebView.loadData(summary, "text/html; charset=utf-8", "utf-8");
 
-            holder.answerWebViewA.loadData(question.answer_a, "text/html; charset=utf-8", "utf-8");
-            holder.answerWebViewB.loadData(question.answer_b, "text/html; charset=utf-8", "utf-8");
-            holder.answerWebViewC.loadData(question.answer_c, "text/html; charset=utf-8", "utf-8");
-            holder.answerWebViewD.loadData(question.answer_d, "text/html; charset=utf-8", "utf-8");
+            holder.answerTextViewA.setText(question.answer_a);
+            holder.answerTextViewB.setText(question.answer_b);
+            holder.answerTextViewC.setText(question.answer_c);
+            holder.answerTextViewD.setText(question.answer_d);
 
 
             // int height, width;
@@ -154,21 +155,20 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
         OnItemListener onItemListener;
         private final RadioGroup radioAnswerGroup;
         private final WebView questionWebView;
-        private final WebView answerWebViewA;
-        private final WebView answerWebViewB;
-        private final WebView answerWebViewC;
-        private final WebView answerWebViewD;
+        private final TextView answerTextViewA;
+        private final TextView answerTextViewB;
+        private final TextView answerTextViewC;
+        private final TextView answerTextViewD;
 
         private SubjectViewHolder(View view, final OnItemListener onItemListener)
         {
             super(view);
             radioAnswerGroup = view.findViewById(R.id.answerRadioGroup);
             questionWebView = view.findViewById(R.id.questionWebView);
-            answerWebViewA = view.findViewById(R.id.webView1);
-            answerWebViewB = view.findViewById(R.id.webView2);
-            answerWebViewC = view.findViewById(R.id.webView3);
-            answerWebViewD = view.findViewById(R.id.webView4);
-
+            answerTextViewA = view.findViewById(R.id.textView1);
+            answerTextViewB = view.findViewById(R.id.textView2);
+            answerTextViewC = view.findViewById(R.id.textView3);
+            answerTextViewD = view.findViewById(R.id.textView4);
 
             this.onItemListener = onItemListener;
             view.setOnClickListener(this);
