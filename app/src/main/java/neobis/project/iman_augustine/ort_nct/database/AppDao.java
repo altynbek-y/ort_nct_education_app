@@ -37,18 +37,18 @@ public interface AppDao {
            "a.answer_choice AS answer_a, a.is_correct AS a_is_correct, " +
            "b.answer_choice AS answer_b, b.is_correct AS b_is_correct, " +
            "c.answer_choice AS answer_c, c.is_correct AS c_is_correct, " +
-           "d.answer_choice AS answer_d, d.is_correct AS d_is_correct\n " +
-           "FROM questions AS q\n " +
-           "INNER JOIN question_answer_choices AS a\n " +
-           "ON a.question_id = q.id\n " +
-           "INNER JOIN question_answer_choices AS b\n " +
-           "ON b.question_id = q.id AND a.id <> b.id\n " +
-           "INNER JOIN question_answer_choices AS c\n " +
-           "on c.question_id = q.id AND a.id <> c.id AND b.id <> c.id\n " +
-           "INNER JOIN question_answer_choices as d\n " +
-           "ON d.question_id = q.id AND a.id <> d.id AND b.id <> d.id AND c.id <> d.id\n " +
+           "d.answer_choice AS answer_d, d.is_correct AS d_is_correct " +
+           "FROM questions AS q " +
+           "INNER JOIN question_answer_choices AS a " +
+           "ON a.question_id = q.id AND a.id <> b.id AND a.id <> c.id AND a.id <> d.id " +
+           "INNER JOIN question_answer_choices AS b " +
+           "ON b.question_id = q.id AND a.id <> b.id AND c.id <> b.id AND d.id <> b.id " +
+           "INNER JOIN question_answer_choices AS c " +
+           "on c.question_id = q.id AND a.id <> c.id AND b.id <> c.id\n AND d.id <> c.id " +
+           "INNER JOIN question_answer_choices as d " +
+           "ON d.question_id = q.id AND a.id <> d.id AND b.id <> d.id AND c.id <> d.id " +
            "WHERE q.subject_id = :subject_id " +
-           "ORDER BY a.answer_choice, b.answer_choice, c.answer_choice, d.answer_choice")
+           "ORDER BY  q.question, a.answer_choice, b.answer_choice, c.answer_choice, d.answer_choice")
 
    List<QuestionWithAnswers> getListOfQuestionsWithAnswers(int subject_id);
 
