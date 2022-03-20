@@ -9,6 +9,7 @@ import java.util.List;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Language;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Question;
 import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionAnswerChoice;
+import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionWithAnswers;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 
 @Dao
@@ -31,13 +32,24 @@ public interface AppDao {
            "WHERE question_id IN (SELECT id FROM questions WHERE subject_id = :subject_id)")
    List<QuestionAnswerChoice> getListOfAnswersForSubject(int subject_id);
 
-
-
-   @Query("SELECT q.question, answer_choice FROM questions as q " +
-           "INNER JOIN question_answer_choices as a ON a.question_id = q.id "+
+   // Get list of questions with answers
+   @Query("SELECT DISTINCT q.question AS question, " +
+           "a.answer_choice AS answer_a, a.is_correct AS a_is_correct, " +
+           "b.answer_choice AS answer_b, b.is_correct AS b_is_correct, " +
+           "c.answer_choice AS answer_c, c.is_correct AS c_is_correct, " +
+           "d.answer_choice AS answer_d, d.is_correct AS d_is_correct\n " +
+           "FROM questions AS q\n " +
+           "INNER JOIN question_answer_choices AS a\n " +
+           "ON a.question_id = q.id\n " +
+           "INNER JOIN question_answer_choices AS b\n " +
+           "ON b.question_id = q.id AND a.id <> b.id\n " +
+           "INNER JOIN question_answer_choices AS c\n " +
+           "on c.question_id = q.id AND a.id <> c.id AND b.id <> c.id\n " +
+           "INNER JOIN question_answer_choices as d\n " +
+           "ON d.question_id = q.id AND a.id <> d.id AND b.id <> d.id AND c.id <> d.id\n " +
            "WHERE q.subject_id = :subject_id")
 
-   List<QuestionAnswerChoice> getListOfQuestionsWithAnswers(int subject_id);
+   List<QuestionWithAnswers> getListOfQuestionsWithAnswers(int subject_id);
 
 
 

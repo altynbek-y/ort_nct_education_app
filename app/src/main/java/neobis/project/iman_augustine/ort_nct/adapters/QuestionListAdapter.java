@@ -16,19 +16,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Question;
 import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionAnswerChoice;
+import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionWithAnswers;
 import neobis.project.iman_augustine.ort_nct.repository.Repository;
 
 import java.util.List;
 
 public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapter.SubjectViewHolder>
 {
-    private List<Question> questionsList;
+    // private List<Question> questionsList;
+    private List<QuestionWithAnswers> questionsList;
     private OnItemListener onItemListener;
     private Context context;
     private Repository repository;
 
     public QuestionListAdapter(
-            List<Question> questionsList,
+            // List<Question> questionsList,
+            List<QuestionWithAnswers> questionsList,
             OnItemListener onItemListener,
             Context context
     )
@@ -38,7 +41,16 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
         this.context = context;
     }
 
-    public void setValues(List<Question> newQuestionList)
+//    public void setValues(List<Question> newQuestionList)
+//    {
+//        this.questionsList.clear();
+//        if(newQuestionList!=null) {
+//            this.questionsList.addAll(newQuestionList);
+//        }
+//        this.notifyDataSetChanged();
+//    }
+
+    public void setValues(List<QuestionWithAnswers> newQuestionList)
     {
         this.questionsList.clear();
         if(newQuestionList!=null) {
@@ -67,8 +79,15 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             String currentLocale = sharedPreferences.getString("locale", "ru");
 
-            String summary = "<html><body>" + questionsList.get(pos).getQuestion() +"</body></html>";
+            QuestionWithAnswers question = questionsList.get(pos);
+
+            String summary = "<html><body>" + question.question +"</body></html>";
             holder.questionWebView.loadData(summary, "text/html; charset=utf-8", "utf-8");
+
+            holder.answerWebViewA.loadData(question.answer_a, "text/html; charset=utf-8", "utf-8");
+            holder.answerWebViewB.loadData(question.answer_b, "text/html; charset=utf-8", "utf-8");
+            holder.answerWebViewC.loadData(question.answer_c, "text/html; charset=utf-8", "utf-8");
+            holder.answerWebViewD.loadData(question.answer_d, "text/html; charset=utf-8", "utf-8");
 
 
             // int height, width;
@@ -133,14 +152,23 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
     public static class SubjectViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         OnItemListener onItemListener;
-        private RadioGroup radioAnswerGroup;
-        private WebView questionWebView;
+        private final RadioGroup radioAnswerGroup;
+        private final WebView questionWebView;
+        private final WebView answerWebViewA;
+        private final WebView answerWebViewB;
+        private final WebView answerWebViewC;
+        private final WebView answerWebViewD;
 
         private SubjectViewHolder(View view, final OnItemListener onItemListener)
         {
             super(view);
             radioAnswerGroup = view.findViewById(R.id.answerRadioGroup);
             questionWebView = view.findViewById(R.id.questionWebView);
+            answerWebViewA = view.findViewById(R.id.webView1);
+            answerWebViewB = view.findViewById(R.id.webView2);
+            answerWebViewC = view.findViewById(R.id.webView3);
+            answerWebViewD = view.findViewById(R.id.webView4);
+
 
             this.onItemListener = onItemListener;
             view.setOnClickListener(this);

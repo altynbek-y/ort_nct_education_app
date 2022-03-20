@@ -10,6 +10,7 @@ import java.util.List;
 
 import neobis.project.iman_augustine.ort_nct.model.database_model.Question;
 import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionAnswerChoice;
+import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionWithAnswers;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 import neobis.project.iman_augustine.ort_nct.repository.Repository;
 
@@ -18,6 +19,7 @@ public class TestActivityViewModel extends AndroidViewModel
     private Repository repository;
     private MutableLiveData<List<Question>> questionsListMutableLiveData;
     private MutableLiveData<List<QuestionAnswerChoice>> answersListMutableLiveData;
+    private MutableLiveData<List<QuestionWithAnswers>> questionsWithAnswersMutableLiveData;
 
     public TestActivityViewModel(Application application)
     {
@@ -50,6 +52,22 @@ public class TestActivityViewModel extends AndroidViewModel
     {
         return answersListMutableLiveData;
     }
+
+    // Get list of questions with answers for a subject
+    public void getListOfQuestionsWithAnswersForSubject(int subjectId)
+    {
+        if(questionsWithAnswersMutableLiveData==null) {
+            questionsWithAnswersMutableLiveData = new MutableLiveData<>();
+        }
+        repository.getListOfQuestionsWithAnswers(subjectId, questionsWithAnswersMutableLiveData);
+    }
+
+    // Get data list of questions with answers
+    public LiveData<List<QuestionWithAnswers>> getDataListOfQuestionsWithAnswers()
+    {
+        return questionsWithAnswersMutableLiveData;
+    }
+
 
     //----------------------------------------------------------------------------------------------
     public void insertTestResult(String subjectName, String variant , long correct, long incorrect )

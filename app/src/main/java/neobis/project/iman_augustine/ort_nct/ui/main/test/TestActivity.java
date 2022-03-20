@@ -111,6 +111,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
 
             viewModel = ViewModelProviders.of(this).get(TestActivityViewModel.class);
             viewModel.getListOfQuestionsListForSubject(subjectId);
+            viewModel.getListOfQuestionsWithAnswersForSubject(subjectId);
 
             initViews();                                                                                       // Initializing widgets
             initRecyclerView();                                                                                // Initializing recycler view
@@ -129,10 +130,10 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     @Override
     public void onAnswerClick(int position, int userAnswer, RadioGroup answerGroup)
     {
-        if(isAnsweredList.get(position))
-            return;
-        isAnsweredList.set(position, true);
-       // testController.countAnswer(position, userAnswer, subjectTest.getQuestions().get(position).getAnswers(), answerGroup);
+        //if(isAnsweredList.get(position))
+        //    return;
+        // isAnsweredList.set(position, true);
+        // testController.countAnswer(position, userAnswer, subjectTest.getQuestions().get(position).getAnswers(), answerGroup);
     }
 
     //---------------------------------------VIEW-INITIALIZATION-----------------------------------------
@@ -163,7 +164,9 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         // Adapter for the recyclerview
         QuestionListAdapter questionsAdapter = new QuestionListAdapter(new ArrayList<>(),this, this);                       // RecyclewView Adapter
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        viewModel.getDataListOfQuestions().observe(this, questionsAdapter::setValues);
+        // viewModel.getDataListOfQuestions().observe(this, questionsAdapter::setValues);
+        viewModel.getDataListOfQuestionsWithAnswers().observe(this, questionsAdapter::setValues);
+
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(questionsAdapter);                                                              // Setting adapter
