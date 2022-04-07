@@ -7,6 +7,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 import neobis.project.iman_augustine.ort_nct.ui.ChooseTestType;
+import neobis.project.iman_augustine.ort_nct.ui.appintro.CustomAppIntro;
 import neobis.project.iman_augustine.ort_nct.ui.main.MainActivity;
 import neobis.project.iman_augustine.ort_nct.ui.result.DisplayResultActivity;
 
@@ -27,7 +28,8 @@ public class BaseActivity extends AppCompatActivity {
 
     public void startMainActivity() {
         //startActivity(new Intent(this, DisplayResultActivity.class));
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, CustomAppIntro.class));
+        // startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
