@@ -33,20 +33,20 @@ public interface AppDao {
    List<QuestionAnswerChoice> getListOfAnswersForSubject(int subject_id);
 
    // Get list of questions with four answers each
-   @Query("SELECT DISTINCT q.question AS question, " +
-           "a.answer_choice AS answer_a, a.is_correct AS a_is_correct, " +
-           "b.answer_choice AS answer_b, b.is_correct AS b_is_correct, " +
-           "c.answer_choice AS answer_c, c.is_correct AS c_is_correct, " +
-           "d.answer_choice AS answer_d, d.is_correct AS d_is_correct " +
-           "FROM questions AS q " +
-           "JOIN question_answer_choices AS a " +
-           "ON a.question_id = q.id AND a.id % 4 = 1 /*AND a.pos = 1*/ " +
-           "JOIN question_answer_choices AS b " +
-           "ON b.question_id = q.id AND b.id % 4 = 2/*AND b.pos = 2*/ " +
-           "JOIN question_answer_choices AS c " +
-           "on c.question_id = q.id AND c.id % 4 = 3/*AND c.pos = 3*/ " +
-           "JOIN question_answer_choices as d " +
-           "ON d.question_id = q.id AND d.id % 4 = 0 /*AND d.pos = 4*/ " +
+   @Query("SELECT DISTINCT q.question question, " +
+           "a.answer_choice answer_a, a.is_correct a_is_correct, " +
+           "b.answer_choice answer_b, b.is_correct b_is_correct, " +
+           "c.answer_choice answer_c, c.is_correct c_is_correct, " +
+           "d.answer_choice answer_d, d.is_correct d_is_correct " +
+           "FROM questions q " +
+           "JOIN question_answer_choices a " +
+           "ON a.question_id = q.id AND a.id % 4 = 1 " +
+           "JOIN question_answer_choices b " +
+           "ON b.question_id = q.id AND b.id % 4 = 2 " +
+           "JOIN question_answer_choices c " +
+           "on c.question_id = q.id AND c.id % 4 = 3 " +
+           "JOIN question_answer_choices d " +
+           "ON d.question_id = q.id AND d.id % 4 = 0 " +
            "WHERE q.subject_id = :subject_id ")
 
    List<QuestionWithAnswers> getListOfQuestionsWithAnswers(int subject_id);
@@ -60,23 +60,7 @@ public interface AppDao {
 
 
 
-    /* @Query("WITH answers AS ( " +
-           "SELECT q.question, ans.id, ans.question_id, ans.answer_choice, ans.is_correct " +
-           "FROM question_answer_choices ans " +
-           "INNER JOIN questions q " +
-           "ON q.id = ans.question_id" +
-           ") " +
-           ""+
-           ""+
-           "SELECT DISTINCT q.question AS question, " +
-           "a.answer_choice AS answer_a, a.is_correct AS a_is_correct, " +
-           "b.answer_choice AS answer_b, b.is_correct AS b_is_correct " +
-           "FROM questions q " +
-           "INNER JOIN question_answer_choices AS a " +
-           "ON a.question_id = q.id AND a.pos = 1 " +
-           "INNER JOIN question_answer_choices AS b " +
-           "ON b.question_id = q.id AND b.pos = 2 " +
-           "WHERE q.subject_id = :subject_id")*/
+
 
 
 
