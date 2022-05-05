@@ -36,7 +36,7 @@
     <string name="final_additional_ort_test_empty_text">Кошумча тест жок…</string>
     <string name="statistics_empty_text">Статистика жок…</string>
     <string name="exit_from_test_title">Тесттен чыгуу</string>
-    <string name="exit_from_test_message">Сиз тесттен чыгууну каалайсызбы?</string>try_again_text
+    <string name="exit_from_test_message">Эгер сиз тесттин ортосунда чыксаңыз, натыйжа сакталбайт! Сиз тесттен чыгууну каалайсызбы?</string>try_again_text
     <string name="yes_exit">Ооба</string>
     <string name="no_exit">Жок</string>
     <string name="congratulation_message">Баракелде!\nСиз тапшырманы аткара алдыңыз!</string>

@@ -36,7 +36,7 @@
     <string name="final_additional_ort_test_empty_text">Дополнительный тест пуст…</string>
     <string name="statistics_empty_text">Статистика пуста…</string>
     <string name="exit_from_test_title">Выход из теста</string>
-    <string name="exit_from_test_message">Вы действительно хотите выйти из теста?</string>
+    <string name="exit_from_test_message">При выходе посреди теста результат не будет сохранён! Вы действительно хотите выйти?</string>
     <string name="yes_exit">Да</string>
     <string name="no_exit">Нет</string>
     <string name="congratulation_message">Молодец!\nВы справились с заданием!</string>
