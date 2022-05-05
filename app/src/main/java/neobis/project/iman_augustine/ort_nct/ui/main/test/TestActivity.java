@@ -139,7 +139,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     //---------------------------------------VIEW-INITIALIZATION-----------------------------------------
     private void initViews()
     {
-                                                                                                                // Toolbar view
+        // Toolbar view
         Toolbar toolbar = findViewById(R.id.toolbar);                                                           // Finding tool bar
         setSupportActionBar(toolbar);                                                                           // Setting tool bar
 

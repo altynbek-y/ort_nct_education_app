@@ -20,6 +20,7 @@ import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionAnswer
 import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionWithAnswers;
 import neobis.project.iman_augustine.ort_nct.repository.Repository;
 
+import java.util.Collections;
 import java.util.List;
 
 public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapter.SubjectViewHolder>
@@ -55,6 +56,7 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
     {
         this.questionsList.clear();
         if(newQuestionList!=null) {
+            //Collections.shuffle(newQuestionList);
             this.questionsList.addAll(newQuestionList);
         }
         this.notifyDataSetChanged();
@@ -82,13 +84,13 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
 
             QuestionWithAnswers question = questionsList.get(pos);
 
-            String summary = "<html><body>" + question.question +"</body></html>";
+            String summary = "<html><body><b>" + (pos+1) + ". " + question.question +"</b></body></html>";
             holder.questionWebView.loadData(summary, "text/html; charset=utf-8", "utf-8");
 
-            holder.answerTextViewA.setText(question.answer_a);
-            holder.answerTextViewB.setText(question.answer_b);
-            holder.answerTextViewC.setText(question.answer_c);
-            holder.answerTextViewD.setText(question.answer_d);
+            holder.answerTextViewA.setText("А) ".concat(question.answer_a));
+            holder.answerTextViewB.setText("Б) ".concat(question.answer_b));
+            holder.answerTextViewC.setText("В) ".concat(question.answer_c));
+            holder.answerTextViewD.setText("Г) ".concat(question.answer_d));
 
 
             // int height, width;
