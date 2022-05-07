@@ -44,18 +44,15 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     private ProgressBar progressBar;
     private TextView progressText;
     private TextView timerTextView;
-    private TestController testController;
     private TestActivityViewModel viewModel;
 
     private final long duration = 3600000;
     private List<Boolean> isAnsweredList;
     private String subjectName;
-    private int subjectId;
     private int correctAnswer = 0;
     private int countTotalAnswer = 0;
     private int total;
 
-    //-------------------------------------------COUNT-DOWN-TIMER-----------------------------------
     CountDownTimer countDownTimer = new CountDownTimer(duration, 1000)
     {
         @Override
@@ -64,13 +61,13 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
             int seconds = (int) (millis / 1000);
             int minutes = seconds / 60;
             seconds = seconds % 60;
-            timerTextView.setText(String.format("%d:%02d", minutes, seconds));                                  // Setting timer at every tick
+            timerTextView.setText(String.format("%d:%02d", minutes, seconds));
         }
 
         @Override
         public void onFinish()
         { // Proceed or finish on time out
-            testController.countTotalCorrect();
+            // testController.countTotalCorrect();
             completeTest();
         }
     };
@@ -82,7 +79,6 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         }
     }
 
-    //--------------------------------------CLICK-LISTENERS-----------------------------------------
     View.OnClickListener onToolbarClickListener = view -> {
             showAlertDialog();                                                                                      // Alerts a dialog to prevent user from accidentally exiting from test
     };
@@ -95,7 +91,6 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         }
     };
 
-    //------------------------------------DRIVER-OF-THE-PROGRAM-------------------------------------
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +99,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         //shared = SharedPreferencesSingleton.getLocalSharedPreferences(this);
 
         try {
-            subjectId = (int) getIntent().getSerializableExtra(SUBJECT_ID);
+            int subjectId = (int) getIntent().getSerializableExtra(SUBJECT_ID);
             subjectName = (String) getIntent().getSerializableExtra(SUBJECT_NAME);
 
             viewModel = ViewModelProviders.of(this).get(TestActivityViewModel.class);
@@ -122,41 +117,45 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         }
     }
 
-    //--------------------------------------------------------ON-ANSWER-CLICK-LISTENER--------------
     @Override
     public void onAnswerClick(int position, int userAnswer, QuestionWithAnswers answers, RadioGroup answerGroup)
     {
-        if(answers.isAnswered)
+        if(answers.isAnswered())
             return;
 
-        answers.isAnswered = true;
-
-        if(answers.a_is_correct && userAnswer==0)
-            ++correctAnswer;
-        else if(answers.b_is_correct && userAnswer==1)
-            ++correctAnswer;
-        else if(answers.c_is_correct && userAnswer==2)
-            ++correctAnswer;
-        else if(answers.d_is_correct && userAnswer==3)
-            ++correctAnswer;
-
-        ((RadioButton)answerGroup.getChildAt(userAnswer)).setButtonDrawable(R.drawable.ic_correct_icon);
+        for (int i = 0; i < 4; i++)
+            answerGroup.getChildAt(i).setEnabled(false);
 
         ++countTotalAnswer;
 
-        progressBar.setProgress(countTotalAnswer);                                                                          // Setting progress
-        progressText.setText(String.valueOf(countTotalAnswer).concat("/").concat(String.valueOf(total)));                   // Setting ratio of answered questions to total of questions
+        answers.setAnswered(true);
 
-        answerGroup.setEnabled(false);
+        ((RadioButton)answerGroup.getChildAt(userAnswer))
+                .setButtonDrawable(R.drawable.ic_incorrect_icon);
 
-        Toast.makeText(this, "" + correctAnswer, Toast.LENGTH_SHORT).show();
-        //if(isAnsweredList.get(position))
-        //    return;
-        // isAnsweredList.set(position, true);
-        // testController.countAnswer(position, userAnswer, subjectTest.getQuestions().get(position).getAnswers(), answerGroup);
+        if((answers.isA_is_correct() && userAnswer==0) || (answers.isB_is_correct() && userAnswer==1) ||
+                (answers.isC_is_correct() && userAnswer==2) || (answers.isD_is_correct() && userAnswer==3))
+            ++correctAnswer;
+
+        int correctChoice = -1;
+
+        if(answers.isA_is_correct())
+            correctChoice = 0;
+        else if(answers.isB_is_correct())
+            correctChoice = 1;
+        else if(answers.isC_is_correct())
+            correctChoice = 2;
+        else if(answers.isD_is_correct())
+            correctChoice = 3;
+
+        ((RadioButton)answerGroup.getChildAt(correctChoice))
+                .setButtonDrawable(R.drawable.ic_correct_icon);
+
+        progressBar.setProgress(countTotalAnswer);
+        progressText.setText(String.valueOf(countTotalAnswer).concat("/")
+                .concat(String.valueOf(total)));
     }
 
-    //---------------------------------------VIEW-INITIALIZATION-----------------------------------------
     private void initViews()
     {
         // Toolbar view
@@ -182,14 +181,12 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
 
     private void initRecyclerView()                                                                             // Fetches data to inflate test list with questions, answers, etc
     {
-        // List view
         RecyclerView recyclerView = findViewById(R.id.quiz_list);                                               // Finding recycler view widget
-        // Adapter for the recyclerview
-        QuestionListAdapter questionsAdapter = new QuestionListAdapter(new ArrayList<>(),this, this);                       // RecyclewView Adapter
+        QuestionListAdapter questionsAdapter = new QuestionListAdapter(new ArrayList<>(),
+                this, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        // viewModel.getDataListOfQuestions().observe(this, questionsAdapter::setValues);
-        viewModel.getDataListOfQuestionsWithAnswers().observe(this, questionsAdapter::setValues);
-
+        viewModel.getDataListOfQuestionsWithAnswers().observe(this,
+                questionsAdapter::setValues);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(questionsAdapter);                                                              // Setting adapter
@@ -204,25 +201,23 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     @Override
     public void onItemClick(int i) { }
 
-    //-----------------------------COMPLETING-TEST--------------------------------------------------
     public void completeTest()
     {
         Intent intent = new Intent(TestActivity.this, DisplayResultActivity.class);
         intent.putExtra(TestActivity.RESULT, 0); // testController.toStringScore());
         intent.putExtra(TestActivity.CORRECT_ANSWER_COUNT, 0); //testController.getCorrectCount());
         intent.putExtra(TestActivity.TOTAL_QUESTIONS_COUNT, 0); // testController.getTotal());
-      /*  viewModel.insertTestResult(
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        finish();
+         /*  viewModel.insertTestResult(
                                         subjectTest.getSubjectName(),
                                         subjectTest.getVariant(),
                                         testController.getCorrectCount(),
                                 testController.getTotal()-testController.getCorrectCount()
         );*/
-        startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        finish();
     }
 
-    //---------------------------------------ALERT=DIALOG------------------------------------------------
     public void showAlertDialog()
     {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -236,14 +231,12 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         alert.create().show();
     }
 
-    //----------------------------------------------------------------------------------------------
     @Override
     public void showMessage(String msg)
     {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    //----------------------------------------------------------------------------------------------
     @Override
     protected void onDestroy()
     {
@@ -251,7 +244,3 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         cancelTimer();
     }
 }
-
-
-
-

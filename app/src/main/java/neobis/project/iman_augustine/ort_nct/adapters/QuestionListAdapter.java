@@ -73,13 +73,13 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
 
             QuestionWithAnswers question = questionsList.get(pos);
 
-            String summary = "<html><body><b>" + (pos+1) + ". " + question.question +"</b></body></html>";
+            String summary = "<html><body><b>" + (pos+1) + ". " + question.getQuestion() +"</b></body></html>";
             holder.questionWebView.loadData(summary, "text/html; charset=utf-8", "utf-8");
 
-            holder.answerTextViewA.setText("А) ".concat(question.answer_a));
-            holder.answerTextViewB.setText("Б) ".concat(question.answer_b));
-            holder.answerTextViewC.setText("В) ".concat(question.answer_c));
-            holder.answerTextViewD.setText("Г) ".concat(question.answer_d));
+            holder.answerTextViewA.setText("А) ".concat(question.getAnswer_a()));
+            holder.answerTextViewB.setText("Б) ".concat(question.getAnswer_b()));
+            holder.answerTextViewC.setText("В) ".concat(question.getAnswer_c()));
+            holder.answerTextViewD.setText("Г) ".concat(question.getAnswer_d()));
           /*  if(currentLocale.equals("ru")) {
             }*/
 
