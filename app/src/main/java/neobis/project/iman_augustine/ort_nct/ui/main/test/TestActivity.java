@@ -108,9 +108,6 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
             viewModel.getListOfQuestionsWithAnswersForSubject(subjectId);
 
             initViews();                                                                                       // Initializing widgets
-            initRecyclerView();                                                                                // Initializing recycler view
-
-            countDownTimer.start();
             // Start count down timer
         } catch (NullPointerException error)
         {
@@ -119,7 +116,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     }
 
     @Override
-    public void onAnswerClick(int position, int userAnswer, QuestionWithAnswers answers, RadioGroup answerGroup)
+    public void onAnswerClick(int userAnswer, QuestionWithAnswers answers, RadioGroup answerGroup)
     {
         if(answers.isAnswered())
             return;
@@ -134,8 +131,10 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         ((RadioButton)answerGroup.getChildAt(userAnswer))
                 .setButtonDrawable(R.drawable.ic_incorrect_icon);
 
-        if((answers.isA_is_correct() && userAnswer==0) || (answers.isB_is_correct() && userAnswer==1) ||
-                (answers.isC_is_correct() && userAnswer==2) || (answers.isD_is_correct() && userAnswer==3))
+        if(
+                (answers.isA_is_correct() && userAnswer==0) || (answers.isB_is_correct() && userAnswer==1) ||
+                (answers.isC_is_correct() && userAnswer==2) || (answers.isD_is_correct() && userAnswer==3)
+        )
             ++correctAnswer;
 
         int correctChoice = -1;
@@ -167,34 +166,32 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         titleTextView.setText(subjectName);
 
         progressText = findViewById(R.id.progress_textview);
-        progressText.setText("0/25");
 
         timerTextView = findViewById(R.id.timerTextView);
 
         progressBar = findViewById(R.id.progressBar);                                                           // Setting progress bar widget
-        progressBar.setMax(25);
 
-        // Press to complete the test
         Button finishBtn = findViewById(R.id.finish_button);                                                    // Setting a button
         finishBtn.setOnClickListener(onFinishClickListener);                                                    // Setting on click listener
         toolbar.setNavigationOnClickListener(onToolbarClickListener);                                           // Setting on tool bar click listener
-    }
 
-    private void initRecyclerView()                                                                             // Fetches data to inflate test list with questions, answers, etc
-    {
         RecyclerView recyclerView = findViewById(R.id.quiz_list);                                               // Finding recycler view widget
         QuestionListAdapter questionsAdapter = new QuestionListAdapter(new ArrayList<>(),
                 this, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         viewModel.getDataListOfQuestionsWithAnswers().observe(this, questionWithAnswers -> {
             total = questionWithAnswers.size();
+            progressBar.setMax(total);
+            progressText.setText(String.valueOf(0).concat("/")
+                    .concat(String.valueOf(total)));
             questionsAdapter.setValues(questionWithAnswers);
+            countDownTimer.start();
         });
        /* viewModel.getDataListOfQuestionsWithAnswers().observe(this,
                 questionsAdapter::setValues);*/
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(questionsAdapter);                                                              // Setting adapter
+        recyclerView.setAdapter(questionsAdapter);
     }
 
     @Override
@@ -210,8 +207,8 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     {
         Intent intent = new Intent(TestActivity.this, DisplayResultActivity.class);
         intent.putExtra(TestActivity.RESULT, 0); // testController.toStringScore());
-        intent.putExtra(TestActivity.CORRECT_ANSWER_COUNT, 0); //testController.getCorrectCount());
-        intent.putExtra(TestActivity.TOTAL_QUESTIONS_COUNT, 0); // testController.getTotal());
+        intent.putExtra(TestActivity.CORRECT_ANSWER_COUNT, correctAnswer); //testController.getCorrectCount());
+        intent.putExtra(TestActivity.TOTAL_QUESTIONS_COUNT, total); // testController.getTotal());
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();

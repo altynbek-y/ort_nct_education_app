@@ -14,7 +14,7 @@ public class AboutUsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.about_us_layout);
+        setContentView(R.layout.activity_about_us_layout);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

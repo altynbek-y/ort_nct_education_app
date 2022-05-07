@@ -16,7 +16,6 @@
 
     <TextView
         android:id="@+id/subject_item_title"
-        style="@style/SuperAppTheme"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="start|center"

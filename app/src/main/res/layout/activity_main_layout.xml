@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.nct.main.NctMainActivity"
+    tools:context=".ui.main.MainActivity"
     android:background="@color/background_color">
 
     <androidx.appcompat.widget.Toolbar

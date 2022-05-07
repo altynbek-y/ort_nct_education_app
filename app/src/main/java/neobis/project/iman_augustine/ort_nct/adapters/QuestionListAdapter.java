@@ -84,7 +84,6 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
             }*/
 
             final QuestionWithAnswers questionWithAnswers = questionsList.get(pos);                     // Question with four answers
-            final int position = pos;
 
             holder.radioAnswerGroup.setOnCheckedChangeListener((radioGroup, i) ->
             {
@@ -103,7 +102,7 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
                         userAnswer = 3;
                 }
 
-                onItemListener.onAnswerClick(position, userAnswer, questionWithAnswers, holder.radioAnswerGroup);
+                onItemListener.onAnswerClick(userAnswer, questionWithAnswers, holder.radioAnswerGroup);
             });
         } catch(IndexOutOfBoundsException error) {
             error.printStackTrace();
@@ -126,7 +125,7 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
     public interface OnItemListener
     {
         void onItemClick(int i);
-        void onAnswerClick(int position, int userAnswer, QuestionWithAnswers questionWithAnswers, RadioGroup answerGroup);
+        void onAnswerClick(int userAnswer, QuestionWithAnswers questionWithAnswers, RadioGroup answerGroup);
     }
 
     public static class SubjectViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener

@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,13 +13,9 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.particles.ParticleSystem;
 
 
 import com.github.jinatonic.confetti.CommonConfetti;
-
-import java.util.List;
-import java.util.Random;
 
 import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.ui.main.test.TestActivity;
@@ -33,7 +28,7 @@ public class DisplayResultActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.display_result_layout);
+        setContentView(R.layout.activity_display_result_layout);
 
         try {
             initViews();
@@ -48,12 +43,12 @@ public class DisplayResultActivity extends AppCompatActivity implements View.OnC
         ImageView smileImage = findViewById(R.id.lamp_smile);
         Button okay = findViewById(R.id.click_okay);
         okay.setOnClickListener(this);
-        int correct = getIntent().getIntExtra(TestActivity.CORRECT_ANSWER_COUNT, 0); // !!!! PROBLEMATIC
-        int total = getIntent().getIntExtra(TestActivity.TOTAL_QUESTIONS_COUNT, 0); // !!!! PROBLEMATIC
+        int correct = getIntent().getIntExtra(TestActivity.CORRECT_ANSWER_COUNT, 0);
+        int total = getIntent().getIntExtra(TestActivity.TOTAL_QUESTIONS_COUNT, 0);
         resultText.setText(getIntent().getStringExtra(TestActivity.RESULT));
 
-        if (!(correct ==0 || correct <0.8* total)) {
-            smileImage.setImageResource(R.drawable.ic_bad_result);
+        if (correct <0.7 * total) {
+            smileImage.setImageResource(R.drawable.anime_girl_turning_back);
             commentText.setText(getResources().getString(R.string.try_again_text));
 
             MediaPlayer ring= MediaPlayer.create(getApplicationContext(), R.raw.failure);
