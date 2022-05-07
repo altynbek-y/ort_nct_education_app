@@ -181,14 +181,17 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         viewModel.getDataListOfQuestionsWithAnswers().observe(this, questionWithAnswers -> {
             total = questionWithAnswers.size();
+            if(total==0) {
+                Toast.makeText(this, "Извините за неудобство, тест по этому предмету " +
+                        "пока отсутствует", Toast.LENGTH_LONG).show();
+                finish();
+            }
             progressBar.setMax(total);
             progressText.setText(String.valueOf(0).concat("/")
                     .concat(String.valueOf(total)));
             questionsAdapter.setValues(questionWithAnswers);
             countDownTimer.start();
         });
-       /* viewModel.getDataListOfQuestionsWithAnswers().observe(this,
-                questionsAdapter::setValues);*/
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(questionsAdapter);
@@ -206,9 +209,9 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     public void completeTest()
     {
         Intent intent = new Intent(TestActivity.this, DisplayResultActivity.class);
-        intent.putExtra(TestActivity.RESULT, 0); // testController.toStringScore());
-        intent.putExtra(TestActivity.CORRECT_ANSWER_COUNT, correctAnswer); //testController.getCorrectCount());
-        intent.putExtra(TestActivity.TOTAL_QUESTIONS_COUNT, total); // testController.getTotal());
+        intent.putExtra(TestActivity.RESULT, 0);
+        intent.putExtra(TestActivity.CORRECT_ANSWER_COUNT, correctAnswer);
+        intent.putExtra(TestActivity.TOTAL_QUESTIONS_COUNT, total);
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();

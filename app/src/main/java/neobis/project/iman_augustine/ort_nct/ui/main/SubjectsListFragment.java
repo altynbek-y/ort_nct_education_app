@@ -29,7 +29,7 @@ import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
 import neobis.project.iman_augustine.ort_nct.sharedpreference.PreferenceManager;
 import neobis.project.iman_augustine.ort_nct.ui.main.test.TestActivity;
 
-public class TestFragment extends Fragment implements SubjectListAdapter.OnItemListener, Contract {    //, SwipeRefreshLayout.OnRefreshListener {
+public class SubjectsListFragment extends Fragment implements SubjectListAdapter.OnItemListener, Contract {    //, SwipeRefreshLayout.OnRefreshListener {
     //------------------------------VIEW=INITIALIZATION---------------------------------------------
     private RecyclerView recyclerView;
     private TextView textView;
@@ -41,7 +41,7 @@ public class TestFragment extends Fragment implements SubjectListAdapter.OnItemL
     private String locale;
     private List<Subject> globalTestDataList;
 
-    public TestFragment() {}
+    public SubjectsListFragment() {}
 
     @Nullable
     @Override
@@ -97,7 +97,7 @@ public class TestFragment extends Fragment implements SubjectListAdapter.OnItemL
             error.printStackTrace();
         }
     }
-    //------------------------------------------ON-ITEM-CLICK---------------------------------------
+
     @Override
     public void onItemClick(int i)
     {
@@ -120,12 +120,6 @@ public class TestFragment extends Fragment implements SubjectListAdapter.OnItemL
         intent.putExtra(TestActivity.SUBJECT_NAME, subject_name);
         intent.putExtra(TestActivity.SUBJECT_ID, subject_id);
         startActivity(intent);
-
-        //if(isNotEmpty) {
-        //        } else {
-        //            progressBar.setVisibility(View.GONE);
-        //            Toast.makeText(getContext(), R.string.practice_ort_test_list_empty_text, Toast.LENGTH_SHORT).show();
-        //        }
     }
 
     @Override

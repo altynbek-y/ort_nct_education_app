@@ -26,6 +26,7 @@ public class SharedPreferencesSingleton {
     public static final String SWITCH_SHOW_TIMER = "switch_show_timer";
     public static final String LAUNCH_ORT_NEXT_TIME = "launch_ort_next_time";
     public static final String LAUNCH_NCT_NEXT_TIME = "launch_nct_next_time";
+    public static final String FIRST_LAUNCH = "launch_nct_next_time";
 
     private SharedPreferences sharedPreferences;
     private Context applicationContext;
@@ -39,21 +40,14 @@ public class SharedPreferencesSingleton {
         return new SharedPreferencesSingleton(applicationContext);
     }
 
-     /* public boolean isFirstRun() {
-         return this.sharedPreferences.getBoolean(FIRST_RUN, true);
-     } */
+     public boolean isFirstLaunch() {
+         return this.sharedPreferences.getBoolean(FIRST_LAUNCH, true);
+     }
 
     public void addAuthToken(String user_token) {
         this.sharedPreferences.edit().putString(AUTH_TOKEN, user_token).apply();
     }
 
-    /* public String getAuthToken() {
-         return this.sharedPreferences.getString(AUTH_TOKEN, null);
-     } */
-
-    /**
-     * Authorization related variables
-     */
     public void addAge(long age) {
         this.sharedPreferences.edit().putLong(AGE, age).apply();
     }

@@ -43,7 +43,7 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
         private CustomViewPager viewPager;
         private MenuItem prevMenuItem;
         private final InformationFragment informationFragment = new InformationFragment();
-        private final TestFragment testFragment = new TestFragment();
+        private final SubjectsListFragment testFragment = new SubjectsListFragment();
         private final StatisticsFragment statisticsFragment = new StatisticsFragment();
         private DrawerLayout mDrawerLayout;
         private ActionBarDrawerToggle toggle;

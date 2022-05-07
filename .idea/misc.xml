@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/nami-pc/Documents/Android projects/ort_nct_education_app/app/src/main/res/drawable/radiobuttonbackround_a.xml" value="0.201" />
+        <entry key="..\:/Users/nami-pc/Documents/Android projects/ort_nct_education_app/app/src/main/res/drawable/radiobuttonbackround_v.xml" value="0.201" />
+        <entry key="..\:/Users/nami-pc/Documents/Android projects/ort_nct_education_app/app/src/main/res/drawable/round_corner_button_green.xml" value="0.201" />
+        <entry key="..\:/Users/nami-pc/Documents/Android projects/ort_nct_education_app/app/src/main/res/drawable/round_corner_button_inversed.xml" value="0.201" />
         <entry key="..\:/Users/nami-pc/Documents/Android projects/ort_nct_education_app/app/src/main/res/layout/about_us_layout.xml" value="0.3489583333333333" />
         <entry key="..\:/Users/nami-pc/Documents/Android projects/ort_nct_education_app/app/src/main/res/layout/activity_base.xml" value="0.3489583333333333" />
         <entry key="..\:/Users/nami-pc/Documents/Android projects/ort_nct_education_app/app/src/main/res/layout/activity_display_result_layout.xml" value="0.3489583333333333" />
