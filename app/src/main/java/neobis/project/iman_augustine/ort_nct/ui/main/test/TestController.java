@@ -33,7 +33,7 @@ public class TestController implements Serializable {
         this.progressBar = progressBar;
         this.progressBar.setMax(total);
         this.progressText = progressText;
-        progressText.setText(this.countTotalAnswer + "/" + this.total);                         // Setting ratio of answered questions to total of questions
+        progressText.setText(String.valueOf(this.countTotalAnswer).concat("/").concat(String.valueOf(this.total)));                         // Setting ratio of answered questions to total of questions
     }
 
     public void countAnswer(int position, int userAnswer, List<Answer> options, RadioGroup answerGroup) {

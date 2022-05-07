@@ -43,15 +43,6 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
         this.context = context;
     }
 
-//    public void setValues(List<Question> newQuestionList)
-//    {
-//        this.questionsList.clear();
-//        if(newQuestionList!=null) {
-//            this.questionsList.addAll(newQuestionList);
-//        }
-//        this.notifyDataSetChanged();
-//    }
-
     public void setValues(List<QuestionWithAnswers> newQuestionList)
     {
         this.questionsList.clear();
@@ -77,8 +68,6 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
     public void onBindViewHolder(final SubjectViewHolder holder, int pos)
     {
         try {
-            // String imageUrl;
-            //TranslationsImageModel image = questions.get(pos).getTranslation();
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             String currentLocale = sharedPreferences.getString("locale", "ru");
 
@@ -91,23 +80,10 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
             holder.answerTextViewB.setText("Б) ".concat(question.answer_b));
             holder.answerTextViewC.setText("В) ".concat(question.answer_c));
             holder.answerTextViewD.setText("Г) ".concat(question.answer_d));
+          /*  if(currentLocale.equals("ru")) {
+            }*/
 
-
-            // int height, width;
-            if(currentLocale.equals("ru")) {
-               // imageUrl = image.getRussian().getImageUrl();
-               // height = image.getRussian().getHeight();
-               // width = image.getRussian().getWidth();
-            } else {
-               // imageUrl = image.getKyrgyz().getImageUrl();
-               // height = image.getKyrgyz().getHeight();
-               // width = image.getKyrgyz().getWidth();
-            }
-            //Picasso.get()
-                 //   .load(imageUrl)
-                  //  .into(holder.questionImage);
-
-            //final List<Answer> answers = questions.get(pos).getAnswers(); // List of possible answers
+            final QuestionWithAnswers questionWithAnswers = questionsList.get(pos);                     // Question with four answers
             final int position = pos;
 
             holder.radioAnswerGroup.setOnCheckedChangeListener((radioGroup, i) ->
@@ -126,7 +102,8 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
                     case R.id.radioAnswerFour:
                         userAnswer = 3;
                 }
-                onItemListener.onAnswerClick(position, userAnswer, holder.radioAnswerGroup);
+
+                onItemListener.onAnswerClick(position, userAnswer, questionWithAnswers, holder.radioAnswerGroup);
             });
         } catch(IndexOutOfBoundsException error) {
             error.printStackTrace();
@@ -149,7 +126,7 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
     public interface OnItemListener
     {
         void onItemClick(int i);
-        void onAnswerClick(int position, int userAnswer, RadioGroup answerGroup);
+        void onAnswerClick(int position, int userAnswer, QuestionWithAnswers questionWithAnswers, RadioGroup answerGroup);
     }
 
     public static class SubjectViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener

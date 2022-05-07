@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ import java.util.List;
 
 import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.adapters.QuestionListAdapter;
-import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
+import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionWithAnswers;
 import neobis.project.iman_augustine.ort_nct.singleclicklistener.OnSingleClickListener;
 import neobis.project.iman_augustine.ort_nct.ui.Contract;
 import neobis.project.iman_augustine.ort_nct.ui.result.DisplayResultActivity;
@@ -32,7 +33,6 @@ import neobis.project.iman_augustine.ort_nct.ui.result.DisplayResultActivity;
 public class TestActivity extends AppCompatActivity implements QuestionListAdapter.OnItemListener,
         Contract.TestResultContract {
 
-    //----------------------------NAME-CONSTANTS----------------------------------------------------
     public final static String SUBJECT_NAME = "subject_name";
     public final static String SUBJECT_ID = "subject_id";
     public final static String TEST_TYPE = "test_type";
@@ -41,19 +41,19 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     public final static String RESULT = "result";
     public final static String TITLE = "title";
 
-    //----------------------------------------------------------------------------------------------
-    private ProgressBar progressBar;                                                                            // Progress bar
-    private TextView ratio;                                                                                     // Text view
+    private ProgressBar progressBar;
+    private TextView progressText;
     private TextView timerTextView;
-    private Subject subjectTest;                                                                                // List of questions (Question object)
     private TestController testController;
     private TestActivityViewModel viewModel;
 
-    //------------------------------------VARIABLES-------------------------------------------------
     private final long duration = 3600000;
     private List<Boolean> isAnsweredList;
     private String subjectName;
     private int subjectId;
+    private int correctAnswer = 0;
+    private int countTotalAnswer = 0;
+    private int total;
 
     //-------------------------------------------COUNT-DOWN-TIMER-----------------------------------
     CountDownTimer countDownTimer = new CountDownTimer(duration, 1000)
@@ -84,14 +84,13 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
 
     //--------------------------------------CLICK-LISTENERS-----------------------------------------
     View.OnClickListener onToolbarClickListener = view -> {
-        showAlertDialog();                                                                                      // Alerts a dialog to prevent user from accidentally exiting from test
+            showAlertDialog();                                                                                      // Alerts a dialog to prevent user from accidentally exiting from test
     };
 
     View.OnClickListener onFinishClickListener = new OnSingleClickListener()
     {
         @Override
         public void onSingleClick(View view) {
-            //   testController.countTotalCorrect();
             completeTest();
         }
     };
@@ -100,12 +99,11 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_layout);
+        setContentView(R.layout.activity_test_layout);
 
         //shared = SharedPreferencesSingleton.getLocalSharedPreferences(this);
 
         try {
-
             subjectId = (int) getIntent().getSerializableExtra(SUBJECT_ID);
             subjectName = (String) getIntent().getSerializableExtra(SUBJECT_NAME);
 
@@ -116,8 +114,6 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
             initViews();                                                                                       // Initializing widgets
             initRecyclerView();                                                                                // Initializing recycler view
 
-            //isAnsweredList = new ArrayList<>(Collections.nCopies(subjectTest.getQuestions().size(), false));
-            //testController = new TestController(subjectTest.getQuestions().size(), progressBar, ratio);      // Initialzing test controller object
             countDownTimer.start();
             // Start count down timer
         } catch (NullPointerException error)
@@ -128,8 +124,32 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
 
     //--------------------------------------------------------ON-ANSWER-CLICK-LISTENER--------------
     @Override
-    public void onAnswerClick(int position, int userAnswer, RadioGroup answerGroup)
+    public void onAnswerClick(int position, int userAnswer, QuestionWithAnswers answers, RadioGroup answerGroup)
     {
+        if(answers.isAnswered)
+            return;
+
+        answers.isAnswered = true;
+
+        if(answers.a_is_correct && userAnswer==0)
+            ++correctAnswer;
+        else if(answers.b_is_correct && userAnswer==1)
+            ++correctAnswer;
+        else if(answers.c_is_correct && userAnswer==2)
+            ++correctAnswer;
+        else if(answers.d_is_correct && userAnswer==3)
+            ++correctAnswer;
+
+        ((RadioButton)answerGroup.getChildAt(userAnswer)).setButtonDrawable(R.drawable.ic_correct_icon);
+
+        ++countTotalAnswer;
+
+        progressBar.setProgress(countTotalAnswer);                                                                          // Setting progress
+        progressText.setText(String.valueOf(countTotalAnswer).concat("/").concat(String.valueOf(total)));                   // Setting ratio of answered questions to total of questions
+
+        answerGroup.setEnabled(false);
+
+        Toast.makeText(this, "" + correctAnswer, Toast.LENGTH_SHORT).show();
         //if(isAnsweredList.get(position))
         //    return;
         // isAnsweredList.set(position, true);
@@ -146,10 +166,13 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         TextView titleTextView = findViewById(R.id.titleText);                                                  // Title
         titleTextView.setText(subjectName);
 
+        progressText = findViewById(R.id.progress_textview);
+        progressText.setText("0/25");
+
         timerTextView = findViewById(R.id.timerTextView);
 
         progressBar = findViewById(R.id.progressBar);                                                           // Setting progress bar widget
-        ratio = findViewById(R.id.score_ratio_textview);                                                        // Setting text view widget
+        progressBar.setMax(25);
 
         // Press to complete the test
         Button finishBtn = findViewById(R.id.finish_button);                                                    // Setting a button

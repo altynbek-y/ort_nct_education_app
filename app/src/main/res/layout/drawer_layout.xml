@@ -9,7 +9,7 @@
     tools:context=".ui.nct.main.NctMainActivity">
 
     <include
-        layout="@layout/test_layout_main"/>
+        layout="@layout/activity_main_layout"/>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"

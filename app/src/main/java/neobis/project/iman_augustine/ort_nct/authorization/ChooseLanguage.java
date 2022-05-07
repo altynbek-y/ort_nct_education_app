@@ -61,7 +61,7 @@ public class ChooseLanguage extends AppCompatActivity implements Contract.Langua
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.language_choose_layout);
+        setContentView(R.layout.activity_language_choose_layout);
 
         sps = SharedPreferencesSingleton.getLocalSharedPreferences(this);
         Log.i(CHOOSE_LANGUAGE, "Launched ChooseLanguage activity...");

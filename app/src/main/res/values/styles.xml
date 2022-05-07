@@ -1,11 +1,9 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppMaterialTheme" parent="SuperAppTheme">
-        <!-- Customise your theme here -->
     </style>
 
     <style name="SuperAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -13,10 +11,15 @@
     </style>
 
     <style name="AppTheme.NoActionBar" parent="SuperAppTheme">
-        <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>
+    </style>
+
+    <style name="AppTheme.NoActionBarAndFullscreen" parent="SuperAppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="BottomNavigationTheme">

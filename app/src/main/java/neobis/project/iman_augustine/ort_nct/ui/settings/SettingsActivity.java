@@ -43,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity implements Contract.Sett
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_layout);
+        setContentView(R.layout.activity_settings_layout);
 
         sharedPreferences = PreferenceManager.getMySharedPreferences(this);
         editor = sharedPreferences.edit();

@@ -153,7 +153,7 @@
         <activity
             android:name=".ui.main.test.TestActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBarAndFullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -164,11 +164,9 @@
             android:name=".ui.ChooseTestType"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
-
         </activity>
     </application>
 </manifest>

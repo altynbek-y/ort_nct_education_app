@@ -2,6 +2,7 @@ package neobis.project.iman_augustine.ort_nct.model.database_model;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
+import androidx.room.Ignore;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -36,4 +37,7 @@ public class QuestionWithAnswers {
 
     @ColumnInfo(name = "d_is_correct")
     public boolean d_is_correct;
+
+    @Ignore
+    public boolean isAnswered;
 }

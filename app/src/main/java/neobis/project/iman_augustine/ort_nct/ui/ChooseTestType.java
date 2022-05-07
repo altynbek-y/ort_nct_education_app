@@ -34,7 +34,7 @@ public class ChooseTestType extends AppCompatActivity implements Contract.Choose
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
-        setContentView(R.layout.choose_test_type_layout);
+        setContentView(R.layout.activity_choose_test_type_layout);
 
         Log.i(CHOOSE_TEST_TYPE, "Launched ChooseTestType activity...");
         // The main code goes here

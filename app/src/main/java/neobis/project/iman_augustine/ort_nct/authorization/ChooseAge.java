@@ -3,7 +3,6 @@ package neobis.project.iman_augustine.ort_nct.authorization;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -49,7 +48,7 @@ public class ChooseAge extends AppCompatActivity implements Contract.AgeView {
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
-        setContentView(R.layout.choose_age_layout);
+        setContentView(R.layout.activity_choose_age_layout);
         getSupportActionBar().setTitle(R.string.age_choice_label);
         // Initialization of views
         initViews();

@@ -49,7 +49,7 @@ public class ChooseCity extends AppCompatActivity implements Contract.RegionView
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
-        setContentView(R.layout.choose_city_layout);
+        setContentView(R.layout.activity_choose_city_layout);
         try {
             sps = new SharedPreferencesSingleton(getApplicationContext()); // SharedPreferences singleton
             getSupportActionBar().setTitle(R.string.city_choice_label);

@@ -73,7 +73,7 @@
                 android:progress="0" />
 
             <TextView
-                android:id="@+id/score_ratio_textview"
+                android:id="@+id/progress_textview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

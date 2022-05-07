@@ -1,6 +1,5 @@
 package neobis.project.iman_augustine.ort_nct.ui.error;
 
-import android.os.Build;
 import android.os.Bundle;
 
 
@@ -16,7 +15,7 @@ public class FailureActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.error_layout);
+        setContentView(R.layout.activity_error_layout);
 
         /*swipeRefresh = findViewById(R.id.refresh_internet);
         swipeRefresh.setOnRefreshListener(this);*/

@@ -41,7 +41,7 @@ public class SelectVariantActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
-        setContentView(R.layout.select_variant_layout);
+        setContentView(R.layout.activity_select_variant_layout);
         // Initialization of views
         try {
             initViews();

@@ -46,7 +46,7 @@ public class ChooseClass extends AppCompatActivity implements Contract.ClassView
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
-        setContentView(R.layout.choose_class_layout);
+        setContentView(R.layout.activity_choose_class_layout);
         getSupportActionBar().setTitle(R.string.class_choice_label);
         // Initialization of views
         initViews();
