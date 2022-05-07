@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -80,7 +81,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     }
 
     View.OnClickListener onToolbarClickListener = view -> {
-            showAlertDialog();                                                                                      // Alerts a dialog to prevent user from accidentally exiting from test
+            showAlertDialog();                                                                                      // Alert a dialog
     };
 
     View.OnClickListener onFinishClickListener = new OnSingleClickListener()
@@ -185,8 +186,12 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         QuestionListAdapter questionsAdapter = new QuestionListAdapter(new ArrayList<>(),
                 this, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        viewModel.getDataListOfQuestionsWithAnswers().observe(this,
-                questionsAdapter::setValues);
+        viewModel.getDataListOfQuestionsWithAnswers().observe(this, questionWithAnswers -> {
+            total = questionWithAnswers.size();
+            questionsAdapter.setValues(questionWithAnswers);
+        });
+       /* viewModel.getDataListOfQuestionsWithAnswers().observe(this,
+                questionsAdapter::setValues);*/
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(questionsAdapter);                                                              // Setting adapter
