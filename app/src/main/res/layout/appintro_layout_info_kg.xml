@@ -24,6 +24,6 @@
         android:layout_below="@id/language"
         android:textSize="15sp"
         android:textColor="#FFFFFF"
-        android:text="@string/project_info_ru"/>
+        android:text="@string/project_info_kg"/>
 
 </RelativeLayout>

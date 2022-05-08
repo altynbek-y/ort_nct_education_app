@@ -30,7 +30,6 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
     private final Context context;
 
     public QuestionListAdapter(
-            // List<Question> questionsList,
             List<QuestionWithAnswers> questionsList,
             OnItemListener onItemListener,
             Context context
