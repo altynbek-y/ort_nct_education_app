@@ -25,11 +25,9 @@ import java.util.List;
 
 public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapter.SubjectViewHolder>
 {
-    // private List<Question> questionsList;
     private List<QuestionWithAnswers> questionsList;
     private OnItemListener onItemListener;
-    private Context context;
-    private Repository repository;
+    private final Context context;
 
     public QuestionListAdapter(
             // List<Question> questionsList,
@@ -73,13 +71,13 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
 
             QuestionWithAnswers question = questionsList.get(pos);
 
-            String summary = "<html><body><b>" + (pos+1) + ". " + question.getQuestion() +"</b></body></html>";
+            String summary = "<html><body><b>" + (pos+1) + ". " + question.getQuestion().trim() +"</b></body></html>";
             holder.questionWebView.loadData(summary, "text/html; charset=utf-8", "utf-8");
 
-            holder.answerTextViewA.setText("А) ".concat(question.getAnswer_a()));
-            holder.answerTextViewB.setText("Б) ".concat(question.getAnswer_b()));
-            holder.answerTextViewC.setText("В) ".concat(question.getAnswer_c()));
-            holder.answerTextViewD.setText("Г) ".concat(question.getAnswer_d()));
+            holder.answerTextViewA.setText("А) ".concat(question.getAnswer_a().trim()));
+            holder.answerTextViewB.setText("Б) ".concat(question.getAnswer_b().trim()));
+            holder.answerTextViewC.setText("В) ".concat(question.getAnswer_c().trim()));
+            holder.answerTextViewD.setText("Г) ".concat(question.getAnswer_d().trim()));
           /*  if(currentLocale.equals("ru")) {
             }*/
 
