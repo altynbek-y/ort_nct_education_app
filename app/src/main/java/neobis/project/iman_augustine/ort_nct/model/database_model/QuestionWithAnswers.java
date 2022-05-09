@@ -1,6 +1,5 @@
 package neobis.project.iman_augustine.ort_nct.model.database_model;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Ignore;
 
