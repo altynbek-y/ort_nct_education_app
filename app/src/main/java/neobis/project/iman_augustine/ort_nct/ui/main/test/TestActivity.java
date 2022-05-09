@@ -2,6 +2,7 @@ package neobis.project.iman_augustine.ort_nct.ui.main.test;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -182,8 +183,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         viewModel.getDataListOfQuestionsWithAnswers().observe(this, questionWithAnswers -> {
             total = questionWithAnswers.size();
             if(total==0) {
-                Toast.makeText(this, "Извините за неудобство, тест по этому предмету " +
-                        "пока отсутствует", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.sorry_for_inconvience_absent_test), Toast.LENGTH_LONG).show();
                 finish();
             }
             progressBar.setMax(total);
