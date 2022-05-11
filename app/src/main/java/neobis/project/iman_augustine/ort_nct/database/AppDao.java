@@ -1,6 +1,8 @@
 package  neobis.project.iman_augustine.ort_nct.database;
 
 import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.ArrayList;
@@ -51,6 +53,11 @@ public interface AppDao {
 
    List<QuestionWithAnswers> getListOfQuestionsWithAnswers(int subject_id);
 
+//   @Insert(onConflict = OnConflictStrategy.REPLACE)
+//   void insertTestStatsOrt(List<TestStat> testStatsOrt);
+
+   // @Delete
+   // void deleteTestStatOrt(TestStat testStatOrt);
 
 
 

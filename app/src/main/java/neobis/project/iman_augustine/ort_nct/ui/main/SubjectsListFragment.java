@@ -61,7 +61,7 @@ public class SubjectsListFragment extends Fragment implements SubjectListAdapter
         //-----------------------------INITIALIZATION-----------------------------------------------
         try {
             sharedPreferences = PreferenceManager.getMySharedPreferences(getContext());
-            locale = sharedPreferences.getString("locale", "ru");
+            // locale = sharedPreferences.getString("locale", "ru");
             textView = view.findViewById(R.id.emptyTextView);
             swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
             progressLayout = view.findViewById(R.id.progressLayout);

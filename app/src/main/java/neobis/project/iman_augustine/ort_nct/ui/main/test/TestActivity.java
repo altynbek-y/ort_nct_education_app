@@ -68,12 +68,11 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
 
         @Override
         public void onFinish()
-        { // Proceed or finish on time out
-            // testController.countTotalCorrect();
+        {
             completeTest();
         }
     };
-    // Cancels timer when activity destroyed
+
     public void cancelTimer()
     {
         if(countDownTimer!=null) {
