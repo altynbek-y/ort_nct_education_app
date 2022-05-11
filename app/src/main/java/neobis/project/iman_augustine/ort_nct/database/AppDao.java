@@ -1,6 +1,7 @@
 package  neobis.project.iman_augustine.ort_nct.database;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -13,6 +14,7 @@ import neobis.project.iman_augustine.ort_nct.model.database_model.Question;
 import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionAnswerChoice;
 import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionWithAnswers;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
+import neobis.project.iman_augustine.ort_nct.model.database_model.UserScore;
 
 @Dao
 public interface AppDao {
@@ -53,11 +55,14 @@ public interface AppDao {
 
    List<QuestionWithAnswers> getListOfQuestionsWithAnswers(int subject_id);
 
-//   @Insert(onConflict = OnConflictStrategy.REPLACE)
-//   void insertTestStatsOrt(List<TestStat> testStatsOrt);
+   @Insert(onConflict = OnConflictStrategy.REPLACE)
+   void insertTestScore(UserScore score);
 
-   // @Delete
-   // void deleteTestStatOrt(TestStat testStatOrt);
+   @Query("SELECT * FROM user_scores")
+   List<UserScore> getListOfScores();
+
+   @Delete
+   void deleteUserScore(UserScore score);
 
 
 
