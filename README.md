@@ -1,7 +1,7 @@
 ## Simple and easy to use test preparation application for school students in Kyrgyzstan
 
 
-<img src="https://user-images.githubusercontent.com/70685477/169546209-974550c7-5f27-4286-845d-fb71095613bd.png" width=40% height=40%>
+<center><img src="https://user-images.githubusercontent.com/70685477/169546209-974550c7-5f27-4286-845d-fb71095613bd.png" width=40% height=40%></center>
 
 <img src="https://user-images.githubusercontent.com/70685477/169546261-29a12304-37dc-4966-a7a6-38341a04d161.png" width=40% height=40%>
 
