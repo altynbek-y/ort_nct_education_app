@@ -1,7 +1,11 @@
 ## Simple and easy to use test preparation application for school students in Kyrgyzstan
 
-![ORT_NCT test prep app ERD](https://user-images.githubusercontent.com/70685477/170265064-6bc99394-e911-45e9-93e8-2d3af0754ea9.png)
 
+<p align="center">
+![ORT_NCT test prep app ERD]
+<img src="https://user-images.githubusercontent.com/70685477/170265064-6bc99394-e911-45e9-93e8-2d3af0754ea9.png" width=30% height=30%>
+</p>
+  
 <p align="center">
 <img src="https://user-images.githubusercontent.com/70685477/169546209-974550c7-5f27-4286-845d-fb71095613bd.png" width=30% height=30%>
 </p>
