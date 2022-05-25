@@ -2,8 +2,7 @@
 
 
 <p align="center">
-![ORT_NCT test prep app ERD]
-<img src="https://user-images.githubusercontent.com/70685477/170265064-6bc99394-e911-45e9-93e8-2d3af0754ea9.png" width=30% height=30%>
+<img src="https://user-images.githubusercontent.com/70685477/170265064-6bc99394-e911-45e9-93e8-2d3af0754ea9.png" width=40% height=40%>
 </p>
   
 <p align="center">
