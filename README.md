@@ -1,6 +1,6 @@
 ## Simple and easy to use test preparation application for school students in Kyrgyzstan
 
-
+The entity-relation diagram of the local SQLite database
 <p align="center">
 <img src="https://user-images.githubusercontent.com/70685477/170265064-6bc99394-e911-45e9-93e8-2d3af0754ea9.png" width=60% height=60%>
 </p>
