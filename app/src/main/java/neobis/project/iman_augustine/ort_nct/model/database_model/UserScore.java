@@ -1,5 +1,6 @@
 package neobis.project.iman_augustine.ort_nct.model.database_model;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -23,7 +24,7 @@ import java.util.Date;
                 )}
 )
 public class UserScore {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;
 
@@ -42,6 +43,13 @@ public class UserScore {
 
     public UserScore() {
         dateTest = null;
+    }
+
+    public UserScore(int subject_id, double score, @NonNull String test_date) {
+        this.subjectId = subject_id;
+        this.score = score;
+        this.dateTest = test_date;
+        this.userId = 1;
     }
 
     public int getId() {

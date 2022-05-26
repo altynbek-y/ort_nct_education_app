@@ -108,6 +108,7 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.drawer_layout);
+
             try {
                 // shared = SharedPreferencesSingleton.getLocalSharedPreferences(this); // Shared preferences
                 sharedPreferences = PreferenceManager.getMySharedPreferences(this); // Gets shared preferences

@@ -10,11 +10,11 @@ import java.util.List;
 
 import neobis.project.iman_augustine.ort_nct.database.AppDao;
 import neobis.project.iman_augustine.ort_nct.database.TestDatabase;
-import neobis.project.iman_augustine.ort_nct.model.about_model.AboutModel;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Question;
 import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionAnswerChoice;
 import neobis.project.iman_augustine.ort_nct.model.database_model.QuestionWithAnswers;
 import neobis.project.iman_augustine.ort_nct.model.database_model.Subject;
+import neobis.project.iman_augustine.ort_nct.model.database_model.UserScore;
 
 /**
  * Singleton Pattern
@@ -24,9 +24,7 @@ public class Repository
     private final String TAG = "Repository";
 
     private static Repository instance;
-    private AppDao database;
-
-    private Context context;
+    private final AppDao database;
 
     public static Repository getInstance(Application application)
     {
@@ -38,8 +36,9 @@ public class Repository
 
     private Repository(Application application)
     {
-        context = application.getApplicationContext();
+        Context context = application.getApplicationContext();
         database = TestDatabase.getInMemoryDatabase(application.getApplicationContext()).appDao();
+        // database2 = ResultDatabase.getInMemoryDatabase(application.getApplicationContext()).appDao();
     }
 
     // Get list of subjects
@@ -54,7 +53,7 @@ public class Repository
         questionsMutableLiveData.setValue(database.getListOfQuestionsListForSubject(subjectId));
     }
 
-    // Get list of ansers for a subject
+    // Get list of answers for a subject
     public void getListOfAnswersListForSubject(int subjectId, MutableLiveData<List<QuestionAnswerChoice>> answersMutableLiveData)
     {
         answersMutableLiveData.setValue(database.getListOfAnswersForSubject(subjectId));
@@ -64,6 +63,12 @@ public class Repository
     public void getListOfQuestionsWithAnswers(int subjectId, MutableLiveData<List<QuestionWithAnswers>> questionsWithAnswersMutableLiveData)
     {
         questionsWithAnswersMutableLiveData.setValue(database.getListOfQuestionsWithAnswers(subjectId));
+    }
+
+    // Insert a test score into the database
+    public void insertTestResult(int subject_id, double score, String test_date)
+    {
+        database.insertTestScore(new UserScore(subject_id, score, test_date));
     }
 }
 

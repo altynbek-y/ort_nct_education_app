@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "dd03515af46b64f50eb8dc0e6bd23728",
+    "identityHash": "406d95eaedf6e6ca9326e85c06e2a1fe",
     "entities": [
       {
         "tableName": "languages",
@@ -236,7 +236,7 @@
       },
       {
         "tableName": "user_scores",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `score` REAL NOT NULL, `test_date` TEXT NOT NULL, `user_id` INTEGER NOT NULL, `subject_id` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`user_id`) REFERENCES `user`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`subject_id`) REFERENCES `subjects`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `score` REAL NOT NULL, `test_date` TEXT NOT NULL, `user_id` INTEGER NOT NULL, `subject_id` INTEGER NOT NULL, FOREIGN KEY(`user_id`) REFERENCES `user`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`subject_id`) REFERENCES `subjects`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -273,7 +273,7 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": [
@@ -305,7 +305,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dd03515af46b64f50eb8dc0e6bd23728')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '406d95eaedf6e6ca9326e85c06e2a1fe')"
     ]
   }
 }

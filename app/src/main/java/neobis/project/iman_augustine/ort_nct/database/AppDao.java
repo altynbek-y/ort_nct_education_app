@@ -55,12 +55,15 @@ public interface AppDao {
 
    List<QuestionWithAnswers> getListOfQuestionsWithAnswers(int subject_id);
 
-   @Insert(onConflict = OnConflictStrategy.REPLACE)
-   void insertTestScore(UserScore score);
-
+   // Get list of scores
    @Query("SELECT * FROM user_scores")
    List<UserScore> getListOfScores();
 
+   // Insert a user score
+   @Insert(onConflict = OnConflictStrategy.REPLACE)
+   void insertTestScore(UserScore score);
+
+   // Delete a user score
    @Delete
    void deleteUserScore(UserScore score);
 

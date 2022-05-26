@@ -47,7 +47,6 @@ public abstract class TestDatabase extends RoomDatabase {
             instance = Room.databaseBuilder(context.getApplicationContext(), TestDatabase.class, DB_NAME)
                     .createFromAsset("database/test_db.db")
                     .fallbackToDestructiveMigration()
-                    //.addMigrations(MIGRATION_1_3)
                     .allowMainThreadQueries()
                     .build();
         }

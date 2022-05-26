@@ -68,10 +68,9 @@ public class TestActivityViewModel extends AndroidViewModel
         return questionsWithAnswersMutableLiveData;
     }
 
-
-    //----------------------------------------------------------------------------------------------
-    public void insertTestResult(String subjectName, String variant , long correct, long incorrect )
+    // Insert a test score into the database
+    public void insertTestResult(int subject_id, double score, String test_date)
     {
-      //  repository.insertNctResult(new TestStat(subjectName, grade, variant, "nct", correct, incorrect));
+        repository.insertTestResult(subject_id, score, test_date);
     }
 }

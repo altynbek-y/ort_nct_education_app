@@ -22,8 +22,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.adapters.QuestionListAdapter;
@@ -51,6 +54,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
     private final long duration = 3600000;
     private List<Boolean> isAnsweredList;
     private String subjectName;
+    private int subjectId;
     private int correctAnswer = 0;
     private int countTotalAnswer = 0;
     private int total;
@@ -100,7 +104,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         //shared = SharedPreferencesSingleton.getLocalSharedPreferences(this);
 
         try {
-            int subjectId = (int) getIntent().getSerializableExtra(SUBJECT_ID);
+            subjectId = (int) getIntent().getSerializableExtra(SUBJECT_ID);
             subjectName = (String) getIntent().getSerializableExtra(SUBJECT_NAME);
 
             viewModel = ViewModelProviders.of(this).get(TestActivityViewModel.class);
@@ -213,13 +217,10 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         intent.putExtra(TestActivity.TOTAL_QUESTIONS_COUNT, total);
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        Toast.makeText(this, date, Toast.LENGTH_SHORT).show();
+        viewModel.insertTestResult(subjectId, (double)(correctAnswer/total), date);
         finish();
-         /*  viewModel.insertTestResult(
-                                        subjectTest.getSubjectName(),
-                                        subjectTest.getVariant(),
-                                        testController.getCorrectCount(),
-                                testController.getTotal()-testController.getCorrectCount()
-        );*/
     }
 
     public void showAlertDialog()
@@ -231,7 +232,8 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
             dialogInterface.dismiss();
             finish();
         });
-        alert.setNegativeButton(getResources().getString(R.string.no_exit), (dialogInterface, i) -> dialogInterface.dismiss());
+        alert.setNegativeButton(getResources().getString(R.string.no_exit),
+                (dialogInterface, i) -> dialogInterface.dismiss());
         alert.create().show();
     }
 
