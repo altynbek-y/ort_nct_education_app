@@ -47,6 +47,8 @@ public class DisplayResultActivity extends AppCompatActivity implements View.OnC
         int total = getIntent().getIntExtra(TestActivity.TOTAL_QUESTIONS_COUNT, 0);
         resultText.setText(getIntent().getStringExtra(TestActivity.RESULT));
 
+        resultText.setText(String.valueOf(correct).concat("/").concat(String.valueOf(total)));
+
         if (correct <0.7 * total) {
             smileImage.setImageResource(R.drawable.anime_girl_turning_back);
             commentText.setText(getResources().getString(R.string.try_again_text));
