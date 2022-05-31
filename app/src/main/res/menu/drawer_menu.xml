@@ -11,11 +11,11 @@
         android:title="@string/nct_text"
         android:icon="@drawable/ic_book_black_24dp"
         android:checkable="false" />
-    <item
+    <!--<item
         android:id="@+id/about_us"
         android:title="@string/about_us"
         android:icon="@drawable/ic_info_outline_black_24dp"
-        android:checkable="false" />
+        android:checkable="false" />-->
     <item
         android:id="@+id/settings"
         android:title="@string/language_settings"

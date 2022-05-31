@@ -21,15 +21,18 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <FrameLayout
-        android:id="@+id/container"
+    <neobis.project.iman_augustine.ort_nct.adapters.CustomViewPager
+        android:id="@+id/viewPagerAppActivity"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

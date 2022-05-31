@@ -13,15 +13,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import neobis.project.iman_augustine.ort_nct.R;
 import neobis.project.iman_augustine.ort_nct.adapters.CustomViewPager;
+import neobis.project.iman_augustine.ort_nct.adapters.FragmentAdapter;
 import neobis.project.iman_augustine.ort_nct.dialogs.LoadingDialog;
 import neobis.project.iman_augustine.ort_nct.sharedpreference.PreferenceManager;
 import neobis.project.iman_augustine.ort_nct.sharedpreference.SharedPreferencesSingleton;
@@ -31,26 +37,28 @@ import neobis.project.iman_augustine.ort_nct.ui.aboutus.AboutUsActivity;
 import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
 
     /**
-     * @author Nami Augustine
+     * 
      *
      *
      */
 
     public class MainActivity extends AppCompatActivity implements Contract.MainContract {
+
         // Global variables
-        public static final String NCT_TEST_ACTIVITY = "nct_test_activity";
         private final int[] titlesResId = {R.string.information, R.string.practice_test, R.string.statistics_title};
+
+        private FragmentAdapter fragmentAdapter;
         private CustomViewPager viewPager;
-        private MenuItem prevMenuItem;
-        private final InformationFragment informationFragment = new InformationFragment();
-        private final SubjectsListFragment testFragment = new SubjectsListFragment();
-        private final StatisticsFragment statisticsFragment = new StatisticsFragment();
+
+        // private MenuItem prevMenuItem;
         private DrawerLayout mDrawerLayout;
         private ActionBarDrawerToggle toggle;
         private LoadingDialog loadingDialog;
         private SharedPreferencesSingleton shared;
-        SharedPreferences sharedPreferences;
-        SharedPreferences.Editor editor;
+
+        // Shared preferences
+        private SharedPreferences sharedPreferences;
+        private SharedPreferences.Editor editor;
 
         // On navigation item selected listener in the drawer layout
         private final NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
@@ -60,14 +68,13 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
                         switch (item.getItemId()) {
                             case R.id.choose_ort_test:
                                 mDrawerLayout.closeDrawers();
-                                Toast.makeText(MainActivity.this, "Пока недоступно/Азырынча жок", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this,
+                                        "Пока недоступно/Азырынча жок", Toast.LENGTH_SHORT)
+                                        .show();
                                 // startOrtTestActivity();
                                 break;
                             case R.id.choose_nct_test:
                                 mDrawerLayout.closeDrawers();
-                                break;
-                            case R.id.about_us:
-                                startAboutUsActivity();
                                 break;
                             case R.id.settings:
                                 startSettingsActivity();
@@ -76,54 +83,45 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
                         return true;
                     }
                 };
+
         // On navigation item selected listener in bottom navigation bar
         private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem item) {
-                        switch (item.getItemId()) {
-                            // About test information
-                            case R.id.info:
-                                openFragment(informationFragment); // Opens fragment
-                                getSupportActionBar().setTitle(titlesResId[0]); // Sets title
-                                break;
-                            // Test fragment
-                            case R.id.diag_test:
-                                openFragment(testFragment); // Opens fragment
-                                getSupportActionBar().setTitle(titlesResId[1]); // Sets title
-                                break;
-                            // Test statistics fragment
-                            case R.id.statistics:
-                                openFragment(statisticsFragment); // Opens fragment
-                                getSupportActionBar().setTitle(titlesResId[2]); // Sets title
-                                break;
+                item -> {
+                    switch (item.getItemId()) {
+                        // About test information
+                        case R.id.info:
+                            viewPager.setCurrentItem(0);
+                            Objects.requireNonNull(getSupportActionBar()).setTitle(titlesResId[0]); // Sets title
+                            break;
+                        // Test fragment
+                        case R.id.diag_test:
+                            viewPager.setCurrentItem(1);
+                            Objects.requireNonNull(getSupportActionBar()).setTitle(titlesResId[1]); // Sets title
+                            break;
+                        // Test statistics fragment
+                        case R.id.statistics:
+                            viewPager.setCurrentItem(2);
+                            Objects.requireNonNull(getSupportActionBar()).setTitle(titlesResId[2]); // Sets title
+                            break;
 
-                        }
-                        return true;
                     }
+                    return true;
                 };
 
-        // On creation
+        // On create
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.drawer_layout);
 
             try {
-                // shared = SharedPreferencesSingleton.getLocalSharedPreferences(this); // Shared preferences
                 sharedPreferences = PreferenceManager.getMySharedPreferences(this); // Gets shared preferences
-                editor = sharedPreferences.edit(); // Shared pref editor
-                initViews(); // Initializes views
+                editor = sharedPreferences.edit();                                          // Shared pref editor
+
+                initViews();                                                                // Initializes views
             } catch (NullPointerException error) {
                 error.printStackTrace();
             }
-        }
-
-        // Opens the given fragment
-        private void openFragment(Fragment fragment) {
-            getSupportFragmentManager().beginTransaction() // Begins transaction
-                    .replace(R.id.container, fragment) // FrameLayout with id container gets replaced with another one
-                    .commit();
         }
 
         // On resume
@@ -144,22 +142,33 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
             // Custom top navigation bar
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-            // FrameLayout
-            FrameLayout fragmentContainer = findViewById(R.id.container);
+
             // Navigation view
             NavigationView navigationView = findViewById(R.id.navigationView);
             navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
+
             // navigationView.getMenu().getItem(1).setChecked(true);
             mDrawerLayout = findViewById(R.id.drawer);
             toggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
             mDrawerLayout.addDrawerListener(toggle);
             toggle.syncState();
+
             // Find the view pager that will allow the user to swipe between fragments
             BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+            viewPager = findViewById(R.id.viewPagerAppActivity);
+
+            fragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
+            fragmentAdapter.addFragment(new InformationFragment());
+            fragmentAdapter.addFragment(new SubjectsListFragment());
+            fragmentAdapter.addFragment(new StatisticsFragment());
+
+            viewPager.setAdapter(fragmentAdapter);
+            viewPager.setCurrentItem(0);
+
             bottomNav.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
             bottomNav.setOnNavigationItemSelectedListener(navListener);
+
             // Initial state
-            openFragment(informationFragment); // Opens inital fragment
             Objects.requireNonNull(getSupportActionBar()).setTitle(titlesResId[0]); // Sets toolbar title
         }
 

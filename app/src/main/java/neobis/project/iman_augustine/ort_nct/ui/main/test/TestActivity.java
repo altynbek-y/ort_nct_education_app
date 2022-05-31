@@ -101,8 +101,6 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_layout);
 
-        //shared = SharedPreferencesSingleton.getLocalSharedPreferences(this);
-
         try {
             subjectId = (int) getIntent().getSerializableExtra(SUBJECT_ID);
             subjectName = (String) getIntent().getSerializableExtra(SUBJECT_NAME);
@@ -111,8 +109,8 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
             viewModel.getListOfQuestionsListForSubject(subjectId);
             viewModel.getListOfQuestionsWithAnswersForSubject(subjectId);
 
-            initViews();                                                                                       // Initializing widgets
-            // Start count down timer
+            initViews();
+
         } catch (NullPointerException error)
         {
             Toast.makeText(this, "error: "+error.getMessage(), Toast.LENGTH_SHORT).show();
@@ -217,9 +215,9 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
         intent.putExtra(TestActivity.TOTAL_QUESTIONS_COUNT, total);
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+       /* String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         Toast.makeText(this, date, Toast.LENGTH_SHORT).show();
-        viewModel.insertTestResult(subjectId, (double)(correctAnswer/total), date);
+        viewModel.insertTestResult(subjectId, (double)(correctAnswer/total), date);*/
         finish();
     }
 
@@ -232,8 +230,7 @@ public class TestActivity extends AppCompatActivity implements QuestionListAdapt
             dialogInterface.dismiss();
             finish();
         });
-        alert.setNegativeButton(getResources().getString(R.string.no_exit),
-                (dialogInterface, i) -> dialogInterface.dismiss());
+        alert.setNegativeButton(getResources().getString(R.string.no_exit), (dialogInterface, i) -> dialogInterface.dismiss());
         alert.create().show();
     }
 
