@@ -45,16 +45,12 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
     public class MainActivity extends AppCompatActivity implements Contract.MainContract {
 
         // Global variables
-        private final int[] titlesResId = {R.string.information, R.string.practice_test, R.string.statistics_title};
-
         private FragmentAdapter fragmentAdapter;
         private CustomViewPager viewPager;
-
-        // private MenuItem prevMenuItem;
+        private BottomNavigationView bottomNav;
         private DrawerLayout mDrawerLayout;
         private ActionBarDrawerToggle toggle;
         private LoadingDialog loadingDialog;
-        private SharedPreferencesSingleton shared;
 
         // Shared preferences
         private SharedPreferences sharedPreferences;
@@ -88,22 +84,27 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
         private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
                 item -> {
                     switch (item.getItemId()) {
-                        // About test information
+
                         case R.id.info:
                             viewPager.setCurrentItem(0);
-                            Objects.requireNonNull(getSupportActionBar()).setTitle(titlesResId[0]); // Sets title
-                            break;
-                        // Test fragment
-                        case R.id.diag_test:
-                            viewPager.setCurrentItem(1);
-                            Objects.requireNonNull(getSupportActionBar()).setTitle(titlesResId[1]); // Sets title
-                            break;
-                        // Test statistics fragment
-                        case R.id.statistics:
-                            viewPager.setCurrentItem(2);
-                            Objects.requireNonNull(getSupportActionBar()).setTitle(titlesResId[2]); // Sets title
+                            Objects.requireNonNull(getSupportActionBar()).setTitle(
+                                    bottomNav.getMenu().findItem(R.id.info).getTitle()
+                            );
                             break;
 
+                        case R.id.diag_test:
+                            viewPager.setCurrentItem(1);
+                            Objects.requireNonNull(getSupportActionBar()).setTitle(
+                                    bottomNav.getMenu().findItem(R.id.diag_test).getTitle()
+                            );
+                            break;
+
+                        case R.id.statistics:
+                            viewPager.setCurrentItem(2);
+                            Objects.requireNonNull(getSupportActionBar()).setTitle(
+                                    bottomNav.getMenu().findItem(R.id.statistics).getTitle()
+                            );
+                            break;
                     }
                     return true;
                 };
@@ -147,14 +148,13 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
             NavigationView navigationView = findViewById(R.id.navigationView);
             navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
 
-            // navigationView.getMenu().getItem(1).setChecked(true);
             mDrawerLayout = findViewById(R.id.drawer);
             toggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
             mDrawerLayout.addDrawerListener(toggle);
             toggle.syncState();
 
             // Find the view pager that will allow the user to swipe between fragments
-            BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+            bottomNav = findViewById(R.id.bottom_navigation);
             viewPager = findViewById(R.id.viewPagerAppActivity);
 
             fragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
@@ -168,8 +168,8 @@ import neobis.project.iman_augustine.ort_nct.ui.settings.SettingsActivity;
             bottomNav.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
             bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-            // Initial state
-            Objects.requireNonNull(getSupportActionBar()).setTitle(titlesResId[0]); // Sets toolbar title
+            // Set initial toolbar title
+            Objects.requireNonNull(getSupportActionBar()).setTitle(bottomNav.getMenu().findItem(R.id.info).getTitle());
         }
 
         // On options item selected

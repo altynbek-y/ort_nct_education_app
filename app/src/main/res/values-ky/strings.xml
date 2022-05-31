@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">ЖРТ жана УТБ</string>
+    <string name="app_name">ОРТ и НЦТ</string>
     <string name="age_choice_label">Жаш курагыңыз</string>
     <string name="class_choice_label">Классты тандаңыз</string>
     <string name="city_choice_label">Аймакты тандаңыз</string>
     <string name="variant_choice_label">Вариантты танданыз</string>
     <string name="kyrgyz_lanuage">кыргызча</string>
     <string name="russian_lanuage">русский</string>
-    <string name="ort_text">ЖРТ</string>
-    <string name="nct_text">УТБ</string>
+    <string name="ort_text">ОРТ</string>
+    <string name="nct_text">НЦТ</string>
     <string name="about_us">Биз жөнүндө</string>
     <string name="language_settings">Тил</string>
     <string name="about_us_text">\t\tNeobis Clubs - бул маалыматтык технологиялар, инновациялар жана билим берүү тармагында Кыргызстандын өнүгүүсүн максат кылган жаштар, амбициялуу уюм. IT технологиялар тармагын өнүктүрүп, өлкөнүн өнүгүшүндө чоң ийгиликтерге жетишүүгө, экономиканы көтөрүүгө жана инновациялык өлкө болууга уникалдуу мүмкүнчүлүк бар деп ишенебиз.</string>
@@ -19,7 +19,7 @@
     <string name="choose_language_txt">ТИЛДИ ТАНДАҢЫЗ</string>
     <string name="learning_material_txt">Окутуу материалдары</string>
     <string name="learning_material_menu_label">Материалдар</string>
-    <string name="information">УТБ тууралуу</string>
+    <string name="information">Маалымат</string>
     <string name="practice_test">Сабак боюнча тест</string>
     <string name="statistics_title">Статистика</string>
     <string name="try_once_more_toast">Возникла неполадка, попробуйте еще раз!</string>
@@ -52,5 +52,5 @@
     <string name="project_info_ru">\tПриложение ОРТ и НЦТ предназначено для подготовки к тестированию ОРТ и НЦТ учеников средних школ Кыргызской Республики. Приложение включает все необходимое для подготовки к тестированию, например учебные материалы, статистика тестов, а также простой интерфейс тестов. Для хорошей подготовки включен показ правильного варианта ответа, имеется таймер показывающий оставшееся время. Приложение ОРТ и НЦТ не является абсолютно эффективным средством подготовки, поэтому советуется посещать официальные сайты и центры подготовки и тестирования ОРТ и НЦТ.</string>
     <string name="project_info_kg">\t"ОРТ и НЦТ" тиркемеси Кыргыз Республикасынын орто мектептеринин окуучуларын ОРТ жана НЦТ тестирлөөгө даярдоо үчүн иштелип чыккан. Тиркеме тестирлөөгө даярданууга керектүү нерселердин бардыгын камтыйт, мисалы, окуу материалдары, тест статистикасы жана жөнөкөй тест интерфейси. Жакшы даярдануу үчүн туура жооптун дисплейи камтылган, калган убакытты көрсөтүүчү таймер бар. Бул тиркеме таптакыр эффективдүү окуу куралы эмес, ошондуктан ОРТ жана НЦТин расмий веб-сайттарына жана окуу жана тестирлөө борборлоруна баруу сунушталат.</string>
     <string name="sorry_for_inconvience_absent_test">Ыңгайсыздык үчүн кечирим сурайбыз, азырынча бул предмет боюнча тест жок</string>
-
+    <string name="screen_in_development">Барак жасалууда...</string>
 </resources>
