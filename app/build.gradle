@@ -12,11 +12,11 @@ android {
     }
     compileSdkVersion 30
     defaultConfig {
-        applicationId "neobis.project.iman_augustine.ort_nct"
+        applicationId "nami.project.indie.ort_nct"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 10
-        versionName "1.5"
+        versionCode 11
+        versionName "1.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {

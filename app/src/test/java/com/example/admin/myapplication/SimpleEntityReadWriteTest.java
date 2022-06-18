@@ -3,20 +3,12 @@ package com.example.admin.myapplication;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import static org.junit.Assert.*;
-
-import android.app.Application;
-import android.content.Context;
-
-import androidx.room.Room;
 
 import java.io.IOException;
 
-import neobis.project.iman_augustine.ort_nct.MyApplication;
-import neobis.project.iman_augustine.ort_nct.database.AppDao;
-import neobis.project.iman_augustine.ort_nct.database.TestDatabase;
+import nami.project.indie.ort_nct.database.AppDao;
+import nami.project.indie.ort_nct.database.TestDatabase;
+
 
 /**
  * Example local unit test, which will execute on the development machine (host).

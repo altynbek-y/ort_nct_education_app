@@ -21,7 +21,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <neobis.project.iman_augustine.ort_nct.adapters.CustomViewPager
+    <nami.project.indie.ort_nct.adapters.CustomViewPager
         android:id="@+id/viewPagerAppActivity"
         android:layout_width="match_parent"
         android:layout_height="0dp"
