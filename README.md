@@ -4,7 +4,7 @@ An Android application for preparation for entrance exams.
 
 ## Description
 
-Simple and easy to use test preparation application for school students in Kyrgyzstan
+The "ОРТ и НЦТ (offline)" application is designed to prepare secondary school students of the Kyrgyz Republic for testing ОРТ and НЦТ. The application includes everything you need to prepare for testing, such as study materials, test statistics, and a simple test interface. For good preparation, the display of the correct answer is included, there is a timer showing the remaining time. The "ОРТ и НЦТ (offline)" application is not an absolutely effective training tool, therefore it is strongly advised to visit the official websites and training and testing centers.
 
 ## Screenshots
 
