@@ -1,5 +1,9 @@
 ## ОРТ и НЦТ (offline)
 
+An Android application for preparation for entrance exams.
+
+# Description
+
 Simple and easy to use test preparation application for school students in Kyrgyzstan
 
 <p align="center">
